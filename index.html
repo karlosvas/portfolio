@@ -1,27 +1,104 @@
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portafolio</title>
     <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <header>
-        <div class="div-log">
-            <nav>
-                <ul>
-                    <li><button><a href="/login">Login</a></button></li>
-                    <li><button><a href="/register">Register</a></button></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-    <main>
-        <h1 id="presentation-h1">Hi, I am Carlos Vásquez Sánchez</h1>
-        <p id="presentation-p"></p>
-    </main>
-    <footer>
 
+</head>
+<body class="font-sans">
+    <header class="bg-black text-white p-10 items-center h-20 flex">
+        <button class="justify-start">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
+            </svg>                  
+        </button>
+        <nav class="ml-auto">
+            <ul>
+                <li><button><a href="/login">Login</a></button></li>
+                <li><button><a href="/register">Register</a></button></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="bg-slate-100 w-full h-auto flex flex-col items-center p-10">
+        
+          <!-- Porfile -->
+        <div class="grid grid-cols-2 w-1/2 mx-auto gap-5 my-auto">
+            <!-- Columna 1: Imagen -->
+            <div class="rounded-md h-72 w-full">
+                <img class="object-cover h-full w-full rounded-md" src="./img/perfile.png" alt="">
+            </div>
+            
+            <!-- Columna 2: Título y Párrafo -->
+            <div>
+                <!-- Título -->
+                <h1 class="font-bold text-3xl">Hi, I am Carlos Vásquez Sánchez</h1>
+            
+                <!-- Párrafo -->
+                <p class="text-pretty">
+                Desarrollador especializado en backend, pero con conocimientos de frontend. En esta web mostraré todos mis proyectos, experiencia y cualidades para que me conozcáis un poco más.
+                </p>
+            </div>
+        </div>
+        
+        <!-- Proyects -->
+        <h1 class="font-bold text-2xl pt-16">Proyectos</h1>
+        <div class="grid justify-between items-center grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5 h-auto pt-10 w-full sm:w-3/4 md:w-2/3 lg:w-1/2 xl:w-2/4">
+
+            <div style="background-image: url('./img/r.png');"
+            class="bg-center bg-cover border-2 border-solid border-black rounded-md h-60 min col-span-1 bg-opacity-45">
+                <div class="text-slate-200 bg-gradient-to-t from-black h-full flex flex-col justify-end p-5">
+                    <h2 class= "font-bold">Robotech</h2>
+                    <p>E-comerce tecnológico</p>
+                </div>
+            </div>
+
+            <div style="background-image: url('./img/waynebooks.png');"
+            class="bg-center bg-cover border-2 border-solid border-black rounded-md h-60 bg-opacity-45 col-span-1">
+                <div class="text-slate-200 bg-gradient-to-t from-black h-full flex flex-col justify-end p-5">
+                    <h2 class= "font-bold">Waynebooks</h2>
+                    <p>Libreria de fantasía</p>
+                </div>
+            </div>
+
+            <div style="background-image: url('./img/vintweet.png');"
+            class="bg-center bg-cover border-2 border-solid border-black rounded-md bg-opacity-45 col-span-1 row-span-2 h-full">
+                <div class="text-slate-200 bg-gradient-to-t from-black h-full flex flex-col justify-end p-5">
+                    <h2 class= "font-bold">Clon de Twitter</h2>
+                    <p>Hecho con Next, Typescript y Tailwind</p>
+                </div>
+            </div>
+
+            <div style="background-image: url('./img/olimpiadas.png');"
+            class="bg-center bg-cover border-2 border-solid border-black rounded-md h-60 bg-opacity-45 col-span-1">
+                <div class="text-slate-200 bg-gradient-to-t from-black h-full flex flex-col justify-end p-5">
+                    <h2 class= "font-bold">Olimpiada Informática</h2>
+                    <p>Classes de la UVA(Universidad de valladolid) con ejercicios de C++</p>
+                </div>
+            </div>
+
+            <div style="background-image: url('./img/advent.png');"
+            class="bg-center bg-cover border-2 border-solid border-black rounded-md h-60 bg-opacity-45 col-span-1">
+                <div class="text-slate-200 bg-gradient-to-t from-black h-full flex flex-col justify-end p-5">
+                    <h2 class= "font-bold">AdventJS</h2>
+                    <p>Calendario de adviento de JS</p>
+                </div>
+            </div>
+
+        </div>
+        
+        <!-- Experience -->
+
+        <div class="py-16 w-1/2">
+            <h1 class="font-bold text-2xl" >Experiencia</h1>
+            <p class="w-1/2">Tengo experiencia con lenguajes tanto de tipado estatico como dinamioico en algunas áreas, tales como JavaScript Typesscript, C++, Python, y Astro en ese orden</p>
+        </div>
+    </main>
+
+    <footer class="bg-black w-full h-20">
+        Hola
     </footer>
 </body>
 </html>
