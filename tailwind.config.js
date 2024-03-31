@@ -1,6 +1,5 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-<<<<<<< HEAD
    darkMode: 'class',
    content: ['./views/*.html'],
    theme: {
@@ -25,19 +24,5 @@ module.exports = {
       },
    ],
    purge: ['./src/**/*.{astro,js}'],
-=======
-  darkMode: 'class',
-  content: ['./*.html'],
-  theme: {
-    extend: {
-      scale: ['hover'],
-    },
-    transitionProperty: {
-      'color': 'color',
-      'bg': 'background-color'
-    }
-  },
-  plugins: [],
->>>>>>> 3acaa41fef8f521d244c2844e7c3b91bd8df8be1
 }
 

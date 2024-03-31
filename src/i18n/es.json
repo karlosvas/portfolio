@@ -26,7 +26,7 @@
          "name": "AdventJS",
          "description": "Calendario de adviento de JS"
       },
-      "chatwhitpdf": {
+      "chatwithpdf": {
          "name": "Chat con PDF",
          "description": "Conversación con una IA sobre pdf pasado por el usuario"
       }
