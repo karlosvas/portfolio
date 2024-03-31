@@ -1,0 +1,39 @@
+{
+   "name": "Soy Carlos Vásquez Sánchez",
+   "presentation": {
+         "v1": "Comencé a programar páginas web y proyectos pequeños cuando tenía 17 años. Actualmente, estoy estudiando programación competitiva en la Universidad Complutense de Madrid",
+         "v2": "Puedo adaptarme a cualquier lenguaje, creo en la importancia del TDD, documentación y buenas prácticas"
+   },
+   "proyects": {
+      "title": "Proyectos",
+      "robotech": {
+         "name": "Robotech",
+         "description": "E-comerce tecnológico"
+      },
+      "waynebooks": {
+         "name": "Waynebooks",
+         "description": "Libreria de fantasía"
+      },
+      "vintweet": {
+         "name": "Clon de Twitter",
+         "description": "Hecho con Next, Typescript y Tailwind"
+      },
+      "olimpiadas": {
+         "name": "Olimpiada Informática",
+         "description": "Clases de la Universidad Complutense de Madrid con ejercicios de C++"
+      },
+      "adventjs": {
+         "name": "AdventJS",
+         "description": "Calendario de adviento de JS"
+      },
+      "chatwhitpdf": {
+         "name": "Chat con PDF",
+         "description": "Conversación con una IA sobre pdf pasado por el usuario"
+      }
+   },
+   "experience": {
+      "title": "Experiencia",
+      "description": "Tengo experiencia con lenguajes tanto de tipado estatico como\ndinámico, tales como JavaScript Typesscript, C++,\nPython, y Astro en ese orden."
+   },
+   "contact" : "Contacto: carlosvassan@gmail.com"
+}

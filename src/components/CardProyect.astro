@@ -1,0 +1,18 @@
+---
+const { data } = Astro.props
+const { urlProyect, nameProyect} = Astro.props as { lang: string; urlProyect: string; nameProyect: string; }
+---
+
+   <div style={`background-image: url(/img/${nameProyect}.png)`}
+      class="col-span-1 h-60 rounded-2xl bg-opacity-10 bg-cover bg-center transform transition-all duration-300 hover:scale-105 overflow-hidden">
+      <a class="h-full w-full" href={urlProyect}>
+         <div class="flex h-full flex-col justify-end bg-gradient-to-t from-black p-5 text-slate-200">
+               <h2 class="font-bold">
+                  {data.proyects[nameProyect].name}
+               </h2>
+               <p>
+                  {data.proyects[nameProyect].description}
+               </p>
+         </div>
+      </a>
+   </div>

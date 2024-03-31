@@ -1,4 +1,29 @@
 {
+<<<<<<< HEAD
+  "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    // Para establecer la versión de ECMAScript a la que se compilará el código.
+    "target": "ES2020",
+    "module": "esnext",
+    // Para establecer el directorio de entrada y salida.
+    "rootDir": "./src",
+    "outDir": "./dist",
+    // Para depurar y debugear el código.
+    "sourceMap": true,
+    // Para habilitar la verificación de tipos.
+    "strict": true,
+    // Para verificar que no se use any.
+    "moduleResolution": "node",
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "esModuleInterop": true,
+    "skipDefaultLibCheck": true,
+    "forceConsistentCasingInFileNames": true
+  }
+}
+=======
    "compilerOptions": {
       // Para establecer la versión de ECMAScript a la que se compilará el código.
       "target": "ES2020",
@@ -21,3 +46,4 @@
       "forceConsistentCasingInFileNames": true
    }
 }
+>>>>>>> 3acaa41fef8f521d244c2844e7c3b91bd8df8be1
