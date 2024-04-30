@@ -3,7 +3,7 @@
 ---
 
 <div id="themeIcon" class="ml-auto">
-   <svg onclick="window.toggleDarkTheme()" xmlns="http://www.w3.org/2000/svg"
+   <svg onclick="toggleDarkTheme()" xmlns="http://www.w3.org/2000/svg"
       class="mx-10 icon icon-tabler icon-tabler-shadow" width="24" height="24" viewBox="0 0 24 24"
       stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
       <path stroke="none" d="M0 0h24v24H0z" fill="none" />
@@ -15,4 +15,6 @@
       <path d="M13 6h1" />
    </svg>
 </div>
-<script type="module" src="/src/functions/theme.ts"></script>
+<script type="module">
+   import { toggleDarkTheme, toggleLightTheme } from '/src/functions/theme.ts';
+</script>

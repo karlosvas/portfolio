@@ -1,19 +1,18 @@
 ---
-const { data } = Astro.props
+const data = Astro.props.data
 ---
 
-<div class="my-32 grid gap-5 sm:grid-cols-2 md:w-3/4 lg:w-1/2">
+<div class="mb-20 mt-40 grid gap-5 sm:grid-cols-2 md:w-3/4 lg:w-1/2">
    <!-- Imagen -->
-   <div class="sm:h-72 h-52 rounded-md">
-      <img class="h-full w-full rounded-md object-cover select-none" src="/img/perfile.png" alt="" />
+   <div class="sm:h-72 h-52 rounded-md mr-10">
+      <img class="h-full w-full rounded-md object-cover select-none" src="/img/perfile.png" alt="Imagen de perfil" />
    </div>
    <!-- Párrafo -->
-   <div>
+   <section>
       <!-- Título -->
       <h1 class="text-3xl font-bold">
          {data.name}
       </h1>
-
       <!-- Info -->
       <p class="text-pretty pt-3">
          {data.presentation.v1}
@@ -21,6 +20,5 @@ const { data } = Astro.props
       <p class="text-pretty pt-3">
          {data.presentation.v2}
       </p>
-
-   </div>
+   </section>
 </div>

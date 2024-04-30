@@ -31,9 +31,11 @@
          "description": "Conversation with an AI about a PDF provided by the user"
       }
    },
-   "experience": {
-      "title": "Experience",
-      "description": "I have experience with both statically and dynamically typed languages, such as JavaScript, TypeScript, C++, Python, and Astro in that order."
+   
+
+"experience": {
+"title": "Experience",
+"description": "I have experience working with a wide variety of programming languages, including JavaScript, TypeScript, C++, Python, and Astro. I have developed significant projects in each of these languages, which has allowed me to acquire solid knowledge and practical skills in software development."
    },
    "contact" : "Contact: carlosvassan@gmail.com"
 }

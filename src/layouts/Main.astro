@@ -1,0 +1,16 @@
+---
+import Projects from '../layouts/Projects.astro'
+import Experience from '../layouts/Experience.astro'
+import Profile from '../layouts/Profile.astro'
+
+const data = Astro.props.data
+---
+
+<main class="flex md:mt-20 h-auto w-full flex-col items-center justify-center p-10 text-black-50 light:bg-whitePal">
+      <!-- Porfile -->
+      <Profile data={data}/>
+      <!-- Proyects -->
+      <Projects data={data}/>
+      <!-- Experience -->
+      <Experience data={data}/>
+</main>

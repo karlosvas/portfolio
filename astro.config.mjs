@@ -7,13 +7,14 @@ export default defineConfig({
       ssr: true
    },
    buildOptions: {
-      renderMode: 'hybrid'
+      renderMode: 'static'
    },
    i18n: {
       defaultLocale: 'es',
       locales: ['es', 'en'],
       routing: {
-         prefixDefaultLocale: false,
+         prefixDefaultLocale: false
       }
-   }
+   },
+   integrations: []
 });

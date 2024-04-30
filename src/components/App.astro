@@ -1,10 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro'
-import Projects from '../layouts/Projects.astro'
-import Experience from '../layouts/Experience.astro'
 import Header from '../layouts/Header.astro'
-import Profile from '../layouts/Profile.astro'
-
+import Footer from '../layouts/Footer.astro'
+import Main from '../layouts/Main.astro'
 import { getI18N } from '../i18n/'
 
 let { currentLocale } = Astro
@@ -12,17 +10,10 @@ const data = getI18N({ currentLocale });
 ---
 
 <Layout title="PortfolioKarlos">
-   <!-- Modal Login and Register -->
+   <!-- Header -->
    <Header/>
-   <main class="flex md:mt-20 h-auto w-full flex-col items-center justify-center p-10 text-black-50 light:bg-whitePal ">
-      <!-- Porfile -->
-      <Profile data={data}/>
-      <!-- Proyects -->
-      <Projects data={data}/>
-      <!-- Experience -->
-      <Experience data={data}/>
-   </main>
-   <footer class="flex h-20 w-full items-center justify-center bg-black text-xs text-slate-200">
-      {data.contact}
-   </footer>
+   <!-- Contenido principal -->
+   <Main data={data}/>
+   <!-- Footer -->
+   <Footer data={data}>
 </Layout>

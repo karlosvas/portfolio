@@ -8,7 +8,7 @@ export function toggleDarkTheme() {
    }
 }
 
-function toggleLightTheme() {
+export function toggleLightTheme() {
    document.documentElement.classList.add('light');
    document.documentElement.classList.remove('dark');
    const themeIcon = document.getElementById('themeIcon');

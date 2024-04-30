@@ -2,11 +2,11 @@
 const { data } = Astro.props;
 ---
 
-<div class="flex flex-col justify-center items-center text-pretty py-16 px-20">
+<div class="w-1/2 flex flex-col justify-center items-center text-pretty my-20 px-20">
    <h1 class="text-2xl font-bold">
       {data.experience.title}
    </h1>
-   <p class="sm:w-full md:w-1/2 pt-3">
+   <p class="pt-3">
       {data.experience.description}
    </p>
 </div>
