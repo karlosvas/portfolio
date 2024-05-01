@@ -1,0 +1,1 @@
+{"version":3,"file":"logicModal.js","sourceRoot":"","sources":["../../src/functions/logicModal.ts"],"names":[],"mappings":"AACA,MAAM,UAAU,WAAW,CAAC,KAAY,EAAE,EAAU;IACjD,KAAK,CAAC,cAAc,EAAE,CAAC;IACvB,MAAM,KAAK,GAAG,QAAQ,CAAC,cAAc,CAAC,EAAE,CAAC,CAAC;IAC1C,KAAK,EAAE,SAAS,CAAC,MAAM,CAAC,QAAQ,CAAC,CAAC;AACrC,CAAC;AAQD,MAAM,CAAC,WAAW,GAAG,WAAW,CAAC"}
