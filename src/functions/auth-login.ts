@@ -56,17 +56,8 @@ export function validateLocalAuth(validateEmail: boolean, validatePassword: bool
    console.log(type)
    if (validateEmail && validatePassword) {
       if (type == 'Login')
-         localSingin(email, password)
+         localSingin(email, password, resData, type)
       else if (type == 'Register')
          localRegister(email, password)
-
-      resData.innerHTML = `User ${type} in successfully ✅`;
-      if (!document.getElementById('modal')?.classList.contains('hidden')) {
-         setTimeout(() => {
-            document.getElementById('modal')?.classList.add('hidden');
-            stateAuthFirebase('login');
-            resData.innerHTML = ''
-         }, 2000);
-      }
    }
 }

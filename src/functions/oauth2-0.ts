@@ -1,20 +1,23 @@
-import { initializeApp } from "firebase/app";
-import { getAuth, onAuthStateChanged, signInWithPopup, signInWithEmailAndPassword, signOut, createUserWithEmailAndPassword } from "firebase/auth";
-import { GithubAuthProvider } from "firebase/auth";
+import { initializeApp, FirebaseApp } from "firebase/app";
+import { getAuth, onAuthStateChanged, signInWithPopup, signInWithEmailAndPassword, signOut, createUserWithEmailAndPassword, GithubAuthProvider, Auth } from "firebase/auth";
 
-// Configuración firebase
-const firebaseConfig = {
-   apiKey: "AIzaSyAtXaHrW9rvbCrMHNgW-b7-WdbtSfNRihw",
-   authDomain: "portfolio-karlos.firebaseapp.com",
-   projectId: "portfolio-karlos",
-   storageBucket: "portfolio-karlos.appspot.com",
-   messagingSenderId: "721345184295",
-   appId: "1:721345184295:web:17844144bd5103a4b10402",
-   measurementId: "G-VXMFHQDBNC"
-};
 
-const firebaseApp = initializeApp(firebaseConfig);
-const auth = getAuth(firebaseApp);
+// Configuración firebase, como es una página estática no puedo utilizar .env :)
+let auth: Auth;
+let firebaseApp: FirebaseApp;
+
+async function firebaseConfig() {
+   fetch('../firebase-config.json')
+      .then(response => response.json())
+      .then(data => {
+         firebaseApp = initializeApp(data);
+         auth = getAuth(firebaseApp);
+      })
+      .catch(error => {
+         console.error('Error fetching Firebase config:', error);
+      });
+}
+firebaseConfig();
 
 // Estado de los botones de login
 export function stateAuthFirebase(id: string) {
@@ -23,11 +26,13 @@ export function stateAuthFirebase(id: string) {
 
    if (loginButton && formTitle) {
       onAuthStateChanged(auth, user => {
-         if (user == null && id == 'login') {
-            loginButton.textContent = 'Login'
-            formTitle.textContent = 'Login'
-         } else {
-            loginButton.textContent = 'Logout'
+         if (id == 'login') {
+            if (user == null) {
+               loginButton.textContent = 'Login'
+               formTitle.textContent = 'Login'
+            } else {
+               loginButton.textContent = 'Logout'
+            }
          }
 
          if (id == 'register')
@@ -37,7 +42,7 @@ export function stateAuthFirebase(id: string) {
    }
 }
 
-// Verificar si actualmente se está logeado
+// Verificar si actualmente está logeado
 export const isLogged = () => {
    return auth.currentUser != null;
 };
@@ -63,13 +68,23 @@ export function githubSingIn() {
 }
 
 // Logearse localmente
-export function localSingin(email: string, password: string) {
+export function localSingin(email: string, password: string, resData: HTMLElement, type: string) {
    console.log(email, password)
    signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
          // Usuario autenticado correctamente
          const user = userCredential.user;
          console.log("Usuario autenticado:", user);
+         resData.innerHTML = `User ${type} in successfully ✅`;
+         // Si el modal es visible, se actualiza el esatdo de los botones y se oculta el modal
+         if (!document.getElementById('modal')?.classList.contains('hidden')) {
+            setTimeout(() => {
+               document.getElementById('modal')?.classList.add('hidden');
+               stateAuthFirebase('login');
+               resData.innerHTML = ''
+               document.getElementsByTagName('main')[0].classList.toggle('opacity-50')
+            }, 2000);
+         }
       })
       .catch((error) => {
          // Ocurrió un error durante la autenticación
@@ -77,6 +92,7 @@ export function localSingin(email: string, password: string) {
          const errorMessage = error.message;
          console.error("Error durante la autenticación:", errorMessage);
          console.error(errorCode);
+         resData.innerHTML = `User ${type} in unsuccessfully ❌`;
       });
 }
 

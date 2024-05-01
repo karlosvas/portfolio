@@ -1,11 +1,7 @@
 import { defineConfig } from 'astro/config';
 
-// https://astro.build/config
 export default defineConfig({
    renderers: ['@astrojs/renderer-react'],
-   vite: {
-      ssr: true
-   },
    buildOptions: {
       renderMode: 'static'
    },
@@ -16,5 +12,9 @@ export default defineConfig({
          prefixDefaultLocale: false
       }
    },
-   integrations: []
+   integrations: [],
+   plugins: [],
+   pages: {
+      extensions: ['astro', 'md', 'ts', 'json']
+   }
 });

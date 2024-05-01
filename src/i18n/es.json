@@ -2,9 +2,9 @@
    "name": "Soy Carlos Vásquez Sánchez",
    "presentation": {
          "v1": "Comencé a programar páginas web y proyectos personales cuando tenía 17 años. Actualmente estoy estudiando programación competitiva en la Universidad Complutense de Madrid y tengo 20 años.",
-         "v2": "Puedo adaptarme a cualquier lenguaje, creo en la importancia del TDD, documentación y las buenas prácticas de dasarollo."
+         "v2": "Puedo adaptarme a cualquier lenguaje, creo en la importancia del TDD, documentación y las buenas prácticas de desarollo."
    },
-   "proyects": {
+   "projects": {
       "title": "Proyectos",
       "robotech": {
          "name": "Robotech",

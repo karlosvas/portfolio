@@ -1,16 +1,14 @@
 ---
-const data = Astro.props.data
+const {data} = Astro.props
 ---
 
-<div class="mb-20 mt-40 grid gap-5 sm:grid-cols-2 md:w-3/4 lg:w-1/2">
+<div class="md:mt-40 grid justify-center gap-5 sm:grid-cols-2 md:w-3/4 lg:w-1/2">
    <!-- Imagen -->
-   <div class="sm:h-72 h-52 rounded-md mr-10">
-      <img class="h-full w-full rounded-md object-cover select-none" src="/img/perfile.png" alt="Imagen de perfil" />
-   </div>
+   <img class="h-2/3 w-full xl:w-3/4 rounded-md object-cover select-none m-auto lg:my-0" src="/img/perfile.png" alt="Imagen de perfil Carlos Vásquez Sánchez" />
    <!-- Párrafo -->
    <section>
       <!-- Título -->
-      <h1 class="text-3xl font-bold">
+      <h1 class="text-3xl font-bold ">
          {data.name}
       </h1>
       <!-- Info -->

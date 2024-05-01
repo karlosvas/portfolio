@@ -3,7 +3,7 @@ import ModalAuth from './ModalAuth.astro'
 ---
 
 <ModalAuth/>
-<nav class="sm:block hidden text-whitePal">
+<nav class="sm:block hidden text-whitePal mt-10 sm:mt-0" id="navLog">
    <ul class="flex">
       <li>
          <button id="login"
@@ -20,7 +20,7 @@ import ModalAuth from './ModalAuth.astro'
    </ul>
 </nav>
 <script type="module">
-   import { isLogged, stateAuthFirebase, signOutUser } from '/src/functions/auth2-0.ts';
+import { isLogged, stateAuthFirebase, signOutUser } from '/dist/functions/oauth2-0.js';
    // Estado de login del usuario
    let userLogin = isLogged();
 
@@ -36,6 +36,11 @@ import ModalAuth from './ModalAuth.astro'
             signOutUser();
          } else {
             toggleModal(event, 'modal');
+            // Si el Hamburgermodal es visible se oculta  y se muestra el modal de log
+            if (!document.getElementById('hamburgerModal').classList.contains('hidden')) {
+                document.getElementById('hamburgerModal').classList.toggle('hidden');
+            }
+            document.getElementsByTagName('main')[0].classList.toggle('opacity-50');
          }
 
          stateAuthFirebase(id);      

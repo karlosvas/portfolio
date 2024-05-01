@@ -1,13 +1,12 @@
 
-<span onclick="toggleModal(event, 'modalLanguage')" id="lang" class="flex justify-center align-middle mr-10">
+<span onclick="toggleModal(event, 'modalLanguage')" id="lang" class="flex justify-center align-middle sm:mr-10">
   <img src='svg/languages.svg' alt="Seleciona idioma" class="select-none">
-<div id="modalLanguage" class="fixed hidden top-30 left-30 w-16 h-20 z-50 mt-8 bg-gray-900 transition-bg duration-200 flex flex-col justify-center items-center select-none cursor-pointer rounded-md">
+<div id="modalLanguage" class="fixed hidden top-30 left-30 w-16 h-20 z-50 mt-8 bg-blackPal transition-bg duration-200 flex flex-col justify-center items-center select-none cursor-pointer rounded-md">
    <img id="spain" src='svg/flagSpain.svg' class="m-1" onclick="getSpain()" >
    <img id="english" src='svg/flagEnglish.svg' class="m-1" onclick="getEnglish()" >
 </div>
 </span>
 
 <script type="module">
-   import { toggleModal } from '/src/functions/logicModal';
-   import { getSpain, getEnglish } from '/src/functions/language';
+   import { getSpain, getEnglish } from '/dist/functions/language.js';
 </script>
