@@ -1,7 +1,7 @@
 {
    "name": "Soy Carlos Vásquez Sánchez",
    "presentation": {
-         "v1": "Comencé a programar páginas web y proyectos personales cuando tenía 17 años. Actualmente estoy estudiando programación competitiva en la Universidad Complutense de Madrid y tengo 20 años.",
+         "v1": "Comencé a programar páginas web y proyectos personales a los 17 años. Actualmente estoy estudiando programación competitiva en la Universidad Complutense de Madrid y tengo 20 años.",
          "v2": "Puedo adaptarme a cualquier lenguaje, creo en la importancia del TDD, documentación y las buenas prácticas de desarollo."
    },
    "projects": {
@@ -10,6 +10,14 @@
          "name": "Robotech",
          "description": "Tienda E-comerce tecnológico"
       },
+      "olimpiadas": {
+         "name": "Olimpiada Informática",
+         "description": "Clases de la UCM, con ejercicios de C++"
+      },
+      "chatwithpdf": {
+         "name": "Chat con PDF",
+         "description": "Conversación con una IA de un pdf"
+      },
       "waynebooks": {
          "name": "Waynebooks",
          "description": "Libreria de de fantasía"
@@ -17,18 +25,6 @@
       "vintweet": {
          "name": "Vintweet",
          "description": "Clon de twitter con diseño vintage"
-      },
-      "olimpiadas": {
-         "name": "Olimpiada Informática",
-         "description": "Clases de la UCM, con ejercicios de C++"
-      },
-      "adventjs": {
-         "name": "AdventJS",
-         "description": "Calendario de adviento con ejercicios de JS"
-      },
-      "chatwithpdf": {
-         "name": "Chat con PDF",
-         "description": "Conversación con una IA de un pdf"
       }
    },
    "experience": {

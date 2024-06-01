@@ -4,19 +4,18 @@
     "module": "ESNext",
     "moduleResolution": "node",
     "strict": true,
-    "jsx": "react",
+    "noImplicitAny": false,
     "importHelpers": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
-    "rootDir": "./src",
     "outDir": "./dist",
-    "baseUrl": ".",
+    "baseUrl": "./",
     "resolveJsonModule": true,
     "paths": {
       "*": ["node_modules/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx"],
+  "include": ["./src/**/*.ts", "./src/**/*.tsx"],
   "exclude": ["node_modules"]
 }

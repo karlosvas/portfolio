@@ -1,23 +1,18 @@
-import { initializeApp, FirebaseApp } from "firebase/app";
-import { getAuth, onAuthStateChanged, signInWithPopup, signInWithEmailAndPassword, signOut, createUserWithEmailAndPassword, GithubAuthProvider, Auth } from "firebase/auth";
-
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+import { getAuth, onAuthStateChanged, signInWithPopup, signInWithEmailAndPassword, signOut, createUserWithEmailAndPassword, GithubAuthProvider} from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
 
 // Configuración firebase, como es una página estática no puedo utilizar .env :)
-let auth: Auth;
-let firebaseApp: FirebaseApp;
+const firebaseConfig = {
+   apiKey: 'AIzaSyAtXaHrW9rvbCrMHNgW-b7-WdbtSfNRihw',
+   authDomain: 'portfolio-karlos.firebaseapp.com',
+   projectId: 'portfolio-karlos',
+   messagingSenderId: '721345184295',
+   appId: '1:721345184295:web:17844144bd5103a4b10402'
+};
 
-async function firebaseConfig() {
-   fetch('../firebase-config.json')
-      .then(response => response.json())
-      .then(data => {
-         firebaseApp = initializeApp(data);
-         auth = getAuth(firebaseApp);
-      })
-      .catch(error => {
-         console.error('Error fetching Firebase config:', error);
-      });
-}
-firebaseConfig();
+const firebaseApp = initializeApp(firebaseConfig);
+const auth = getAuth(firebaseApp);
+
 
 // Estado de los botones de login
 export function stateAuthFirebase(id: string) {
@@ -50,14 +45,17 @@ export const isLogged = () => {
 // Guithub login
 const providerGithub = new GithubAuthProvider();
 export function githubSingIn() {
-   // Inicio de sesión con provedores externos
+   // Inicio de sesión con provedores externos (Github)
    signInWithPopup(auth, providerGithub)
-      .then((result) => {
+      .then(() => {
          // This gives you a GitHub Access Token. You can use it to access the GitHub API.
-         const credential = GithubAuthProvider.credentialFromResult(result);
-         const token = credential?.accessToken;
-         const user = result.user;
+         // const credential = GithubAuthProvider.credentialFromResult(result);
+         // Acceso al token y al usuario
+         // const token = credential?.accessToken;
+         // const user = result.user;
+
          document.getElementById('modal')?.classList.toggle('hidden');
+         document.getElementsByTagName('main')[0].classList.toggle('opacity-50');
       }).catch((error) => {
          // Handle Errors here.
          console.error(error.code, error.message)
@@ -69,7 +67,6 @@ export function githubSingIn() {
 
 // Logearse localmente
 export function localSingin(email: string, password: string, resData: HTMLElement, type: string) {
-   console.log(email, password)
    signInWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
          // Usuario autenticado correctamente
@@ -80,9 +77,9 @@ export function localSingin(email: string, password: string, resData: HTMLElemen
          if (!document.getElementById('modal')?.classList.contains('hidden')) {
             setTimeout(() => {
                document.getElementById('modal')?.classList.add('hidden');
+               document.getElementsByTagName('main')[0].classList.toggle('opacity-50');
                stateAuthFirebase('login');
                resData.innerHTML = ''
-               document.getElementsByTagName('main')[0].classList.toggle('opacity-50')
             }, 2000);
          }
       })
@@ -92,7 +89,7 @@ export function localSingin(email: string, password: string, resData: HTMLElemen
          const errorMessage = error.message;
          console.error("Error durante la autenticación:", errorMessage);
          console.error(errorCode);
-         resData.innerHTML = `User ${type} in unsuccessfully ❌`;
+         resData.innerHTML = `The user does not exist or the password is not correct ❌`;
       });
 }
 
@@ -109,12 +106,22 @@ export function signOutUser() {
       });
 }
 
-export function localRegister(email: string, password: string) {
+// Registrarse
+export function localRegister(email: string, password: string, resData: HTMLElement) {
    createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
          // Usuario registrado correctamente
          const user = userCredential.user;
          console.log("Usuario registrado:", user);
+         resData.innerHTML = 'Successfully registered user ✅'
+         if (!document.getElementById('modal')?.classList.contains('hidden')) {
+            setTimeout(() => {
+               document.getElementById('modal')?.classList.add('hidden');
+               document.getElementsByTagName('main')[0].classList.toggle('opacity-50');
+               stateAuthFirebase('login');
+               resData.innerHTML = ''
+            }, 3000);
+         }
       })
       .catch((error) => {
          // Ocurrió un error durante el registro del usuario
@@ -122,5 +129,7 @@ export function localRegister(email: string, password: string) {
          const errorMessage = error.message;
          console.error("Error durante el registro:", errorMessage);
          console.error(errorCode);
+         if(errorCode == "auth/email-already-in-use")
+            resData.innerHTML = 'The user has already been registered previously ❌'
       });
 }

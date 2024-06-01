@@ -1,11 +1,11 @@
-import { localSingin, localRegister } from './oauth2-0';
-let email = '';
-let password = '';
+import { localSingin, localRegister } from './oauth2-0.js';
 const resData = document.getElementById('resData');
 export function validateEmail(id) {
     const emailElement = document.getElementById(id);
     const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-    email = emailElement.value;
+    let email = emailElement.value;
+    if (email.length == 0)
+        return false;
     if (!emailPattern.test(email)) {
         colorText('red');
         resData.innerHTML = 'Invalid email';
@@ -20,7 +20,9 @@ export function validateEmail(id) {
 }
 export function validatePassword(id) {
     const passwordElement = document.getElementById(id);
-    password = passwordElement.value;
+    let password = passwordElement.value;
+    if (password.length == 0)
+        return false;
     colorText('red');
     if (password.length < 8)
         resData.innerHTML = 'Password must be at least 8 characters long';
@@ -46,12 +48,15 @@ function colorText(color) {
         resData.classList.replace('text-red-500', 'text-green-500');
 }
 export function validateLocalAuth(validateEmail, validatePassword, type) {
-    console.log(type);
     if (validateEmail && validatePassword) {
-        if (type == 'Login')
-            localSingin(email, password, resData, type);
-        else if (type == 'Register')
-            localRegister(email, password);
+        let email = document.getElementById('email');
+        let password = document.getElementById('password');
+        if (email && password) {
+            if (type == 'Login')
+                localSingin(email.value, password.value, resData, type);
+            else if (type == 'Register')
+                localRegister(email.value, password.value, resData);
+        }
     }
 }
-//# sourceMappingURL=auth-login.js.map
+//# sourceMappingURL=validateData.js.map

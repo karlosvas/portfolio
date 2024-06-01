@@ -1,6 +1,8 @@
 // vite.config.js
-export default {
-   optimizeDeps: {
-      include: ['firebase/app']
-   }
-}
+import { defineConfig } from 'vite';
+
+export default defineConfig({
+  optimizeDeps: {
+    include: ['firebase/app']
+  }
+});

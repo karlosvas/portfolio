@@ -1,14 +1,12 @@
-import { localSingin, localRegister } from './oauth2-0'
-import { stateAuthFirebase } from './oauth2-0'
+import { localSingin, localRegister } from './oauth2-0.js'
 
-let email: string = '';
-let password: string = '';
 const resData = document.getElementById('resData') as HTMLElement;
-
 export function validateEmail(id: string) {
    const emailElement = document.getElementById(id) as HTMLInputElement;
    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
-   email = emailElement.value;
+   let email = emailElement.value;
+
+   if(email.length == 0) return false
 
    if (!emailPattern.test(email)) {
       colorText('red');
@@ -24,7 +22,9 @@ export function validateEmail(id: string) {
 
 export function validatePassword(id: string) {
    const passwordElement = document.getElementById(id) as HTMLInputElement;
-   password = passwordElement.value;
+   let password = passwordElement.value;
+
+   if(password.length == 0) return false
 
    colorText('red')
    if (password.length < 8)
@@ -53,11 +53,16 @@ function colorText(color: string) {
 }
 
 export function validateLocalAuth(validateEmail: boolean, validatePassword: boolean, type: string) {
-   console.log(type)
    if (validateEmail && validatePassword) {
-      if (type == 'Login')
-         localSingin(email, password, resData, type)
-      else if (type == 'Register')
-         localRegister(email, password)
+
+      let email = document.getElementById('email') as HTMLInputElement;
+      let password = document.getElementById('password') as HTMLInputElement;
+
+      if(email && password){
+         if (type == 'Login')
+            localSingin(email.value, password.value, resData, type)
+         else if (type == 'Register')
+            localRegister(email.value, password.value, resData)
+      } 
    }
 }

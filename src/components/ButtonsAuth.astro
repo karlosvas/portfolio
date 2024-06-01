@@ -20,29 +20,23 @@ import ModalAuth from './ModalAuth.astro'
    </ul>
 </nav>
 <script type="module">
-import { isLogged, stateAuthFirebase, signOutUser } from '/dist/functions/oauth2-0.js';
-   // Estado de login del usuario
-   let userLogin = isLogged();
-
-   // AuthState, Estado de los botones
+import { stateAuthFirebase, signOutUser } from '/functions/oauth2-0.js';
+   // AuthState, Para verificar el estado de los botones
    stateAuthFirebase('login');
 
-   // Eventos de los botones de login, register && close
+   // Eventos de los botones de login, register y close
    ['btnClose', 'register', 'login'].forEach(id => {
       let element = document.getElementById(id)
-      // Si cerramos el modal actualizamos el estado del usuario
       element.addEventListener('click', (event) => {
-         if(element.textContent == "Logout") {
+         // Si nos deslogeamos no muestra el modal
+         if(element.textContent == "Logout") 
             signOutUser();
-         } else {
+         else {
+            // Si el Hamburgermodal es visible se oculta y viceversa
+            document.getElementById('resData').innerText = "";
             toggleModal(event, 'modal');
-            // Si el Hamburgermodal es visible se oculta  y se muestra el modal de log
-            if (!document.getElementById('hamburgerModal').classList.contains('hidden')) {
-                document.getElementById('hamburgerModal').classList.toggle('hidden');
-            }
             document.getElementsByTagName('main')[0].classList.toggle('opacity-50');
          }
-
          stateAuthFirebase(id);      
       });
    });
