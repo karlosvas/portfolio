@@ -19,25 +19,39 @@ import ModalAuth from './ModalAuth.astro'
       </li>
    </ul>
 </nav>
-<script type="module">
-import { stateAuthFirebase, signOutUser } from '/functions/oauth2-0.js';
+<script>
+import { stateAuthFirebase, signOutUser } from '../functions/oauth2-0';
+import { toggleModal } from '../functions/logicModal';
+
    // AuthState, Para verificar el estado de los botones
    stateAuthFirebase('login');
 
    // Eventos de los botones de login, register y close
    ['btnClose', 'register', 'login'].forEach(id => {
       let element = document.getElementById(id)
+
+      if(!element) return;
+
       element.addEventListener('click', (event) => {
          // Si nos deslogeamos no muestra el modal
-         if(element.textContent == "Logout") 
+         if(element.textContent == "Logout"){
+            // Ocultamos la modal si no lo esta
+            if(!document.getElementById("modal")?.classList.contains("hidden"))
+                document.getElementById("modal")?.classList.add("hidden");
+            if(document.getElementsByTagName('main')[0].classList.contains("opacity-50"))
+                document.getElementsByTagName('main')[0].classList.toggle('opacity-50');
+            // Deslogeamos al usuario
             signOutUser();
-         else {
-            // Si el Hamburgermodal es visible se oculta y viceversa
-            document.getElementById('resData').innerText = "";
+         } else {
+            let resData = document.getElementById('resData');
+
+            if(resData)
+               resData.innerText = "";
+
             toggleModal(event, 'modal');
             document.getElementsByTagName('main')[0].classList.toggle('opacity-50');
          }
-         stateAuthFirebase(id);      
+        stateAuthFirebase(id);    
       });
    });
 </script>

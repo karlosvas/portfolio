@@ -1,5 +1,6 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
-import { getAuth, onAuthStateChanged, signInWithPopup, signInWithEmailAndPassword, signOut, createUserWithEmailAndPassword, GithubAuthProvider} from "https://www.gstatic.com/firebasejs/9.6.1/firebase-auth.js";
+import { initializeApp } from 'firebase/app';
+import { getAuth, onAuthStateChanged, signInWithPopup, signInWithEmailAndPassword, signOut, createUserWithEmailAndPassword, GithubAuthProvider,
+} from 'firebase/auth';
 
 // Configuración firebase, como es una página estática no puedo utilizar .env :)
 const firebaseConfig = {
@@ -118,7 +119,7 @@ export function localRegister(email: string, password: string, resData: HTMLElem
             setTimeout(() => {
                document.getElementById('modal')?.classList.add('hidden');
                document.getElementsByTagName('main')[0].classList.toggle('opacity-50');
-               stateAuthFirebase('login');
+               stateAuthFirebase('register');
                resData.innerHTML = ''
             }, 3000);
          }
