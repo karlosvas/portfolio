@@ -16,7 +16,7 @@
       },
       "chatwithpdf": {
          "name": "Chat con PDF",
-         "description": "Conversación con una IA de un pdf"
+         "description": "Conversación con una IA sobre un PDF"
       },
       "waynebooks": {
          "name": "Waynebooks",
@@ -29,7 +29,7 @@
    },
    "experience": {
       "title": "Experiencia",
-      "description": "Tengo experiencia trabajando con una amplia variedad de lenguajes de programación, incluyendo JavaScript, TypeScript, C++, Python y Astro. He desarrollado proyectos significativos en cada uno de estos lenguajes, lo que me ha permitido adquirir un sólido conocimiento y habilidades prácticas en el desarrollo de software."
+      "description": "Tengo experiencia trabajando con una amplia variedad de lenguajes de programación, incluyendo JavaScript, TypeScript, C++, Java y Astro. He desarrollado proyectos significativos en cada uno de estos lenguajes, lo que me ha permitido adquirir un sólido conocimiento y habilidades prácticas en el desarrollo de software."
    },
    "contact" : "Contacto: carlosrvasquezsanchez@gmail.com"
 }

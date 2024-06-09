@@ -1,5 +1,5 @@
 import { initializeApp } from 'firebase/app';
-import { getAuth, onAuthStateChanged, signInWithPopup, signInWithEmailAndPassword, signOut, createUserWithEmailAndPassword, GithubAuthProvider,
+import { getAuth, onAuthStateChanged, signInWithPopup, signInWithEmailAndPassword, signOut, createUserWithEmailAndPassword, GithubAuthProvider, GoogleAuthProvider
 } from 'firebase/auth';
 
 // Configuración firebase, como es una página estática no puedo utilizar .env :)
@@ -13,7 +13,6 @@ const firebaseConfig = {
 
 const firebaseApp = initializeApp(firebaseConfig);
 const auth = getAuth(firebaseApp);
-
 
 // Estado de los botones de login
 export function stateAuthFirebase(id: string) {
@@ -42,29 +41,6 @@ export function stateAuthFirebase(id: string) {
 export const isLogged = () => {
    return auth.currentUser != null;
 };
-
-// Guithub login
-const providerGithub = new GithubAuthProvider();
-export function githubSingIn() {
-   // Inicio de sesión con provedores externos (Github)
-   signInWithPopup(auth, providerGithub)
-      .then(() => {
-         // This gives you a GitHub Access Token. You can use it to access the GitHub API.
-         // const credential = GithubAuthProvider.credentialFromResult(result);
-         // Acceso al token y al usuario
-         // const token = credential?.accessToken;
-         // const user = result.user;
-
-         document.getElementById('modal')?.classList.toggle('hidden');
-         document.getElementsByTagName('main')[0].classList.toggle('opacity-50');
-      }).catch((error) => {
-         // Handle Errors here.
-         console.error(error.code, error.message)
-         // El tipo de AuthCredential que esta utilizando y el email que el usuario utilizando.
-         const credential = GithubAuthProvider.credentialFromError(error);
-         console.error(credential, error.customData.email)
-      });
-}
 
 // Logearse localmente
 export function localSingin(email: string, password: string, resData: HTMLElement, type: string) {
@@ -133,4 +109,45 @@ export function localRegister(email: string, password: string, resData: HTMLElem
          if(errorCode == "auth/email-already-in-use")
             resData.innerHTML = 'The user has already been registered previously ❌'
       });
+}
+
+// Guithub login
+const providerGithub = new GithubAuthProvider();
+export function githubSingIn() {
+   // Inicio de sesión con provedores externos (Github)
+   signInWithPopup(auth, providerGithub)
+      .then((result) => {
+         // This gives you a GitHub Access Token. You can use it to access the GitHub API.
+         // const credential = GithubAuthProvider.credentialFromResult(result);
+         // Acceso al token y al usuario
+         // const token = credential?.accessToken;
+         const user = result.user;
+         console.log("Usuario autenticado:", user);
+         document.getElementById('modal')?.classList.toggle('hidden');
+         document.getElementsByTagName('main')[0].classList.toggle('opacity-50');
+      }).catch((error) => {
+         // Handle Errors here.
+         console.error(error.code, error.message)
+         // El tipo de AuthCredential que esta utilizando y el email que el usuario utilizando.
+         const credential = GithubAuthProvider.credentialFromError(error);
+         console.error(credential, error.customData.email)
+      });
+}
+
+// Proveedor de Google
+const providerGoogle = new GoogleAuthProvider();
+
+// Función para iniciar sesión
+export function signInWithGoogle() {
+   signInWithPopup(auth, providerGoogle)
+    .then((result) => {
+      // Este callback se ejecuta cuando el usuario se autentica correctamente
+      const user = result.user;
+      console.log("Usuario autenticado:", user);
+      document.getElementById('modal')?.classList.toggle('hidden');
+      document.getElementsByTagName('main')[0].classList.toggle('opacity-50');
+    })
+    .catch((error) => {
+      console.error("Error en la autenticación:", error);
+    });
 }

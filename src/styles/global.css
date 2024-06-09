@@ -11,4 +11,8 @@
    @apply bg-whitePal text-blackPal;
    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
 }
- 
+
+body{
+   font-family: "Onest Variable", system-ui, sans-serif;
+   font-size: 15px;
+}

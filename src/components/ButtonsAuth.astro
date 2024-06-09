@@ -26,6 +26,9 @@ import { toggleModal } from '../functions/logicModal';
    // AuthState, Para verificar el estado de los botones
    stateAuthFirebase('login');
 
+   let passwordInput = document.getElementById('password') as HTMLInputElement;
+   let emailInput = document.getElementById('email') as HTMLInputElement;
+
    // Eventos de los botones de login, register y close
    ['btnClose', 'register', 'login'].forEach(id => {
       let element = document.getElementById(id)
@@ -44,12 +47,17 @@ import { toggleModal } from '../functions/logicModal';
             signOutUser();
          } else {
             let resData = document.getElementById('resData');
-
+            // Reiniciamos las repuestas
             if(resData)
-               resData.innerText = "";
-
+               resData.innerText = '';
+            passwordInput.value = '';
+            emailInput.value = '';
+            // Ocultamos o mostramos el modal
             toggleModal(event, 'modal');
             document.getElementsByTagName('main')[0].classList.toggle('opacity-50');
+            // Ocultamos o mostramos el modal de hamburger si es en pantallas pequeñas
+            if (id !== 'btnClose' && window.matchMedia("(max-width: 640px)").matches)
+               toggleModal(event, 'hamburgerModal');
          }
         stateAuthFirebase(id);    
       });
