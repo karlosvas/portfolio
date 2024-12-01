@@ -3,7 +3,8 @@
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",
-    "moduleResolution": "Bundler",
+    "strict": true,
+    "moduleResolution": "node",
     "types": ["vite/client"],
     "importHelpers": true,
     "esModuleInterop": true,
@@ -12,14 +13,17 @@
     "resolveJsonModule": true,
     "allowJs": false,
     "skipLibCheck": true,
+    "allowImportingTsExtensions": true,
+    "baseUrl": "./",
     "paths": {
-      "*": ["./node_modules/*"]
+      "*": ["./node_modules/*"],
+      "@i18n/*": ["src/i18n/*"]
     },
     "plugins": [
       {
         "name": "@astrojs/ts-plugin"
-      },
-    ],
+      }
+    ]
   },
   "include": ["./src/**/*.ts", "./src/**/*.tsx, ./src/**/*.astro"]
 }
