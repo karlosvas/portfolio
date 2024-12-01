@@ -1,22 +1,62 @@
 ---
-const {data} = Astro.props
+const { data } = Astro.props;
 ---
 
-<div class="md:mt-40 grid justify-center gap-5 sm:grid-cols-2 md:w-3/4 lg:w-1/2">
-   <!-- Imagen -->
-   <img class="h-2/3 w-full xl:w-3/4 rounded-md object-cover select-none m-auto lg:my-0" src="/img/perfile.png" alt="Imagen de perfil Carlos Vásquez Sánchez" />
-   <!-- Párrafo -->
-   <section>
-      <!-- Título -->
-      <h1 class="text-3xl font-bold ">
-         {data.name}
-      </h1>
-      <!-- Info -->
-      <p class="text-pretty pt-3">
-         {data.presentation.v1}
-      </p>
-      <p class="text-pretty pt-3">
-         {data.presentation.v2}
-      </p>
-   </section>
+<div class="sm:my-20 md:my-40 grid justify-center gap-5 sm:grid-cols-2 md:w-3/4 lg:w-1/2">
+  <!-- Imagen -->
+  <img
+    class="h-full w-full xl:w-3/4 rounded-md object-cover select-none m-auto lg:my-0"
+    src="/img/perfile.webp"
+    alt="Imagen de perfil Carlos Vásquez Sánchez"
+  />
+  <!-- Párrafo -->
+  <section>
+    <!-- Título -->
+    <h1 id="title" class="text-3xl font-bold text-purplePal min-h-20">{" "}</h1>
+    <h3 class="font-bold text-purplePal">Backend Developer</h3>
+    <!-- Info -->
+    <p class="text-pretty pt-3">
+      {data.presentation.v1}
+    </p>
+    <p class="text-pretty pt-3">
+      {data.presentation.v2}
+    </p>
+  </section>
 </div>
+<script>
+  declare global {
+    interface Window {
+      updateTitle: () => void;
+    }
+  }
+
+  const sound = new Audio("/sounds/teclear.mp3");
+
+  function sleep(ms: number) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
+  const name = "Carlos Vásquez Sánchez";
+
+  async function updateTitle() {
+    const title = document.getElementById("title");
+    sound.volume = 1;
+    sound.currentTime = 0;
+    sound.play();
+    if (title) {
+      title.innerText = "_";
+      let result = "";
+      for (let i = 0; i < name.length; i++) {
+        await sleep(100);
+        result += name[i];
+        if (i === name.length - 1) title.innerText = result;
+        else title.innerText = result + "_";
+      }
+      // Remove the trailing underscore after finishing
+      title.innerText = result;
+      sound.pause();
+    }
+  }
+
+  window.updateTitle = updateTitle;
+</script>

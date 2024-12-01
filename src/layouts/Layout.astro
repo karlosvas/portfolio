@@ -1,26 +1,121 @@
 ---
-interface Props {
-	title: string;
-}
-
 const { title } = Astro.props;
-import '../styles/global.css';
+import "../styles/global.css";
 ---
 
 <!doctype html>
-<html lang="es" class="light">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Portafolio de Carlos Vásquez Sánchez, mostrando sus proyectos y habilidades en desarrollo web y programación." />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml">
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-		<script>
-			import {toggleModal} from '../functions/logicModal'
-		</script>
-	</body>
+<html lang="es" class="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="Carlos Vásquez Sánchez portafolio de desarrollo de software"
+      content="Portafolio de Carlos Vásquez Sánchez, mostrando sus proyectos, habilidades en desarrollo de software"
+    />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback" defer></script>
+    <style>
+      .centered-captcha {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: linear-gradient(135deg, #7a7a7a, #b0b0b0);
+        padding: 5px;
+        padding-bottom: 0;
+        border-radius: 10px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        animation: gradientMove 15s ease-in-out infinite;
+      }
+
+      @keyframes gradientMove {
+        0% {
+          background: linear-gradient(135deg, #7a7a7a, #b0b0b0);
+        }
+        25% {
+          background: linear-gradient(135deg, #929292, #a7a7a7);
+        }
+        50% {
+          background: linear-gradient(135deg, #b0b0b0, #7a7a7a);
+        }
+        75% {
+          background: linear-gradient(135deg, #a7a7a7, #929292);
+        }
+        100% {
+          background: linear-gradient(135deg, #7a7a7a, #b0b0b0);
+        }
+      }
+
+      dialog {
+        width: 100%;
+        height: 150px;
+        background: transparent;
+        border: none;
+        outline: none;
+      }
+      dialog::backdrop {
+        backdrop-filter: blur(6px);
+        background-color: rgba(0, 0, 0, 0.6);
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: scale(0.9);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
+      }
+
+      @keyframes fadeOut {
+        from {
+          opacity: 1;
+          transform: scale(1);
+        }
+        to {
+          opacity: 0;
+          transform: scale(0.9);
+        }
+      }
+
+      dialog[open] {
+        animation: fadeIn 0.3s ease-out;
+      }
+
+      dialog[closing] {
+        animation: fadeOut 0.3s ease-out;
+      }
+    </style>
+  </head>
+
+  <body>
+    <dialog id="backdrop">
+      <div id="challenge" class="centered-captcha"></div>
+    </dialog>
+    <slot />
+    <script type="module">
+      const modal = document.getElementById("backdrop");
+
+      function onCaptchaCompleted(token) {
+        setTimeout(() => {
+          modal.close();
+          window.updateTitle();
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }, 2000);
+      }
+      window.onCaptchaCompleted = onCaptchaCompleted;
+
+      window.onloadTurnstileCallback = function () {
+        turnstile.render("#challenge", {
+          sitekey: "0x4AAAAAAA1R3eULw-muNS8T",
+          theme: "dark",
+          callback: onCaptchaCompleted,
+        });
+        modal.showModal();
+      };
+    </script>
+  </body>
 </html>
