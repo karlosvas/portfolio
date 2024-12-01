@@ -1,0 +1,37 @@
+{
+  "name": "Carlos Vásquez Sánchez",
+  "presentation": {
+    "v1": "I started programming web pages and personal projects at the age of 17. I am currently studying competitive programming at the Complutense University of Madrid, in addition to a Higher Degree in Multiplatform Application Development. I am 20 years old and I am from Valladolid (Castilla y León).",
+    "v2": "I can adapt to any language, I believe in the importance of TDD, documentation, and good development practices."
+  },
+  "projects": {
+    "title": "Projects",
+    "thefluentspanishhouse": {
+      "name": "The Fluent Spanish House",
+      "description": "Language academy, with social media, blog, class subscription, and newsletter",
+      "real": true
+    },
+    "vintweet": {
+      "name": "Vintweet",
+      "description": "Twitter clone with vintage design"
+    },
+    "olimpiadas-informaticas": {
+      "name": "Informatics Olympiad",
+      "description": "UCM classes, with C++ exercises"
+    },
+    "chatwithpdf": {
+      "name": "Chat with PDF",
+      "description": "Conversation with an AI about a PDF"
+    },
+    "robotech": {
+      "name": "Robotech",
+      "description": "Technological E-commerce store"
+    }
+  },
+  "experience": {
+    "title": "Experience",
+    "description": "I have experience working with a wide variety of programming languages and frameworks, including JavaScript, TypeScript, C++, Java, Astro and React. I have developed significant projects in each of these languages, which has allowed me to acquire solid knowledge and practical skills in software development.",
+    "technologies": "I have also worked with various tools and libraries that have allowed me to delve into the internal workings and development environment, such as MongoDB, MySQL, Firebase, Vercel, Cloudflare, Tailwind, NodeJS, virtual machine management, Git, GitHub, GitKraken, continuous integration with GitHub Actions, among others."
+  },
+  "contact": "carlosrvasquezsanchez@gmail.com"
+}

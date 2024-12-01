@@ -1,0 +1,37 @@
+{
+  "name": "Carlos Vásquez Sánchez",
+  "presentation": {
+    "v1": "Comencé a programar páginas web y proyectos personales a los 17 años. Actualmente estoy estudiando programación competitiva en la Universidad Complutense de Madrid, ademas de un grado Superior de Desarollo de Aplicaciondes Multiplataforma. Tengo 20 años y soy de Valladolid (Castilla y León).",
+    "v2": "Puedo adaptarme a cualquier lenguaje, creo en la importancia del TDD, documentación y las buenas prácticas de desarollo."
+  },
+  "projects": {
+    "title": "Proyectos",
+    "thefluentspanishhouse": {
+      "name": "The Fluent Spanish House",
+      "description": "Academia de idiomas, con socialmedia, blog, suscripción a clases y newsletter",
+      "real": true
+    },
+    "vintweet": {
+      "name": "Vintweet",
+      "description": "Clon de twitter con diseño vintage"
+    },
+    "olimpiadas-informaticas": {
+      "name": "Olimpiada Informática",
+      "description": "Clases de la UCM, con ejercicios de C++"
+    },
+    "chatwithpdf": {
+      "name": "Chat con PDF",
+      "description": "Conversación con una IA sobre un PDF"
+    },
+    "robotech": {
+      "name": "Robotech",
+      "description": "Tienda E-comerce tecnológico"
+    }
+  },
+  "experience": {
+    "title": "Experiencia",
+    "description": "Tengo experiencia trabajando con una amplia variedad de lenguajes de programación y frameworks, incluyendo JavaScript, TypeScript, C++, Java, Astro y React. He desarrollado proyectos significativos en cada uno de estos lenguajes, lo que me ha permitido adquirir un sólido conocimiento y habilidades prácticas en el desarrollo de software.",
+    "technologies": "También he trabajado con diversas herramientas y librerías que me han permitido profundizar en el funcionamiento interno y el entorno de desarrollo, como MongoDB, MySQL, Firebase, Vercel, Clodfare, Tailwind, NodeJS, gestión de máquinas virtuales, Git, GitHub, GitKraken, integración continua con GitHub Actions, entre otras."
+  },
+  "contact": "carlosrvasquezsanchez@gmail.com"
+}
