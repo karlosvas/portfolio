@@ -17,6 +17,10 @@ import "../styles/global.css";
     <title>{title}</title>
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback" defer></script>
     <style>
+      :root {
+        font-family: "Times New Roman", Times, serif;
+      }
+
       .centered-captcha {
         position: absolute;
         top: 50%;
@@ -34,14 +38,32 @@ import "../styles/global.css";
         0% {
           background: linear-gradient(135deg, #7a7a7a, #b0b0b0);
         }
-        25% {
+        10% {
+          background: linear-gradient(135deg, #858585, #ababab);
+        }
+        20% {
           background: linear-gradient(135deg, #929292, #a7a7a7);
+        }
+        30% {
+          background: linear-gradient(135deg, #9f9f9f, #a2a2a2);
+        }
+        40% {
+          background: linear-gradient(135deg, #acacac, #9d9d9d);
         }
         50% {
           background: linear-gradient(135deg, #b0b0b0, #7a7a7a);
         }
-        75% {
-          background: linear-gradient(135deg, #a7a7a7, #929292);
+        60% {
+          background: linear-gradient(135deg, #a7a7a7, #858585);
+        }
+        70% {
+          background: linear-gradient(135deg, #9e9e9e, #909090);
+        }
+        80% {
+          background: linear-gradient(135deg, #959595, #9b9b9b);
+        }
+        90% {
+          background: linear-gradient(135deg, #8c8c8c, #a6a6a6);
         }
         100% {
           background: linear-gradient(135deg, #7a7a7a, #b0b0b0);
