@@ -3,13 +3,31 @@
   id="lang"
   class="flex justify-center align-middle sm:mr-10 relative"
 >
-  <img src="svg/languages.svg" alt="Seleciona idioma" class="select-none" />
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    class="hover:text-purplePal transition-color duration-200 icon icon-tabler icon-tabler-language"
+    width="25"
+    height="30"
+    viewBox="0 0 24 24"
+    stroke-width="2"
+    stroke="currentColor"
+    fill="none"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+    <path d="M4 5h7"></path>
+    <path d="M9 3v2c0 4.418 -2.239 8 -5 8"></path>
+    <path d="M5 9c0 2.144 2.952 3.908 6.7 4"></path>
+    <path d="M12 20l4 -9l4 9"></path>
+    <path d="M19.1 18h-6.2"></path>
+  </svg>
   <div
     id="modalLanguage"
-    class="absolute hidden top-11 rigth-10 w-16 h-20 z-50 bg-blackPal outline outline-2 outline-whitePal transition-bg duration-200 flex flex-col justify-center items-center select-none cursor-pointer rounded-md glow-shadow"
+    class="absolute hidden top-11 rigth-10 w-20 h-20 z-50 bg-blackPal outline outline-2 outline-whitePal transition-bg duration-200 flex flex-col justify-center items-center select-none cursor-pointer rounded-md glow-shadow"
   >
-    <img id="spain" src="/svg/flagSpain.svg" class="m-1" onclick="getSpain()" />
-    <img id="english" src="/svg/flagEnglish.svg" class="m-1" onclick="getEnglish()" />
+    <button class="m-1" onclick="getSpain()">Spanish</button>
+    <button class="m-1" onclick="getEnglish()">English</button>
   </div>
 </span>
 
@@ -27,5 +45,18 @@
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
     border-bottom: 10px solid #fff;
+  }
+
+  #modalLanguage:hover::before {
+    border-bottom: 10px solid var(--purplePal);
+  }
+
+  #modalLanguage:hover {
+    outline-color: var(--purplePal);
+    transition: outline-color 0.2s;
+  }
+
+  button {
+    cursor: pointer;
   }
 </style>

@@ -15,129 +15,48 @@ import "../styles/global.css";
     <link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?onload=onloadTurnstileCallback" defer></script>
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" defer></script>
+    <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
     <style>
-      :root {
-        font-family: "Times New Roman", Times, serif;
+      html {
+        overflow-x: hidden;
+        scroll-behavior: smooth;
+      }
+      html::-webkit-scrollbar {
+        width: 0.5rem;
+        background-color: #6166ff49;
       }
 
-      .centered-captcha {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        background: linear-gradient(135deg, #7a7a7a, #b0b0b0);
-        padding: 5px;
-        padding-bottom: 0;
-        border-radius: 10px;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        animation: gradientMove 15s ease-in-out infinite;
+      html::-webkit-scrollbar-thumb {
+        background-color: #5156edd3;
+        border-radius: 100px;
       }
 
-      @keyframes gradientMove {
-        0% {
-          background: linear-gradient(135deg, #7a7a7a, #b0b0b0);
-        }
-        10% {
-          background: linear-gradient(135deg, #858585, #ababab);
-        }
-        20% {
-          background: linear-gradient(135deg, #929292, #a7a7a7);
-        }
-        30% {
-          background: linear-gradient(135deg, #9f9f9f, #a2a2a2);
-        }
-        40% {
-          background: linear-gradient(135deg, #acacac, #9d9d9d);
-        }
-        50% {
-          background: linear-gradient(135deg, #b0b0b0, #7a7a7a);
-        }
-        60% {
-          background: linear-gradient(135deg, #a7a7a7, #858585);
-        }
-        70% {
-          background: linear-gradient(135deg, #9e9e9e, #909090);
-        }
-        80% {
-          background: linear-gradient(135deg, #959595, #9b9b9b);
-        }
-        90% {
-          background: linear-gradient(135deg, #8c8c8c, #a6a6a6);
-        }
-        100% {
-          background: linear-gradient(135deg, #7a7a7a, #b0b0b0);
-        }
+      body {
+        overflow-x: hidden;
+        font-family: "Roboto", sans-serif;
+        font-weight: 400;
+        font-style: normal;
       }
 
-      dialog {
-        width: 100%;
-        height: 150px;
-        background: transparent;
-        border: none;
-        outline: none;
-      }
-      dialog::backdrop {
-        backdrop-filter: blur(6px);
-        background-color: rgba(0, 0, 0, 0.6);
-      }
-      @keyframes fadeIn {
-        from {
-          opacity: 0;
-          transform: scale(0.9);
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
         }
-        to {
-          opacity: 1;
-          transform: scale(1);
-        }
-      }
-
-      @keyframes fadeOut {
-        from {
-          opacity: 1;
-          transform: scale(1);
-        }
-        to {
-          opacity: 0;
-          transform: scale(0.9);
-        }
-      }
-
-      dialog[open] {
-        animation: fadeIn 0.3s ease-out;
-      }
-
-      dialog[closing] {
-        animation: fadeOut 0.3s ease-out;
       }
     </style>
   </head>
-
   <body>
-    <dialog id="backdrop">
-      <div id="challenge" class="centered-captcha"></div>
-    </dialog>
+    <div class="cf-turnstile" data-sitekey="0x4AAAAAAA1R3eULw-muNS8T" data-size="invisible"></div>
     <slot />
     <script type="module">
-      const modal = document.getElementById("backdrop");
-
-      function onCaptchaCompleted(token) {
-        setTimeout(() => {
-          modal.close();
-          window.updateTitle();
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        }, 2000);
-      }
-      window.onCaptchaCompleted = onCaptchaCompleted;
-
-      window.onloadTurnstileCallback = function () {
-        turnstile.render("#challenge", {
+      // Inicializar Turnstile Invisible
+      document.addEventListener("DOMContentLoaded", function () {
+        turnstile.render(".cf-turnstile", {
           sitekey: "0x4AAAAAAA1R3eULw-muNS8T",
-          theme: "dark",
-          callback: onCaptchaCompleted,
+          size: "invisible",
         });
-        modal.showModal();
-      };
+      });
     </script>
   </body>
 </html>

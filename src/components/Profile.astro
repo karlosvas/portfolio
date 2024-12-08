@@ -12,7 +12,7 @@ const { data } = Astro.props;
   <!-- Párrafo -->
   <section>
     <!-- Título -->
-    <h1 id="title" class="text-3xl font-bold text-purplePal min-h-20 lg:min-h-10">{" "}</h1>
+    <h1 id="title" class="text-3xl font-bold text-purplePal min-h-20 lg:min-h-10"></h1>
     <h3 class="font-bold text-purplePal">Backend Developer</h3>
     <!-- Info -->
     <p class="text-pretty pt-3">
@@ -24,39 +24,49 @@ const { data } = Astro.props;
   </section>
 </div>
 <script>
-  declare global {
-    interface Window {
-      updateTitle: () => void;
-    }
-  }
-
-  const sound = new Audio("/sounds/teclear.mp3");
-
   function sleep(ms: number) {
     return new Promise((resolve) => setTimeout(resolve, ms));
   }
 
-  const name = "Carlos Vásquez Sánchez";
-
-  async function updateTitle() {
+  async function updateTitle(name: string) {
     const title = document.getElementById("title");
-    sound.volume = 1;
-    sound.currentTime = 0;
-    sound.play();
+
     if (title) {
-      title.innerText = "_";
+      title.innerHTML = "";
+      // Creamos el span del cursor y le damos la clase blinking-cursor
+      const cursorSpan = document.createElement("span");
+      cursorSpan.innerText = "|";
+      cursorSpan.classList.add("blinking-cursor");
+      cursorSpan.style.display = "inline-block";
+      cursorSpan.style.width = "0.5em";
+
+      title.appendChild(cursorSpan);
+
       let result = "";
       for (let i = 0; i < name.length; i++) {
         await sleep(100);
         result += name[i];
-        if (i === name.length - 1) title.innerText = result;
-        else title.innerText = result + "_";
+        title.innerText = result;
+        title.appendChild(cursorSpan);
       }
-      // Remove the trailing underscore after finishing
-      title.innerText = result;
-      sound.pause();
+
+      cursorSpan.style.animation = "blink 1s infinite";
+      setTimeout(() => {
+        cursorSpan.remove();
+      }, 3000);
     }
   }
 
-  window.updateTitle = updateTitle;
+  document.addEventListener("DOMContentLoaded", () => updateTitle("Carlos Vásquez Sánchez"));
 </script>
+<style>
+  @keyframes blink {
+    0%,
+    100% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 1;
+    }
+  }
+</style>

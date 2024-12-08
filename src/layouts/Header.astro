@@ -1,14 +1,40 @@
 ---
-import Language from '../components/Language.astro'
-import Hamburger from '../components/Hamburger.astro'
-import Theme from '../components/Theme.astro'
+import Language from "../components/Language.astro";
+import Hamburger from "../components/Hamburger.astro";
+import Theme from "../components/Theme.astro";
+import Contacto from "../components/Contacto.astro";
 ---
 
-<header class="flex h-20 items-center bg-black p-10 text-white fixed top-0 w-full z-30">
-   <!-- Navbar -->
-   <Hamburger />
-   <!-- Tema -->
-   <Theme />
-   <!-- Idioma -->
-   <Language/>
+<header class="flex h-20 justify-end align-middle items-center bg-black p-10 text-white fixed top-0 w-full z-30">
+  <!-- Navbar -->
+  <Hamburger />
+  <!-- Contacto -->
+  <Contacto />
+  <!-- Tema -->
+  <Theme />
+  <!-- Idioma -->
+  <Language />
 </header>
+
+<style>
+  /* Hacemos que sea mas grande cunao no se mueve y se contraiga cuando se mueva */
+  header {
+    height: 10vh;
+    transition: height 0.3s;
+  }
+  /* Hacemos que se mueva cuando se haga scroll */
+  header.scrolled {
+    height: 4vh;
+  }
+</style>
+<script>
+  const header: HTMLHeadElement | null = document.querySelector("header");
+  document.addEventListener("scroll", () => {
+    const header = document.querySelector("header");
+    if (window.scrollY > 0) {
+      header?.classList.add("scrolled");
+    } else {
+      header?.classList.remove("scrolled");
+    }
+  });
+</script>
