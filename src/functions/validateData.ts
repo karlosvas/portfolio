@@ -1,6 +1,6 @@
-const resData = document.getElementById("resData") as HTMLElement;
-
-export function validateEmail(id: string) {
+// Validación de email
+function validateEmail(id: string) {
+  const resData = document.getElementById("resData") as HTMLElement;
   const emailElement = document.getElementById(id) as HTMLInputElement;
   const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
 
@@ -18,19 +18,4 @@ export function validateEmail(id: string) {
   return false;
 }
 
-export function validatePassword(id: string) {
-  const passwordElement = document.getElementById(id) as HTMLInputElement;
-  let password = passwordElement.value;
-
-  if (password.length == 0) return false;
-
-  if (password.length < 8) resData.innerHTML = "Password must be at least 8 characters long";
-  else if (password.search(/[a-z]/) < 0) resData.innerHTML = "Password must contain at least one lowercase letter";
-  else if (password.search(/[A-Z]/) < 0) resData.innerHTML = "Password must contain at least one uppercase letter";
-  else if (password.search(/[0-9]/) < 0) resData.innerHTML = "Password must contain at least one digit";
-  else {
-    resData.innerHTML = "Password is valid, insert valid email";
-    return true;
-  }
-  return false;
-}
+export { validateEmail };

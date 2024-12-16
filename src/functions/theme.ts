@@ -1,4 +1,5 @@
-export function toggleDarkTheme() {
+// Mostrae el tema oscuro de la web
+function toggleDarkTheme() {
   document.documentElement.classList.add("dark");
   document.documentElement.classList.remove("light");
   const themeIcon = document.getElementById("themeIcon");
@@ -7,7 +8,8 @@ export function toggleDarkTheme() {
   }
 }
 
-export function toggleLightTheme() {
+// Mostar el tema claro de la web
+function toggleLightTheme() {
   document.documentElement.classList.add("light");
   document.documentElement.classList.remove("dark");
   const themeIcon = document.getElementById("themeIcon");
@@ -16,6 +18,7 @@ export function toggleLightTheme() {
   }
 }
 
+// Declaramos los tipos de las las funciones globales
 declare global {
   interface Window {
     toggleDarkTheme: () => void;
@@ -25,3 +28,5 @@ declare global {
 
 window.toggleLightTheme = toggleLightTheme;
 window.toggleDarkTheme = toggleDarkTheme;
+
+export { toggleDarkTheme, toggleLightTheme };
