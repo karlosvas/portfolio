@@ -8,24 +8,20 @@
     "title": "Projects",
     "thefluentspanishhouse": {
       "name": "The Fluent Spanish House",
-      "description": "Language academy, with social media, blog, class subscription, and newsletter",
+      "description": "Spanish academy, with social media, blog, private class subscription, and newsletter with digital marketing implementation using Mailchimp, made in React with TypeScript, .tsx",
       "real": true
-    },
-    "vintweet": {
-      "name": "Vintweet",
-      "description": "Twitter clone with vintage design"
     },
     "olimpiadas-informaticas": {
       "name": "Informatics Olympiad",
-      "description": "UCM classes, with C++ exercises"
+      "description": "Online classes from UCM (Complutense University of Madrid) on competitive programming, with C++ and Java exercises"
     },
-    "chatwithpdf": {
+    "elend-talk": {
       "name": "Chat with PDF",
-      "description": "Conversation with an AI about a PDF"
+      "description": "Fluid conversation with Ollama and Deepseek about a user-uploaded PDF, with real-time chat history and file upload implementation, made with Astro and SvelteKit"
     },
-    "robotech": {
-      "name": "Robotech",
-      "description": "Technological E-commerce store"
+    "coworking-space": {
+      "name": "Coworking",
+      "description": "Coworking platform (API) with room reservations, events, and users. Made with SpringBoot (Java), roles and permissions (Spring Security, JWT), documentation (Swagger and Javadoc), proposed by the BytesColaborativos community"
     }
   },
   "experience": {
@@ -33,5 +29,11 @@
     "description": "I have experience working with a wide variety of programming languages and frameworks, including JavaScript, TypeScript, C++, Java, Astro and React. I have developed significant projects in each of these languages, which has allowed me to acquire solid knowledge and practical skills in software development.",
     "technologies": "I have also worked with various tools and libraries that have allowed me to delve into the internal workings and development environment, such as MongoDB, MySQL, Firebase, Vercel, Cloudflare, Tailwind, NodeJS, virtual machine management, Git, GitHub, GitKraken, continuous integration with GitHub Actions, among others."
   },
-  "contact": "carlosrvasquezsanchez@gmail.com"
+  "contact": {
+    "title": "Contact",
+    "email": "carlosrvasquezsanchez@gmail.com",
+    "formEmail": "Your email",
+    "formMessage": "Message",
+    "formSubmit": "Send"
+  }
 }

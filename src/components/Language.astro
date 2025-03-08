@@ -24,7 +24,7 @@
   </svg>
   <div
     id="modalLanguage"
-    class="absolute hidden top-11 rigth-10 w-20 h-20 z-50 bg-blackPal outline outline-2 outline-whitePal transition-bg duration-200 flex flex-col justify-center items-center select-none cursor-pointer rounded-md glow-shadow"
+    class="absolute hidden top-11 rigth-10 w-20 h-20 z-50 bg-blackPal outline outline-2 outline-whitePal transition-bg duration-200 flex flex-col justify-center items-center select-none cursor-pointer rounded-md"
   >
     <button class="m-1" onclick="getSpain()">Spanish</button>
     <button class="m-1" onclick="getEnglish()">English</button>
@@ -32,8 +32,19 @@
 </span>
 
 <script>
-  import { getSpain, getEnglish } from "../functions/language";
-  import { toggleModal } from "../functions/logicModal";
+  import { getSpain, getEnglish } from "../services/language";
+  import { toggleModal } from "../services/logicModal";
+
+  document.addEventListener("click", (event) => {
+    const modal = document.getElementById("modalLanguage");
+    const langButton = document.getElementById("lang");
+
+    if (event.target && !langButton?.contains(event.target as Node)) {
+      if (modal) {
+        modal.classList.add("hidden");
+      }
+    }
+  });
 </script>
 <style>
   #modalLanguage::before {
@@ -47,13 +58,9 @@
     border-bottom: 10px solid #fff;
   }
 
-  #modalLanguage:hover::before {
-    border-bottom: 10px solid var(--purplePal);
-  }
-
-  #modalLanguage:hover {
-    outline-color: var(--purplePal);
-    transition: outline-color 0.2s;
+  #modalLanguage button:hover {
+    color: var(--purplePal);
+    transition: color 0.2s;
   }
 
   button {

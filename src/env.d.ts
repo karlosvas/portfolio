@@ -1,3 +1,1 @@
-/// <reference path="../.astro/types.d.ts" />
-/// <reference types="./types/vite-env-override.d.ts" />
-/// <reference types="vite/client" />
+/// <reference types="../.astro/types.d.ts" />

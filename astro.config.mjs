@@ -1,14 +1,24 @@
-import { defineConfig } from 'astro/config';
+import { defineConfig, envField } from 'astro/config';
 import tailwind from "@astrojs/tailwind";
+import vercel from '@astrojs/vercel';
 
 // https://astro.build/config
 export default defineConfig({
-  renderers: ['@astrojs/renderer-react'],
-  types: './types/types.d.ts',
-  publicDir: 'public',
-  buildOptions: {
-    renderMode: 'static'
+  env: {
+    schema: {
+      PUBLIC_TURNSTILE_SITE_KEY: envField.string({
+        context: "client",
+        access: "public"
+      }),
+      RESEND_API_KEY: envField.string({
+        context: "server",
+        access: "secret"
+      }),
+    }
   },
+  publicDir: 'public',
+  output: 'server',
+  adapter: vercel(),
   i18n: {
     defaultLocale: 'es',
     locales: ['es', 'en'],
@@ -17,11 +27,10 @@ export default defineConfig({
     }
   },
   integrations: [tailwind()],
-  plugins: ['@astro/typescript'],
   pages: {
     extensions: ['astro', 'md', 'ts', 'tsx', 'json']
   },
   optimizeDeps: {
     include: ['firebase/app']
-  }
+  },
 });

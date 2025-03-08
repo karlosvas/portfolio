@@ -11,3 +11,10 @@ pnpm-debug.log*
 .DS_Store
 
 .dev
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+
+# Variable environment files
+.env

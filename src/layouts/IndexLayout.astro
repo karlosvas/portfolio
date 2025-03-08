@@ -1,6 +1,8 @@
 ---
-const { title } = Astro.props;
 import "../styles/global.css";
+import { PUBLIC_TURNSTILE_SITE_KEY } from "astro:env/client";
+
+const { title } = Astro.props;
 ---
 
 <!doctype html>
@@ -16,7 +18,6 @@ import "../styles/global.css";
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" defer></script>
-    <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
     <style>
       html {
         overflow-x: hidden;
@@ -47,14 +48,17 @@ import "../styles/global.css";
     </style>
   </head>
   <body>
-    <div class="cf-turnstile" data-sitekey="0x4AAAAAAA1R3eULw-muNS8T" data-size="invisible"></div>
+    <div class="cf-turnstile" data-sitekey={PUBLIC_TURNSTILE_SITE_KEY} data-size="invisible"></div>
     <slot />
-    <script type="module">
+    <script type="module" define:vars={{ PUBLIC_TURNSTILE_SITE_KEY }}>
       // Inicializar Turnstile Invisible
       document.addEventListener("DOMContentLoaded", function () {
         turnstile.render(".cf-turnstile", {
-          sitekey: "0x4AAAAAAA1R3eULw-muNS8T",
+          sitekey: PUBLIC_TURNSTILE_SITE_KEY,
           size: "invisible",
+          callback: function () {
+            console.log("Cloudflare Turnstile, you are not a robot");
+          },
         });
       });
     </script>

@@ -8,24 +8,20 @@
     "title": "Proyectos",
     "thefluentspanishhouse": {
       "name": "The Fluent Spanish House",
-      "description": "Academia de idiomas, con socialmedia, blog, suscripción a clases y newsletter",
+      "description": "Academia de Español, con socialmedia, blog, suscripción a clases particulares y newsletter con implementacion de marketing digital con Mailchimp, hecho en React con TypeScript, .tsx",
       "real": true
-    },
-    "vintweet": {
-      "name": "Vintweet",
-      "description": "Clon de twitter con diseño vintage"
     },
     "olimpiadas-informaticas": {
       "name": "Olimpiada Informática",
-      "description": "Clases de la UCM, con ejercicios de C++"
+      "description": "Clases online de la UCM (Universidad Complutense de Madrid) de programación competitiva, con ejercicios de C++ y Java"
     },
-    "chatwithpdf": {
+    "elend-talk": {
       "name": "Chat con PDF",
-      "description": "Conversación con una IA sobre un PDF"
+      "description": "Conversación fluida con Ollama y Deepseek sobre un PDF pasado por el usuario, con implementación de chat con historial en tiempo real y subida de archivos, Astro y SvelteKit"
     },
-    "robotech": {
-      "name": "Robotech",
-      "description": "Tienda E-comerce tecnológico"
+    "coworking-space": {
+      "name": "Coworking",
+      "description": "Plataforma (API) de coworking con reservas de salas, eventos, usuarios. Con SpringBoot (Java), roles y permisos (Spring Security, JWT), documentación (Swagger y Javadoc), propuesto por la comunidad BytesColaborativos"
     }
   },
   "experience": {
@@ -33,5 +29,11 @@
     "description": "Tengo experiencia trabajando con una amplia variedad de lenguajes de programación y frameworks, incluyendo JavaScript, TypeScript, C++, Java, Astro y React. He desarrollado proyectos significativos en cada uno de estos lenguajes, lo que me ha permitido adquirir un sólido conocimiento y habilidades prácticas en el desarrollo de software.",
     "technologies": "También he trabajado con diversas herramientas y librerías que me han permitido profundizar en el funcionamiento interno y el entorno de desarrollo, como MongoDB, MySQL, Firebase, Vercel, Clodfare, Tailwind, NodeJS, gestión de máquinas virtuales, Git, GitHub, GitKraken, integración continua con GitHub Actions, entre otras."
   },
-  "contact": "carlosrvasquezsanchez@gmail.com"
+  "contact": {
+    "title": "Contacto",
+    "email": "carlosrvasquezsanchez@gmail.com",
+    "formEmail": "Tú email",
+    "formMessage": "Mensaje",
+    "formSubmit": "Send"
+  }
 }

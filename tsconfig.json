@@ -5,7 +5,7 @@
     "module": "ESNext",
     "strict": true,
     "moduleResolution": "node",
-    "types": ["vite/client"],
+    "types": ["astro/client", "astro"],
     "importHelpers": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -17,7 +17,8 @@
     "baseUrl": "./",
     "paths": {
       "*": ["./node_modules/*"],
-      "@i18n/*": ["src/i18n/*"]
+      "@i18n/*": ["src/i18n/*"],
+      "@/*": ["src/*"]
     },
     "plugins": [
       {
@@ -25,5 +26,5 @@
       }
     ]
   },
-  "include": ["./src/**/*.ts", "./src/**/*.tsx, ./src/**/*.astro"]
+  "include": ["./src/**/*.ts", "./src/**/*.tsx", "./src/**/*.astro", "env.d.ts"]
 }

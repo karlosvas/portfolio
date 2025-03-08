@@ -1,0 +1,33 @@
+---
+const data = Astro.props.data;
+---
+
+<!-- Contacto -->
+<h1 class="text-center text-2xl font-bold mb-3">{data.contact.title}</h1>
+<form action="http://localhost:4321/resend" method="post" class="flex flex-col gap-4 w-full max-w-md mb-28">
+  <div class="flex flex-col gap-2">
+    <label for="email" class="font-medium">{data.contact.formEmail}</label>
+    <input
+      id="email"
+      name="email"
+      class="p-2 border border-gray-300 rounded-md bg-gray-700 dark:bg-gray-50 light:bg-red-500 dark:text-black text-white"
+    />
+  </div>
+
+  <div class="flex flex-col gap-2">
+    <label for="mensaje" class="font-medium">{data.contact.formMessage}</label>
+    <textarea
+      id="mensaje"
+      name="mensaje"
+      rows="4"
+      class="p-2 border border-gray-300 rounded-md resize-none bg-gray-700 dark:bg-gray-50 dark:text-black text-white"
+    ></textarea>
+  </div>
+
+  <button
+    type="submit"
+    class="bg-purplePal text-white py-2 px-4 rounded-md hover:bg-opacity-90 transition-colors mb-20"
+  >
+    {data.contact.formSubmit}
+  </button>
+</form>

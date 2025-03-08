@@ -6,10 +6,9 @@ const { data } = Astro.props;
   {data.projects.title}
 </h1>
 
-<div
-  class="grid h-auto w-full grid-cols-1 items-center justify-between gap-5 pt-5 sm:grid-cols-2 md:w-3/4 md:grid-cols-3 lg:w-1/2 xl:w-2/4 mb-20"
->
+<div class="flex h-auto w-full flex-col items-center justify-between pt-5 md:w-3/4 lg:w-1/2 xl:w-2/4 mb-20">
   {
+    // Recorremos los proyectos obtenidos de las tarducciones de i18n y los mostramos
     Object.keys(data.projects).map((key) => {
       if (key === "title") return;
 
@@ -19,7 +18,7 @@ const { data } = Astro.props;
         <>
           <div
             style={`background-image: url(/img/${key}.webp)`}
-            class={`h-72 rounded-xl bg-opacity-10 bg-center transform transition-all duration-300 hover:scale-105 bg-cover ${key === "vintweet" ? "grid-row-1-3 h-full min-h-80 bg-rigth" : ""}`}
+            class={`h-72 w-full max-w-xl rounded-xl bg-opacity-10 bg-center transform transition-all duration-300 hover:scale-105 bg-contain bg-no-repeat m-10`}
           >
             <a
               class="h-full w-full"
@@ -27,7 +26,7 @@ const { data } = Astro.props;
               target="_blank"
               aria-label={`Ir a proyecto de ${name}`}
             >
-              <div class="flex h-full flex-col justify-end bg-gradient-to-t from-black p-5 text-slate-200">
+              <div class="flex flex-col w-full h-full justify-end bg-gradient-to-t from-black p-5 text-slate-200">
                 <h2 class="font-bold">{name}</h2>
                 <p>{description}</p>
               </div>
@@ -38,9 +37,3 @@ const { data } = Astro.props;
     })
   }
 </div>
-
-<style>
-  .grid-row-1-3 {
-    grid-row: 1 / 3;
-  }
-</style>

@@ -2,7 +2,7 @@
 import Projects from "../components/Projects.astro";
 import Experience from "../components/Experience.astro";
 import Profile from "../components/Profile.astro";
-
+import Contact from "../components/Contact.astro";
 const data = Astro.props.data;
 ---
 
@@ -10,17 +10,41 @@ const data = Astro.props.data;
   <Profile data={data} />
   <Projects data={data} />
   <Experience data={data} />
-  <!-- Contacto -->
-  <h1 class="text-center text-2xl font-bold mb-3">Contacto</h1>
-  <div
-    class="badge-base LI-profile-badge mb-20"
-    data-locale="es_ES"
-    data-size="large"
-    data-theme="dark"
-    data-type="HORIZONTAL"
-    data-vanity="carlosvassan"
-    data-version="v1"
-  >
-    <a class="badge-base__link LI-simple-link" href="https://es.linkedin.com/in/carlosvassan?trk=profile-badge"></a>
-  </div>
+  <Contact data={data} />
 </main>
+
+<script type="module">
+  // Obtenemos el formulario y el boton de enviar
+  const form = document.querySelector("form");
+  const submitButton = form?.querySelector('button[type="submit"]');
+
+  // Agregamos un evento al formulario
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    // Deshabilitamos el boton de enviar
+    console.log("Enviando email...");
+    if (submitButton instanceof HTMLButtonElement) submitButton.disabled = true;
+    try {
+      // Enviamos la peticion
+      const data = {
+        email: form.email.value,
+        message: form.mensaje.value,
+      };
+      const response = await fetch("/api/resend", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        form.reset();
+      }
+    } catch (error) {
+      console.error(error);
+    } finally {
+      if (submitButton) (submitButton instanceof HTMLButtonElement).disabled = false;
+    }
+  });
+</script>
