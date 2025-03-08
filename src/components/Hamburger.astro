@@ -1,3 +1,7 @@
+---
+const { data } = Astro.props;
+---
+
 <div class="absolute top-50 left-10">
   <svg
     onclick="toggleModal(event, 'hamburgerModal')"
@@ -16,6 +20,28 @@
     id="hamburgerModal"
     class="fixed hidden top-10 left-0 w-80 h-full z-50 mt-8 bg-blackPal transition-bg duration-200 flex flex-col items-center select-none cursor-pointer rounded-md"
   >
+    <ul class="flex flex-col items-center justify-start h-full mt-10">
+      <li class="my-2 text-lg nav-item">
+        <a href="#profile" class="block px-4 py-2 transition-colors duration-200 hover:text-purplePal">
+          {data.profile.title}
+        </a>
+      </li>
+      <li class="my-2 text-lg nav-item">
+        <a href="#projects" class="block px-4 py-2 transition-colors duration-200 hover:text-purplePal">
+          {data.projects.title}
+        </a>
+      </li>
+      <li class="my-2 text-lg nav-item">
+        <a href="#experiencie" class="block px-4 py-2 transition-colors duration-200 hover:text-purplePal">
+          {data.experience.title}
+        </a>
+      </li>
+      <li class="my-2 text-lg nav-item">
+        <a href="#contact" class="block px-4 py-2 transition-colors duration-200 hover:text-purplePal">
+          {data.contact.title}
+        </a>
+      </li>
+    </ul>
   </div>
 </div>
 
@@ -31,10 +57,19 @@
     }
   }
 
-  function toggleModal(event, modalId) {
-    const modal = document.getElementById(modalId);
-    if (modal) {
-      modal.classList.toggle("hidden");
-    }
-  }
+  document.querySelectorAll(".nav-item a").forEach((item) => {
+    item.addEventListener("click", (event) => {
+      const targetId = item.getAttribute("href");
+
+      if (targetId === null) return;
+
+      document.getElementById("hamburgerModal")?.classList.add("hidden");
+
+      const targetElement = document.querySelector(targetId);
+      if (targetElement) {
+        event.preventDefault();
+        targetElement.scrollIntoView({ behavior: "smooth" });
+      }
+    });
+  });
 </script>

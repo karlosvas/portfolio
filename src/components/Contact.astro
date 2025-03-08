@@ -3,7 +3,7 @@ const data = Astro.props.data;
 ---
 
 <!-- Contacto -->
-<h1 class="text-center text-2xl font-bold mb-3">{data.contact.title}</h1>
+<h1 id="contact" class="text-center text-2xl font-bold mb-3">{data.contact.title}</h1>
 <form action="http://localhost:4321/resend" method="post" class="flex flex-col gap-4 w-full max-w-md mb-28">
   <div class="flex flex-col gap-2">
     <label for="email" class="font-medium">{data.contact.formEmail}</label>

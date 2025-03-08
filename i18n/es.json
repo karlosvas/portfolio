@@ -1,8 +1,11 @@
 {
-  "name": "Carlos Vásquez Sánchez",
-  "presentation": {
-    "v1": "Comencé a programar páginas web y proyectos personales a los 17 años. Actualmente estoy estudiando programación competitiva en la Universidad Complutense de Madrid, ademas de un grado Superior de Desarollo de Aplicaciondes Multiplataforma. Tengo 20 años y soy de Valladolid (Castilla y León).",
-    "v2": "Puedo adaptarme a cualquier lenguaje, creo en la importancia del TDD, documentación y las buenas prácticas de desarollo."
+  "profile": {
+    "title": "Perfil",
+    "name": "Carlos Vásquez Sánchez",
+    "presentation": {
+      "v1": "Comencé a programar páginas web y proyectos personales a los 17 años. Actualmente estoy estudiando programación competitiva en la Universidad Complutense de Madrid, ademas de un grado Superior de Desarollo de Aplicaciondes Multiplataforma. Tengo 20 años y soy de Valladolid (Castilla y León).",
+      "v2": "Puedo adaptarme a cualquier lenguaje, creo en la importancia del TDD, documentación y las buenas prácticas de desarollo."
+    }
   },
   "projects": {
     "title": "Proyectos",

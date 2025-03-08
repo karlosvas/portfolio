@@ -12,8 +12,8 @@ export const POST: APIRoute = async ({ request }) => {
     if (!validateEmail(email)) throw new Error("Invalid email");
 
     const data = await resend.emails.send({
-      from: "Portfolio <onboarding@resend.dev>",
-      to: ["carlosrvasquezsanchez@gmail.com"],
+      from: "Portfolio <carlosvassan@gmail.com>",
+      to: ["carlosvassan@gmail.com"],
       subject: "New Portfolio Contact",
       html: `<p>From: ${email}</p><p>Message: ${message}</p>`,
     });

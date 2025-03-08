@@ -18,3 +18,4 @@ pnpm-debug.log*
 
 # Variable environment files
 .env
+.vercel
