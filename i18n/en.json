@@ -3,7 +3,7 @@
     "title": "Profile",
     "name": "Carlos Vásquez Sánchez",
     "presentation": {
-      "v1": "I started programming web pages and personal projects at the age of 17. I am currently studying competitive programming at the Complutense University of Madrid, in addition to a Higher Degree in Multiplatform Application Development. I am 20 years old and I am from Valladolid (Castilla y León).",
+      "v1": "I started programming web pages and personal projects at the age of 18. I am currently studying competitive programming at the Complutense University of Madrid, in addition to a Higher Degree in Multiplatform Application Development. I am 20 years old and I am from Valladolid (Castilla y León).",
       "v2": "I can adapt to any language, I believe in the importance of TDD, documentation, and good development practices."
     }
   },
@@ -15,7 +15,7 @@
       "real": true
     },
     "olimpiadas-informaticas": {
-      "name": "Informatics Olympiad",
+      "name": "Spanish Informatics Olympiad",
       "description": "Online classes from UCM (Complutense University of Madrid) on competitive programming, with C++ and Java exercises"
     },
     "elend-talk": {
