@@ -50,7 +50,8 @@ const { title } = Astro.props;
   <body>
     <div class="cf-turnstile" data-sitekey={PUBLIC_TURNSTILE_SITE_KEY} data-size="invisible"></div>
     <slot />
-    <script type="module" define:vars={{ PUBLIC_TURNSTILE_SITE_KEY }}>
+    <script is:inline define:vars={{ PUBLIC_TURNSTILE_SITE_KEY }}>
+      console.log("PUBLIC_TURNSTILE_SITE_KEY", PUBLIC_TURNSTILE_SITE_KEY);
       // Inicializar Turnstile Invisible
       document.addEventListener("DOMContentLoaded", function () {
         turnstile.render(".cf-turnstile", {

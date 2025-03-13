@@ -2,74 +2,119 @@
 const { data } = Astro.props;
 ---
 
-<div class="absolute top-50 left-10">
+<div class="absolute left-10">
   <svg
-    onclick="toggleModal(event, 'hamburgerModal')"
+    id="hamburgerBtn"
     xmlns="http://www.w3.org/2000/svg"
     fill="none"
     viewBox="0 0 24 24"
     stroke-width="1.5"
     stroke="currentColor"
-    class="h-10 w-10 sm:hidden"
-    id="hamburger"
+    class="h-10 w-10 sm:hidden cursor-pointer"
   >
     <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
   </svg>
 
-  <div
+  <dialog
     id="hamburgerModal"
-    class="fixed hidden top-10 left-0 w-80 h-full z-50 mt-8 bg-blackPal transition-bg duration-200 flex flex-col items-center select-none cursor-pointer rounded-md"
+    class="fixed left-0 w-80 h-full z-50 bg-whitePal p-0 border-none m-0 backdrop:bg-blackPal backdrop:bg-opacity-50 text-blackPal dark:text-whitePal dark:bg-blackPal"
   >
-    <ul class="flex flex-col items-center justify-start h-full mt-10">
-      <li class="my-2 text-lg nav-item">
-        <a href="#profile" class="block px-4 py-2 transition-colors duration-200 hover:text-purplePal">
-          {data.profile.title}
-        </a>
-      </li>
-      <li class="my-2 text-lg nav-item">
-        <a href="#projects" class="block px-4 py-2 transition-colors duration-200 hover:text-purplePal">
-          {data.projects.title}
-        </a>
-      </li>
-      <li class="my-2 text-lg nav-item">
-        <a href="#experiencie" class="block px-4 py-2 transition-colors duration-200 hover:text-purplePal">
-          {data.experience.title}
-        </a>
-      </li>
-      <li class="my-2 text-lg nav-item">
-        <a href="#contact" class="block px-4 py-2 transition-colors duration-200 hover:text-purplePal">
-          {data.contact.title}
-        </a>
-      </li>
-    </ul>
-  </div>
+    <div class="h-full overflow-hidden">
+      <ul class="flex flex-col items-center justify-start h-full mt-10">
+        <li class="my-2 text-lg nav-item">
+          <a href="#profile" class="block px-4 py-2 transition-colors duration-200 hover:text-purplePal outline-none">
+            {data.profile.title}
+          </a>
+        </li>
+        <li class="my-2 text-lg nav-item">
+          <a href="#projects" class="block px-4 py-2 transition-colors duration-200 hover:text-purplePal outline-none">
+            {data.projects.title}
+          </a>
+        </li>
+        <li class="my-2 text-lg nav-item">
+          <a
+            href="#experiencie"
+            class="block px-4 py-2 transition-colors duration-200 hover:text-purplePal outline-none"
+          >
+            {data.experience.title}
+          </a>
+        </li>
+        <li class="my-2 text-lg nav-item">
+          <a href="#contact" class="block px-4 py-2 transition-colors duration-200 hover:text-purplePal outline-none">
+            {data.contact.title}
+          </a>
+        </li>
+      </ul>
+    </div>
+  </dialog>
 </div>
 
-<script>
-  // Si al cargar es una pantalla de movil, el login pasa al hamburger
-  let navLog: HTMLElement | null = document.getElementById("navLog");
-  let hambButton: HTMLElement | null = document.getElementById("hamburgerModal");
-
-  if (navLog && hambButton) {
-    if (window.innerWidth <= 640) {
-      hambButton?.appendChild(navLog);
-      navLog.classList.toggle("hidden");
-    }
+<style>
+  #hamburgerModal {
+    top: 84px;
+    transition: top 0.3s;
   }
 
+  #hamburgerModal.scrolled {
+    top: 80px;
+  }
+</style>
+
+<script>
+  const hamburgerBtn = document.getElementById("hamburgerBtn");
+  const hamburgerModal = document.getElementById("hamburgerModal") as HTMLDialogElement;
+
+  // Open modal when hamburger is clicked
+  hamburgerBtn?.addEventListener("click", () => {
+    if (hamburgerModal) {
+      hamburgerModal.showModal();
+      // Prevent body scrolling when dialog is open
+      document.body.style.overflow = "hidden";
+    }
+  });
+
+  // Close modal when clicking on backdrop
+  hamburgerModal?.addEventListener("click", (event) => {
+    // Close only when clicking on the backdrop (not on the modal content)
+    const rect = hamburgerModal.getBoundingClientRect();
+    const isInDialog =
+      rect.top <= event.clientY &&
+      event.clientY <= rect.top + rect.height &&
+      rect.left <= event.clientX &&
+      event.clientX <= rect.left + rect.width;
+    if (!isInDialog) {
+      hamburgerModal.close();
+      // Restore body scrolling
+      document.body.style.overflow = "";
+    }
+  });
+
+  // Handle navigation item clicks
   document.querySelectorAll(".nav-item a").forEach((item) => {
     item.addEventListener("click", (event) => {
       const targetId = item.getAttribute("href");
 
       if (targetId === null) return;
 
-      document.getElementById("hamburgerModal")?.classList.add("hidden");
+      // Close the modal
+      hamburgerModal?.close();
+      // Restore body scrolling
+      document.body.style.overflow = "";
 
+      // Scroll to target
       const targetElement = document.querySelector(targetId);
       if (targetElement) {
         event.preventDefault();
         targetElement.scrollIntoView({ behavior: "smooth" });
       }
     });
+  });
+
+  document.addEventListener("scroll", () => {
+    if (window.scrollY > 0) {
+      hamburgerModal?.classList.add("scrolled");
+    } else {
+      hamburgerModal?.classList.remove("scrolled");
+    }
   });
 </script>

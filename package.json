@@ -27,16 +27,21 @@
   "dependencies": {
     "@astrojs/check": "^0.9.4",
     "@astrojs/node": "^9.1.2",
+    "@astrojs/solid-js": "^5.0.5",
     "@astrojs/tailwind": "^6.0.0",
     "@astrojs/ts-plugin": "^1.10.4",
     "@astrojs/vercel": "^8.1.1",
+    "@solidjs/router": "^0.15.3",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.9",
     "@tailwindcss/typography": "^0.5.15",
     "astro": "^5.4.2",
     "i18next": "^23.11.5",
     "postcss-import": "^16.1.0",
-    "resend": "^4.1.1"
+    "react-dom": "^19.0.0",
+    "resend": "^4.1.1",
+    "solid-js": "^1.9.5",
+    "solid-toast": "^0.5.0"
   },
   "keywords": [],
   "author": "Carlos Vásquez Sánchez",

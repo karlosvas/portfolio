@@ -7,7 +7,7 @@ import ContactHeader from "../components/ContactHeader.astro";
 const { data } = Astro.props;
 ---
 
-<header class="flex h-20 justify-end align-middle items-center bg-black p-10 text-white fixed top-0 w-full z-30">
+<header class="flex h-20 justify-end align-middle items-center bg-black p-10 text-white fixed top-0 w-full z-50">
   <Hamburger data={data} />
   <!-- Contacto -->
   <ContactHeader />
@@ -31,7 +31,6 @@ const { data } = Astro.props;
 <script>
   const header: HTMLHeadElement | null = document.querySelector("header");
   document.addEventListener("scroll", () => {
-    const header = document.querySelector("header");
     if (window.scrollY > 0) {
       header?.classList.add("scrolled");
     } else {

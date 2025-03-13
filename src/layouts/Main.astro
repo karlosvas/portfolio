@@ -12,39 +12,3 @@ const data = Astro.props.data;
   <Experience data={data} />
   <Contact data={data} />
 </main>
-
-<script type="module">
-  // Obtenemos el formulario y el boton de enviar
-  const form = document.querySelector("form");
-  const submitButton = form?.querySelector('button[type="submit"]');
-
-  // Agregamos un evento al formulario
-  form?.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    // Deshabilitamos el boton de enviar
-    console.log("Enviando email...");
-    if (submitButton instanceof HTMLButtonElement) submitButton.disabled = true;
-    try {
-      // Enviamos la peticion
-      const data = {
-        email: form.email.value,
-        message: form.mensaje.value,
-      };
-      const response = await fetch("/api/resend", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (response.ok) {
-        form.reset();
-      }
-    } catch (error) {
-      console.error(error);
-    } finally {
-      if (submitButton) (submitButton instanceof HTMLButtonElement).disabled = false;
-    }
-  });
-</script>

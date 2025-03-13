@@ -1,10 +1,11 @@
 ---
 const data = Astro.props.data;
+import { Toaster } from "solid-toast";
 ---
 
 <!-- Contacto -->
 <h1 id="contact" class="text-center text-2xl font-bold mb-3">{data.contact.title}</h1>
-<form action="http://localhost:4321/resend" method="post" class="flex flex-col gap-4 w-full max-w-md mb-28">
+<form class="flex flex-col gap-4 w-full max-w-md mb-28" id="formEmail">
   <div class="flex flex-col gap-2">
     <label for="email" class="font-medium">{data.contact.formEmail}</label>
     <input
@@ -26,8 +27,68 @@ const data = Astro.props.data;
 
   <button
     type="submit"
-    class="bg-purplePal text-white py-2 px-4 rounded-md hover:bg-opacity-90 transition-colors mb-20"
+    class="bg-purplePal text-white py-2 px-4 rounded-md hover:bg-opacity-95 transition-all duration-200 mb-20 shadow-[0_5px_0_rgb(83,70,175)] hover:shadow-[0_3px_0_rgb(83,70,175)] hover:translate-y-[2px] active:shadow-[0_0px_0_rgb(83,70,175)] active:translate-y-[5px] font-bold tracking-wide"
   >
     {data.contact.formSubmit}
   </button>
 </form>
+
+<!-- Añade el componente Toaster -->
+<Toaster client:load position="bottom-right" />
+
+<script>
+  import toast from "solid-toast";
+
+  const form = document.getElementById("formEmail") as HTMLFormElement;
+  const submitButton = form?.querySelector('button[type="submit"]');
+
+  // Agregamos un evento al formulario
+  if (form) {
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      // Deshabilitamos el boton de enviar
+      if (submitButton instanceof HTMLButtonElement) submitButton.disabled = true;
+
+      // Mostrar toast de carga
+      const loadingToastId = toast.loading("Enviando mensaje...");
+
+      try {
+        // Enviamos la peticion
+        const data = {
+          email: form.email.value,
+          message: form.mensaje.value,
+        };
+        const response = await fetch("/api/resend", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        });
+
+        // Procesar la respuesta
+        if (response.ok) {
+          toast.success("¡Mensaje enviado correctamente!", {
+            id: loadingToastId,
+            duration: 3000,
+          });
+          // Vaciamos el formulario
+          form.reset();
+        } else {
+          toast.error("Error al enviar el mensaje", {
+            id: loadingToastId,
+            duration: 3000,
+          });
+        }
+      } catch (error) {
+        console.error(error);
+        toast.error("Error al enviar el mensaje", {
+          id: loadingToastId,
+          duration: 3000,
+        });
+      } finally {
+        if (submitButton instanceof HTMLButtonElement) submitButton.disabled = false;
+      }
+    });
+  }
+</script>

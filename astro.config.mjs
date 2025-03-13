@@ -1,6 +1,7 @@
 import { defineConfig, envField } from 'astro/config';
 import tailwind from "@astrojs/tailwind";
 import vercel from '@astrojs/vercel';
+import solidJs from '@astrojs/solid-js';
 
 // https://astro.build/config
 export default defineConfig({
@@ -26,11 +27,8 @@ export default defineConfig({
       prefixDefaultLocale: false
     }
   },
-  integrations: [tailwind()],
+  integrations: [tailwind(), solidJs()],
   pages: {
     extensions: ['astro', 'md', 'ts', 'tsx', 'json']
-  },
-  optimizeDeps: {
-    include: ['firebase/app']
   },
 });
