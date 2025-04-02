@@ -1,9 +1,11 @@
 ---
-import Projects from "../components/Projects.astro";
-import Experience from "../components/Experience.astro";
-import Profile from "../components/Profile.astro";
-import Contact from "../components/Contact.astro";
-const data = Astro.props.data;
+import Projects from "@/components/Projects.astro";
+import Experience from "@/components/Experience.astro";
+import Profile from "@/components/Profile.astro";
+import Contact from "@/components/Contact.astro";
+import type { i18nTranslations } from "@/../types/types";
+
+const data: i18nTranslations = Astro.props.data;
 ---
 
 <main class="flex mt-10 h-auto w-full flex-col items-center justify-center p-10 text-black-50 light:bg-whitePal">

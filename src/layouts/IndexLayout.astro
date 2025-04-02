@@ -1,5 +1,5 @@
 ---
-import "../styles/global.css";
+import "@/styles/global.css";
 import { PUBLIC_TURNSTILE_SITE_KEY } from "astro:env/client";
 
 const { title } = Astro.props;
@@ -48,6 +48,7 @@ const { title } = Astro.props;
     </style>
   </head>
   <body>
+    <!-- Cloudflare Turnstile -->
     <div class="cf-turnstile" data-sitekey={PUBLIC_TURNSTILE_SITE_KEY} data-size="invisible"></div>
     <slot />
     <script is:inline define:vars={{ PUBLIC_TURNSTILE_SITE_KEY }}>

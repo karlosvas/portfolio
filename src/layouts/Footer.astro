@@ -1,5 +1,6 @@
 ---
-const { data } = Astro.props;
+import type { i18nTranslations } from "@/../types/types";
+const data: i18nTranslations = Astro.props.data;
 ---
 
 <footer class="flex h-20 w-full items-center justify-center bg-black text-xs text-slate-200">

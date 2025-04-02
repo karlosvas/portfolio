@@ -1,5 +1,6 @@
 ---
-const { data } = Astro.props;
+import type { i18nTranslations, ProjectKey } from "@/../types/types";
+const data: i18nTranslations = Astro.props.data;
 ---
 
 <h1 class="pt-12 text-2xl font-bold" id="projects">
@@ -10,10 +11,11 @@ const { data } = Astro.props;
   {
     // Recorremos los proyectos obtenidos de las tarducciones de i18n y los mostramos
     Object.keys(data.projects).map((key) => {
+      const projectKey = key as ProjectKey;
+
       if (key === "title") return;
 
-      const { name, description } = data.projects[key];
-
+      const { name, description } = data.projects[projectKey];
       return (
         <>
           <div

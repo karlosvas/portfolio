@@ -1,5 +1,6 @@
 ---
-const { data } = Astro.props;
+import type { i18nTranslations } from "@/../types/types";
+const data: i18nTranslations = Astro.props.data;
 ---
 
 <div id="profile" class="sm:my-20 md:my-40 grid justify-center gap-5 sm:grid-cols-2 md:w-3/4 lg:w-1/2">
@@ -13,7 +14,7 @@ const { data } = Astro.props;
   <section>
     <!-- Título -->
     <h1 id="title" class="text-3xl font-bold text-purplePal min-h-20 lg:min-h-10"></h1>
-    <h3 class="font-bold text-purplePal">Backend Developer</h3>
+    <h3 class="font-bold text-purplePal">{data.profile.subtitle}</h3>
     <!-- Info -->
     <p class="text-pretty pt-3">
       {data.profile.presentation.v1}
@@ -23,12 +24,9 @@ const { data } = Astro.props;
     </p>
   </section>
 </div>
-<script>
-  function sleep(ms: number) {
-    return new Promise((resolve) => setTimeout(resolve, ms));
-  }
-
-  async function updateTitle(name: string) {
+<script is:inline define:vars={{ data }}>
+  // Actualizar el título con un efecto de escritura
+  async function updateTitle(name) {
     const title = document.getElementById("title");
 
     if (title) {
@@ -42,14 +40,17 @@ const { data } = Astro.props;
 
       title.appendChild(cursorSpan);
 
+      // Hacemos un bucle para ir añadiendo cada letra del nombre al título
+      // y simulamos un efecto de escritura
       let result = "";
       for (let i = 0; i < name.length; i++) {
-        await sleep(100);
+        await new Promise((resolve) => setTimeout(resolve, 100));
         result += name[i];
         title.innerText = result;
         title.appendChild(cursorSpan);
       }
 
+      // Al finalizar, eliminamos el cursor y lo reemplazamos por un parpadeo
       cursorSpan.style.animation = "blink 1s infinite";
       setTimeout(() => {
         cursorSpan.remove();
@@ -57,7 +58,7 @@ const { data } = Astro.props;
     }
   }
 
-  window.addEventListener("DOMContentLoaded", () => updateTitle("Carlos Vásquez Sánchez"));
+  window.addEventListener("DOMContentLoaded", () => updateTitle(data.profile.name));
 </script>
 <style>
   @keyframes blink {

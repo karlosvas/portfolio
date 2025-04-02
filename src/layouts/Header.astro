@@ -3,8 +3,9 @@ import Language from "../components/Language.astro";
 import Hamburger from "../components/Hamburger.astro";
 import Theme from "../components/Theme.astro";
 import ContactHeader from "../components/ContactHeader.astro";
+import type { i18nTranslations } from "@/../types/types";
 
-const { data } = Astro.props;
+const data: i18nTranslations = Astro.props.data;
 ---
 
 <header class="flex h-20 justify-end align-middle items-center bg-black p-10 text-white fixed top-0 w-full z-50">
@@ -29,6 +30,7 @@ const { data } = Astro.props;
   }
 </style>
 <script>
+  // Animacion de la cabecera al hacer scroll
   const header: HTMLHeadElement | null = document.querySelector("header");
   document.addEventListener("scroll", () => {
     if (window.scrollY > 0) {

@@ -1,5 +1,6 @@
 ---
-const { data } = Astro.props;
+import type { i18nTranslations } from "@/../types/types";
+const data: i18nTranslations = Astro.props.data;
 ---
 
 <div class="absolute left-10">
@@ -64,57 +65,52 @@ const { data } = Astro.props;
   const hamburgerBtn = document.getElementById("hamburgerBtn");
   const hamburgerModal = document.getElementById("hamburgerModal") as HTMLDialogElement;
 
-  // Open modal when hamburger is clicked
+  // Abrir el modal al hacer clic en el botón de hamburguesa
   hamburgerBtn?.addEventListener("click", () => {
     if (hamburgerModal) {
       hamburgerModal.showModal();
-      // Prevent body scrolling when dialog is open
+      // Prevenir el scroll en el body cunado el modal está abierto
       document.body.style.overflow = "hidden";
     }
   });
 
-  // Close modal when clicking on backdrop
+  // Cerrar el modal al hacer clic fuera de él
   hamburgerModal?.addEventListener("click", (event) => {
-    // Close only when clicking on the backdrop (not on the modal content)
+    // Cerrar solo cunado se hace clic fuera del contenido del modal
     const rect = hamburgerModal.getBoundingClientRect();
+    // Verificar si el clic está dentro del modal
     const isInDialog =
       rect.top <= event.clientY &&
       event.clientY <= rect.top + rect.height &&
       rect.left <= event.clientX &&
       event.clientX <= rect.left + rect.width;
+    // Si no está dentro del modal, cerrarlo
     if (!isInDialog) {
       hamburgerModal.close();
-      // Restore body scrolling
+      // Restaurar el scroll del body
       document.body.style.overflow = "";
     }
   });
 
-  // Handle navigation item clicks
+  // Cerrar el modal al hacer clic en un enlace dentro de él
   document.querySelectorAll(".nav-item a").forEach((item) => {
     item.addEventListener("click", (event) => {
       const targetId = item.getAttribute("href");
 
       if (targetId === null) return;
 
-      // Close the modal
+      // Cerrar el modal
       hamburgerModal?.close();
-      // Restore body scrolling
+
+      // Restaurar el scroll del body
       document.body.style.overflow = "";
 
-      // Scroll to target
+      // Desplazarse suavemente a la sección correspondiente
       const targetElement = document.querySelector(targetId);
       if (targetElement) {
         event.preventDefault();
         targetElement.scrollIntoView({ behavior: "smooth" });
       }
     });
-  });
-
-  document.addEventListener("scroll", () => {
-    if (window.scrollY > 0) {
-      hamburgerModal?.classList.add("scrolled");
-    } else {
-      hamburgerModal?.classList.remove("scrolled");
-    }
   });
 </script>

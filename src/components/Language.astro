@@ -32,14 +32,15 @@
 </span>
 
 <script>
-  import { getSpain, getEnglish } from "../services/language";
-  import { toggleModal } from "../services/logicModal";
+  import { getSpain, getEnglish } from "@/services/language";
+  import { toggleModal } from "@/services/logicModal";
 
+  // Función para mostrar el modal al hacer clic en el botón de idioma
   document.addEventListener("click", (event) => {
     const modal = document.getElementById("modalLanguage");
     const langButton = document.getElementById("lang");
-
     if (event.target && !langButton?.contains(event.target as Node)) {
+      // Si el clic no fue dentro del botón de idioma, ocultar el modal
       if (modal) {
         modal.classList.add("hidden");
       }

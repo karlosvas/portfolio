@@ -28,6 +28,13 @@ export default defineConfig({
     }
   },
   integrations: [tailwind(), solidJs()],
+  vite: {
+    resolve: {
+      alias: {
+        '@': new URL('./src', import.meta.url),
+      }
+    }
+  },
   pages: {
     extensions: ['astro', 'md', 'ts', 'tsx', 'json']
   },

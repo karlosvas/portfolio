@@ -1,6 +1,8 @@
 ---
-const { data } = Astro.props;
+import type { i18nTranslations } from "@/../types/types";
+const data: i18nTranslations = Astro.props.data;
 
+// Formateo de la descripcion para que se vea bien en el frontend
 const formatDescription = (desc: string) => {
   return desc
     .split(".")

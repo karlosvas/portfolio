@@ -1,14 +1,16 @@
 ---
-import Layout from "../layouts/IndexLayout.astro";
-import Header from "../layouts/Header.astro";
-import Footer from "../layouts/Footer.astro";
-import Main from "../layouts/Main.astro";
+import Layout from "@/layouts/IndexLayout.astro";
+import Header from "@/layouts/Header.astro";
+import Footer from "@/layouts/Footer.astro";
+import Main from "@/layouts/Main.astro";
+import type { i18nTranslations } from "@/../types/types";
 
 // Selecionamos el idioma con i18n
 import { getI18N } from "../../i18n/index";
 let { currentLocale } = Astro;
+
 // Obtenemos los datos del idioma selecionado
-const data = getI18N({ currentLocale });
+const data: i18nTranslations = getI18N({ currentLocale });
 ---
 
 <Layout title="Portfolio Carlos Vásquez Sánchez">
