@@ -3,6 +3,7 @@ import Projects from "@/components/Projects.astro";
 import Experience from "@/components/Experience.astro";
 import Profile from "@/components/Profile.astro";
 import Contact from "@/components/Contact.astro";
+import History from "@/components/History.astro";
 import type { i18nTranslations } from "@/../types/types";
 
 const data: i18nTranslations = Astro.props.data;
@@ -12,5 +13,6 @@ const data: i18nTranslations = Astro.props.data;
   <Profile data={data} />
   <Projects data={data} />
   <Experience data={data} />
+  <History data={data} />
   <Contact data={data} />
 </main>

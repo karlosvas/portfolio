@@ -1,6 +1,6 @@
 ---
 import type { i18nTranslations } from "@/../types/types";
-import { Toaster } from "solid-toast";
+import ButtonCustomized from "./ButtonCustomized.astro";
 
 const data: i18nTranslations = Astro.props.data;
 ---
@@ -27,22 +27,20 @@ const data: i18nTranslations = Astro.props.data;
     ></textarea>
   </div>
 
-  <button
-    type="submit"
-    class="bg-purplePal text-white py-2 px-4 rounded-md hover:bg-opacity-95 transition-all duration-200 mb-20 shadow-[0_5px_0_rgb(83,70,175)] hover:shadow-[0_3px_0_rgb(83,70,175)] hover:translate-y-[2px] active:shadow-[0_0px_0_rgb(83,70,175)] active:translate-y-[5px] font-bold tracking-wide"
-  >
+  <ButtonCustomized>
     {data.contact.formSubmit}
-  </button>
+  </ButtonCustomized>
 </form>
-
-<!-- Añade el componente Toaster -->
-<Toaster client:load position="bottom-right" />
 
 <script>
   import toast from "solid-toast";
+  import { FormEnum, FormEnumEnglish } from "@/../types/formEnum.ts";
 
   const form = document.getElementById("formEmail") as HTMLFormElement;
   const submitButton = form?.querySelector('button[type="submit"]');
+
+  // Verificamos el idioma
+  const formEnum = document.documentElement.lang === "es" ? FormEnum : FormEnumEnglish;
 
   // Agregamos un evento al formulario
   if (form) {
@@ -50,11 +48,14 @@ const data: i18nTranslations = Astro.props.data;
       e.preventDefault();
       // Deshabilitamos el boton de enviar
       if (submitButton instanceof HTMLButtonElement) submitButton.disabled = true;
-
       // Mostrar toast de carga
-      const loadingToastId = toast.loading("Enviando mensaje...");
+      const loadingToastId = toast.loading("Ejemplo");
 
       try {
+        // Validaciones
+        if (form.email.value === "") throw new Error(formEnum.EMPTY_EMAIL);
+        if (form.mensaje.value === "") throw new Error(formEnum.EMPTY_MESSAGE);
+
         // Enviamos la peticion POST a el enpoint /api/resend para enviar el mensaje
         const data = {
           email: form.email.value,
@@ -70,24 +71,28 @@ const data: i18nTranslations = Astro.props.data;
 
         // Procesar la respuesta
         if (response.ok) {
-          toast.success("¡Mensaje enviado correctamente!", {
+          toast.success(formEnum.MESSAGE_SENT, {
             id: loadingToastId,
             duration: 3000,
           });
         } else {
-          toast.error("Error al enviar el mensaje", {
-            id: loadingToastId,
-            duration: 3000,
-          });
+          throw new Error(formEnum.MESSAGE_ERROR);
         }
         // Vaciamos el formulario
         form.reset();
       } catch (error) {
         console.error(error);
-        toast.error("Error al enviar el mensaje", {
-          id: loadingToastId,
-          duration: 3000,
-        });
+        if (error instanceof Error) {
+          toast.error(error.message, {
+            id: loadingToastId,
+            duration: 3000,
+          });
+        } else {
+          toast.error(formEnum.MESSAGE_ERROR, {
+            id: loadingToastId,
+            duration: 3000,
+          });
+        }
       } finally {
         if (submitButton instanceof HTMLButtonElement) submitButton.disabled = false;
       }

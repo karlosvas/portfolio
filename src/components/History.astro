@@ -1,0 +1,55 @@
+---
+import type { i18nTranslations } from "@/../types/types";
+import ButtonCustomized from "./ButtonCustomized.astro";
+const data: i18nTranslations = Astro.props.data;
+---
+
+<div class="flex h-auto w-full flex-col items-center justify-center p-10 text-black-50 light:bg-whitePal mb-40">
+  <h1 class="text-2xl font-bold mb-3">
+    {data.history.title}
+  </h1>
+  {
+    data.history.jobs.map((job) => (
+      <div class="flex flex-col w-full max-w-xl rounded-xl bg-opacity-10 bg-center transform bg-contain bg-no-repeat  p-5 text-blackPal dark:text-whitePal">
+        <h2 class="text-2xl font-bold text-purplePal">{job.title}</h2>
+        <h3 class="font-bold text-purplePal">{job.company}</h3>
+        <p class="text-pretty pt-3">{job.date}</p>
+        <p class="text-pretty pt-3">{job.description}</p>
+      </div>
+    ))
+  }
+  <br />
+  <span id="cv">
+    <ButtonCustomized>Descargar CV</ButtonCustomized>
+  </span>
+</div>
+<script>
+  import toast from "solid-toast";
+
+  const cvbutton = document.getElementById("cv");
+  if (cvbutton) {
+    cvbutton.addEventListener("click", () => {
+      // Ruta al archivo en la carpeta public
+      let isSpanish = document.documentElement.lang === "es";
+      const cvPath = isSpanish ? "/curriculum/CV-Carlos-Vasquez_ES.pdf" : "/curriculum/CV-Carlos-Vasquez_EN.pdf";
+
+      try {
+        // Crear un elemento de enlace para la descarga
+        const downloadLink = document.createElement("a");
+        downloadLink.href = cvPath;
+        downloadLink.download = cvPath.split("/").pop() || "#";
+
+        // Simular clic en el enlace para iniciar la descarga
+        document.body.appendChild(downloadLink);
+        downloadLink.click();
+        document.body.removeChild(downloadLink);
+
+        // Mostrar mensaje de éxito (opcional)
+        toast.success(isSpanish ? "Descargando CV..." : "Downloading CV...");
+      } catch (error) {
+        // Mostrar mensaje de error (opcional)
+        toast.error(isSpanish ? "Error al descargar el CV" : "Error downloading CV");
+      }
+    });
+  }
+</script>

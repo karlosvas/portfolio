@@ -2,40 +2,56 @@
   "profile": {
     "title": "Profile",
     "subtitle": "Backend Developer",
-    "name": "Carlos Vásquez Sánchez",
+    "name": "Carlos Raul Vásquez Sánchez",
     "presentation": {
-      "v1": "I started programming web pages and personal projects at the age of 18. I am currently studying competitive programming at the Complutense University of Madrid, in addition to a Higher Degree in Multiplatform Application Development. I am 20 years old and I am from Valladolid (Castilla y León).",
-      "v2": "I can adapt to any language, I believe in the importance of TDD, documentation, and good development practices."
+      "v1": "I started programming personal projects at eighteen. I'm currently studying a Higher Degree in Multiplatform Application Development along with an algorithmic programming course at Complutense University of Madrid. I'm twenty-one years old and from Valladolid (Castilla y León).",
+      "v2": "I can adapt to any programming language. I believe in the importance of TDD, documentation, and good development practices."
     }
   },
   "projects": {
     "title": "Projects",
     "thefluentspanishhouse": {
       "name": "The Fluent Spanish House",
-      "description": "Spanish academy, with social media, blog, private class subscription, and newsletter with digital marketing implementation using Mailchimp, made in React with TypeScript, .tsx",
-      "real": true
+      "description": "Spanish language academy featuring social media integration, blog, private class subscriptions, and Mailchimp-powered newsletter with digital marketing implementation. Built with React and TypeScript (.tsx)."
     },
     "olimpiadas-informaticas": {
       "name": "Spanish Informatics Olympiad",
-      "description": "Online classes from UCM (Complutense University of Madrid) on competitive programming, with C++ and Java exercises"
+      "description": "Competitive programming online classes from UCM (Complutense University of Madrid) with C++ and Java exercises"
     },
     "elend-talk": {
-      "name": "Chat with PDF",
-      "description": "Fluid conversation with Ollama and Deepseek about a user-uploaded PDF, with real-time chat history and file upload implementation, made with Astro and SvelteKit"
+      "name": "PDF Chat",
+      "description": "Real-time chat system with Ollama and Deepseek for PDF analysis, featuring file uploads and chat history. Built with Astro and SvelteKit"
     },
-    "coworking-space": {
-      "name": "Coworking",
-      "description": "Coworking platform (API) with room reservations, events, and users. Made with SpringBoot (Java), roles and permissions (Spring Security, JWT), documentation (Swagger and Javadoc), proposed by the BytesColaborativos community"
+    "bytes-colaborativos": {
+      "name": "BytesColaborativos",
+      "description": "Java projects using SpringBoot, Spring Security, JWT, Swagger/Javadoc documentation, Kafka queues, etc. Community-driven initiatives from BytesColaborativos"
     }
   },
   "experience": {
     "title": "Experience",
-    "description": "I have experience working with a wide variety of programming languages and frameworks, including JavaScript, TypeScript, C++, Java, Astro and React. I have developed significant projects in each of these languages, which has allowed me to acquire solid knowledge and practical skills in software development.",
-    "technologies": "I have also worked with various tools and libraries that have allowed me to delve into the internal workings and development environment, such as MongoDB, MySQL, Firebase, Vercel, Cloudflare, Tailwind, NodeJS, virtual machine management, Git, GitHub, GitKraken, continuous integration with GitHub Actions, among others."
+    "description": "I have hands-on experience with programming languages and frameworks such as C++, Java, JavaScript, TypeScript, Astro, and React. I've developed significant projects using each of these technologies, gaining robust knowledge in software development principles and practices.",
+    "technologies": "Additionally, I've worked extensively with tools and platforms including MongoDB, Firebase, Vercel, Cloudflare, Tailwind, Node.js, virtual machines, Git, GitHub, and continuous integration via GitHub Actions. I also have experience collaborating on team projects using Jira for project management and workflow coordination."
+  },
+  "history": {
+    "title": "Work History",
+    "jobs": [
+      {
+        "title": "Internship, Unreal Engine 5 Developer",
+        "company": "Rapture Games",
+        "date": "2025 - Present",
+        "description": "Developing a rally-inspired solar system simulation using Unreal Engine 5 with Blueprint and C++."
+      },
+      {
+        "title": "Internship, New Technologies Technical Support",
+        "company": "Valladolid Provincial Council",
+        "date": "04/2024 - 06/2024",
+        "description": "Full tech inventory restoration. Developed VBA scripts for equipment identification and registration to optimize data collection and organization. Collaborated on administrative tasks and technical support for IT asset management. Initiated efficiency improvements that enhanced inventory accuracy and processing times."
+      }
+    ]
   },
   "contact": {
     "title": "Contact",
-    "email": "carlosrvasquezsanchez@gmail.com",
+    "email": "carlosvassan@gmail.com",
     "formEmail": "Your email",
     "formMessage": "Message",
     "formSubmit": "Send"

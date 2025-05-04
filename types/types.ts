@@ -14,7 +14,6 @@ export interface i18nTranslations {
     thefluentspanishhouse: {
       name: string;
       description: string;
-      real: boolean;
     };
     "olimpiadas-informaticas": {
       name: string;
@@ -24,7 +23,7 @@ export interface i18nTranslations {
       name: string;
       description: string;
     };
-    "coworking-space": {
+    "bytes-colaborativos": {
       name: string;
       description: string;
     };
@@ -33,6 +32,15 @@ export interface i18nTranslations {
     title: string;
     description: string;
     technologies: string;
+  };
+  history: {
+    title: string;
+    jobs: Array<{
+      title: string;
+      company: string;
+      date: string;
+      description: string;
+    }>;
   };
   contact: {
     title: string;
@@ -43,4 +51,12 @@ export interface i18nTranslations {
   };
 }
 
-export type ProjectKey = "thefluentspanishhouse" | "olimpiadas-informaticas" | "elend-talk" | "coworking-space";
+export type ProjectKey = "thefluentspanishhouse" | "olimpiadas-informaticas" | "elend-talk" | "bytes-colaborativos";
+
+export type TypeFormEnum = {
+  SENDING: string;
+  EMPTY_EMAIL: string;
+  EMPTY_MESSAGE: string;
+  MESSAGE_SENT: string;
+  MESSAGE_ERROR: string;
+};

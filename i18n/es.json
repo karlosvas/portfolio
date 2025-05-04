@@ -2,9 +2,9 @@
   "profile": {
     "title": "Perfil",
     "subtitle": "Desarrollador Backend",
-    "name": "Carlos Vásquez Sánchez",
+    "name": "Carlos Raul Vásquez Sánchez",
     "presentation": {
-      "v1": "Comencé a programar páginas web y proyectos personales a los 18 años. Actualmente estoy estudiando programación competitiva en la Universidad Complutense de Madrid, ademas de un grado Superior de Desarollo de Aplicaciones Multiplataforma. Tengo 20 años y soy de Valladolid (Castilla y León).",
+      "v1": "Comencé a programar proyectos personales a los dieciocho años. Actualmente estoy estudiando un grado Superior de Desarollo de Aplicaciones Multiplataforma además de un curso de programación algorítmica en la Universidad Complutense de Madrid. Actualmente tengo veintiún años y soy de Valladolid (Castilla y León).",
       "v2": "Puedo adaptarme a cualquier lenguaje, creo en la importancia del TDD, documentación y las buenas prácticas de desarollo."
     }
   },
@@ -12,8 +12,7 @@
     "title": "Proyectos",
     "thefluentspanishhouse": {
       "name": "The Fluent Spanish House",
-      "description": "Academia de Español, con socialmedia, blog, suscripción a clases particulares y newsletter con implementacion de marketing digital con Mailchimp, hecho en React con TypeScript, .tsx",
-      "real": true
+      "description": "Academia de Español, con socialmedia, blog, suscripción a clases particulares y newsletter con implementacion de marketing digital con Mailchimp, hecho en React con TypeScript, .tsx"
     },
     "olimpiadas-informaticas": {
       "name": "Olimpiada Informática Española",
@@ -23,19 +22,36 @@
       "name": "Chat con PDF",
       "description": "Conversación fluida con Ollama y Deepseek sobre un PDF pasado por el usuario, con implementación de chat con historial en tiempo real y subida de archivos, Astro y SvelteKit"
     },
-    "coworking-space": {
-      "name": "Coworking",
-      "description": "Plataforma (API) de coworking con reservas de salas, eventos, usuarios. Con SpringBoot (Java), roles y permisos (Spring Security, JWT), documentación (Swagger y Javadoc), propuesto por la comunidad BytesColaborativos"
+    "bytes-colaborativos": {
+      "name": "BytesColaborativos",
+      "description": "Proyectos en Java. Con SpringBoot, Spring Security, JWT, documentación con Swagger y Javadoc, colas Kafka, etc.. propuesto por la comunidad BytesColaborativos"
     }
   },
   "experience": {
     "title": "Experiencia",
-    "description": "Tengo experiencia trabajando con una amplia variedad de lenguajes de programación y frameworks, incluyendo JavaScript, TypeScript, C++, Java, Astro y React. He desarrollado proyectos significativos en cada uno de estos lenguajes, lo que me ha permitido adquirir un sólido conocimiento y habilidades prácticas en el desarrollo de software.",
-    "technologies": "También he trabajado con diversas herramientas y librerías que me han permitido profundizar en el funcionamiento interno y el entorno de desarrollo, como MongoDB, MySQL, Firebase, Vercel, Cloudflare, Tailwind, NodeJS, gestión de máquinas virtuales, Git, GitHub, GitKraken, integración continua con GitHub Actions, entre otras."
+    "description": "Tengo experiencia con lenguajes y frameworks como C++, Java, JavaScript, TypeScript, Astro y React. He desarrollado proyectos significativos en cada uno, adquiriendo un sólido conocimiento en desarrollo de software. ",
+    "technologies": "También he trabajado con herramientas como MongoDB, Firebase, Vercel, Cloudflare, Tailwind, Node.js, máquinas virtuales, Git, GitHub e integración continua con GitHub Actions. Además, tengo experiencia en proyectos colaborativos en equipo utilizando Jira"
+  },
+  "history": {
+    "title": "Historial Laboral",
+    "jobs": [
+      {
+        "title": "Prácticas, Desarrollador Unreal Engine 5",
+        "company": "Rapture Games",
+        "date": "2025 - Actualidad",
+        "description": "Estoy trabajando en un proyecto para crear una réplica ralista del sistema solar, con Unreal Engine 5 usando Blueprint y C++."
+      },
+      {
+        "title": "Prácticas, Soporte Técnico Nuevas Tecnologías",
+        "company": "Diputación de Valladolid",
+        "date": "04/2024 - 06/2024",
+        "description": "Restauración completa de inventario de equipos tecnológicos. Desarollo de scripts en VBA para identificar y reguistrar equipos para la optimizacion del proceso de recopilacion y organización de datos. Colaboración con el equipo en tareas adminsitrativas y de soporte técnico relacionadas con la gestión de activos tecnológicos. Iniciativa propia para implementar soluciones eficientes, mejorando los tiempos y la precisión del inventario."
+      }
+    ]
   },
   "contact": {
     "title": "Contacto",
-    "email": "carlosrvasquezsanchez@gmail.com",
+    "email": "carlosvassan@gmail.com",
     "formEmail": "Tú email",
     "formMessage": "Mensaje",
     "formSubmit": "Send"

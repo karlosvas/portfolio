@@ -3,7 +3,10 @@ import type { i18nTranslations } from "@/../types/types";
 const data: i18nTranslations = Astro.props.data;
 ---
 
-<div id="profile" class="sm:my-20 md:my-40 grid justify-center gap-5 sm:grid-cols-2 md:w-3/4 lg:w-1/2">
+<div
+  id="profile"
+  class="h-screen sm:py-20 md:pb-80 md:pt-40 grid justify-center gap-5 sm:grid-cols-2 md:w-3/4 lg:w-1/2"
+>
   <!-- Imagen -->
   <img
     class="h-full w-full xl:w-3/4 rounded-md object-cover select-none m-auto lg:my-0"
@@ -46,6 +49,7 @@ const data: i18nTranslations = Astro.props.data;
       for (let i = 0; i < name.length; i++) {
         await new Promise((resolve) => setTimeout(resolve, 100));
         result += name[i];
+        if (result == "Carlos Raul") result += "\n";
         title.innerText = result;
         title.appendChild(cursorSpan);
       }
