@@ -21,12 +21,12 @@ const formatDescription = (desc: string) => {
   </p>
   <br />
   <div class="w-full flex flex-row justify-center align-middle items-center mx-5 flex-wrap">
-    <img src="/svg/languajes/javascript.svg" class="m-1 mx-5 h-20 w-14" />
     <img src="/svg/languajes/typescript.svg" class="m-1 mx-5 h-20 w-14" />
     <img src="/svg/languajes/cpp.svg" class="m-1 mx-5 h-20 w-14" />
     <img src="/svg/languajes/java.svg" class="m-1 mx-5 h-20 w-14" />
     <img src="/svg/languajes/astro.svg" class="m-1 mx-5 mt-4 h-16 w-14" />
     <img src="/svg/languajes/react.svg" class="m-1 mx-5 h-20 w-14" />
+    <img id="unrealLogo" class="m-1 mx-5 h-20 w-14" />
   </div>
   <br />
   <p style="white-space: pre-line; pt-3 text-pretty">
@@ -43,3 +43,26 @@ const formatDescription = (desc: string) => {
   </div>
   <br />
 </div>
+
+<script>
+  const logo = document.getElementById("unrealLogo") as HTMLImageElement;
+
+  // Function to update the logo based on dark mode
+  const updateLogo = () => {
+    const isDarkMode = document.documentElement.classList.contains("dark");
+    logo.src = isDarkMode ? "/svg/languajes/unreal-white.svg" : "/svg/languajes/unreal-dark.svg";
+  };
+
+  // Initial check
+  updateLogo();
+
+  // Observe changes to the class attribute of <html>
+  const observer = new MutationObserver(() => {
+    updateLogo();
+  });
+
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+
+  // Clean up observer when the component is removed
+  window.addEventListener("beforeunload", () => observer.disconnect());
+</script>
