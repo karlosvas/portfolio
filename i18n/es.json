@@ -29,7 +29,7 @@
   },
   "experience": {
     "title": "Experiencia",
-    "description": "Tengo experiencia con lenguajes y frameworks como C++, Java, JavaScript, TypeScript, Astro y React. He desarrollado proyectos significativos en cada uno, adquiriendo un sólido conocimiento en desarrollo de software. ",
+    "description": "Tengo experiencia con lenguajes y frameworks como C++, Java, JavaScript, TypeScript, Astro, React, Unreal Engine y Spring Boot. He desarrollado proyectos significativos en cada uno, adquiriendo un sólido conocimiento en desarrollo de software. ",
     "technologies": "También he trabajado con herramientas como MongoDB, Firebase, Vercel, Cloudflare, Tailwind, Node.js, máquinas virtuales, Git, GitHub e integración continua con GitHub Actions. Además, tengo experiencia en proyectos colaborativos en equipo utilizando Jira"
   },
   "history": {
@@ -39,7 +39,7 @@
         "title": "Prácticas, Desarrollador Unreal Engine 5",
         "company": "Rapture Games",
         "date": "04/2025 - 06/2025",
-        "description": "Estoy trabajando en un proyecto para crear una réplica realista del un satélite orbitando la tierra con  Blueprints y C++ en Unreal Engine 5."
+        "description": "Durante mis prácticas, he trabajado en el desarrollo de un proyecto con Unreal Engine centrado en la simulación de físicas orbitales. He implementado el equilibrio entre fuerzas centrífugas y centrípetas, así como el uso de propelente para permitir el desplazamiento entre órbitas. Además, he recreado shaders personalizados y modelos 3D, integrándolos en el entorno de simulación. Una experiencia que me ha permitido aplicar y ampliar mis conocimientos en programación, física y gráficos por ordenador."
       },
       {
         "title": "Prácticas, Soporte Técnico Nuevas Tecnologías",

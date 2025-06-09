@@ -29,7 +29,7 @@
   },
   "experience": {
     "title": "Experience",
-    "description": "I have hands-on experience with programming languages and frameworks such as C++, Java, JavaScript, TypeScript, Astro, and React. I've developed significant projects using each of these technologies, gaining robust knowledge in software development principles and practices.",
+    "description": "I have hands-on experience with programming languages and frameworks such as C++, Java, JavaScript, TypeScript, Astro, React, Unreal Engine and Spring Boot. I've developed significant projects using each of these technologies, gaining robust knowledge in software development principles and practices.",
     "technologies": "Additionally, I've worked extensively with tools and platforms including MongoDB, Firebase, Vercel, Cloudflare, Tailwind, Node.js, virtual machines, Git, GitHub, and continuous integration via GitHub Actions. I also have experience collaborating on team projects using Jira for project management and workflow coordination."
   },
   "history": {
@@ -39,7 +39,7 @@
         "title": "Internship, Unreal Engine 5 Developer",
         "company": "Rapture Games",
         "date": "04/2025 - 06/2025",
-        "description": "Developing a rally-inspired solar system simulation using Unreal Engine 5 with Blueprint and C++."
+        "description": "During my internship, I worked on the development of a project using Unreal Engine focused on orbital physics simulation. I implemented the balance between centrifugal and centripetal forces, as well as the use of propellant to enable orbital transfers. Additionally, I created custom shaders and 3D models, integrating them into the simulation environment. It was an experience that allowed me to apply and expand my knowledge in programming, physics, and computer graphics."
       },
       {
         "title": "Internship, New Technologies Technical Support",
