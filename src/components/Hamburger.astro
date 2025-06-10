@@ -52,12 +52,12 @@ const data: i18nTranslations = Astro.props.data;
 
 <style>
   #hamburgerModal {
-    top: 10dvh; /* Usar la misma unidad que el header */
-    transition: top 0.6s; /* Misma duración que el header */
+    top: 10dvh;
+    transition: top 0.3s;
   }
 
   #hamburgerModal.scrolled {
-    top: 8dvh; /* Coincidir con la altura del header cuando está scrolled */
+    top: 8dvh;
   }
 
   @keyframes slideDown {
@@ -117,6 +117,9 @@ const data: i18nTranslations = Astro.props.data;
 
   function closeModalWithAnimation() {
     if (hamburgerModal) {
+      // Devolbemos el scroll para que pueda ir a las distintas secciones
+      enableScroll();
+
       // Añadir clase para la animación de cierre
       hamburgerModal.classList.add("closing");
 
@@ -125,7 +128,6 @@ const data: i18nTranslations = Astro.props.data;
         hamburgerModal.close();
         hamburgerModal.classList.remove("closing");
         // Restaurar el scroll del body
-        enableScroll();
       }, 300); // Mismo tiempo que la duración de la animación (0.3s)
     }
   }
