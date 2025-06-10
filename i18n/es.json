@@ -52,8 +52,8 @@
   "contact": {
     "title": "Contacto",
     "email": "carlosvassan@gmail.com",
-    "formEmail": "Tú email",
+    "formEmail": "Tu email",
     "formMessage": "Mensaje",
-    "formSubmit": "Send"
+    "formSubmit": "Enviar"
   }
 }

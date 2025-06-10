@@ -52,16 +52,43 @@ const data: i18nTranslations = Astro.props.data;
 
 <style>
   #hamburgerModal {
-    top: 84px;
-    transition: top 0.3s;
+    top: 10dvh; /* Usar la misma unidad que el header */
+    transition: top 0.6s; /* Misma duración que el header */
   }
 
   #hamburgerModal.scrolled {
-    top: 80px;
+    top: 8dvh; /* Coincidir con la altura del header cuando está scrolled */
   }
 </style>
 
 <script>
+  function disableScroll() {
+    // Guardar la posición actual del scroll
+    const scrollY = window.scrollY;
+    // Guardar la posición en un atributo de datos en el body
+    document.body.dataset.scrollPosition = scrollY.toString();
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = "100%";
+    document.body.style.overflow = "hidden";
+  }
+
+  // Función para restaurar el scroll
+  function enableScroll() {
+    const scrollY = document.body.style.top;
+    document.body.style.position = "";
+    document.body.style.top = "";
+    document.body.style.width = "";
+    document.body.style.overflow = "";
+
+    // Obtener la posición guardada y restaurarla
+    const savedPosition = parseInt(scrollY || "0") * -1;
+    window.scrollTo({
+      top: savedPosition,
+      behavior: "instant", // Usar "instant" en lugar de "auto" o "smooth"
+    });
+  }
+
   const hamburgerBtn = document.getElementById("hamburgerBtn");
   const hamburgerModal = document.getElementById("hamburgerModal") as HTMLDialogElement;
 
@@ -70,7 +97,7 @@ const data: i18nTranslations = Astro.props.data;
     if (hamburgerModal) {
       hamburgerModal.showModal();
       // Prevenir el scroll en el body cunado el modal está abierto
-      document.body.style.overflow = "hidden";
+      disableScroll();
     }
   });
 
@@ -88,7 +115,7 @@ const data: i18nTranslations = Astro.props.data;
     if (!isInDialog) {
       hamburgerModal.close();
       // Restaurar el scroll del body
-      document.body.style.overflow = "";
+      enableScroll();
     }
   });
 
@@ -103,7 +130,7 @@ const data: i18nTranslations = Astro.props.data;
       hamburgerModal?.close();
 
       // Restaurar el scroll del body
-      document.body.style.overflow = "";
+      enableScroll();
 
       // Desplazarse suavemente a la sección correspondiente
       const targetElement = document.querySelector(targetId);

@@ -21,22 +21,26 @@ const data: i18nTranslations = Astro.props.data;
 <style>
   /* Hacemos que sea mas grande cunao no se mueve y se contraiga cuando se mueva */
   header {
-    height: 10vh;
+    height: 10dvh;
     transition: height 0.3s;
   }
   /* Hacemos que se mueva cuando se haga scroll */
   header.scrolled {
-    height: 4vh;
+    height: 4dvh;
   }
 </style>
 <script>
   // Animacion de la cabecera al hacer scroll
   const header: HTMLHeadElement | null = document.querySelector("header");
+  const hamburgerModal = document.getElementById("hamburgerModal") as HTMLDialogElement;
+
   document.addEventListener("scroll", () => {
     if (window.scrollY > 0) {
       header?.classList.add("scrolled");
+      hamburgerModal?.classList.add("scrolled");
     } else {
       header?.classList.remove("scrolled");
+      hamburgerModal?.classList.remove("scrolled");
     }
   });
 </script>
