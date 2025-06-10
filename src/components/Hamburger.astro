@@ -59,6 +59,32 @@ const data: i18nTranslations = Astro.props.data;
   #hamburgerModal.scrolled {
     top: 8dvh; /* Coincidir con la altura del header cuando está scrolled */
   }
+
+  @keyframes slideDown {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      transform: translateX(0);
+    }
+    to {
+      transform: translateX(-100%);
+    }
+  }
+
+  #hamburgerModal[open] {
+    animation: slideDown 0.3s ease-in-out forwards;
+  }
+
+  #hamburgerModal.closing {
+    animation: slideUp 0.3s ease-in-out forwards;
+  }
 </style>
 
 <script>
@@ -85,10 +111,26 @@ const data: i18nTranslations = Astro.props.data;
     const savedPosition = parseInt(scrollY || "0") * -1;
     window.scrollTo({
       top: savedPosition,
-      behavior: "instant", // Usar "instant" en lugar de "auto" o "smooth"
+      behavior: "instant",
     });
   }
 
+  function closeModalWithAnimation() {
+    if (hamburgerModal) {
+      // Añadir clase para la animación de cierre
+      hamburgerModal.classList.add("closing");
+
+      // Esperar a que termine la animación antes de cerrar el modal
+      setTimeout(() => {
+        hamburgerModal.close();
+        hamburgerModal.classList.remove("closing");
+        // Restaurar el scroll del body
+        enableScroll();
+      }, 300); // Mismo tiempo que la duración de la animación (0.3s)
+    }
+  }
+
+  // EVENTOS
   const hamburgerBtn = document.getElementById("hamburgerBtn");
   const hamburgerModal = document.getElementById("hamburgerModal") as HTMLDialogElement;
 
@@ -112,11 +154,7 @@ const data: i18nTranslations = Astro.props.data;
       rect.left <= event.clientX &&
       event.clientX <= rect.left + rect.width;
     // Si no está dentro del modal, cerrarlo
-    if (!isInDialog) {
-      hamburgerModal.close();
-      // Restaurar el scroll del body
-      enableScroll();
-    }
+    if (!isInDialog) closeModalWithAnimation();
   });
 
   // Cerrar el modal al hacer clic en un enlace dentro de él
@@ -126,11 +164,7 @@ const data: i18nTranslations = Astro.props.data;
 
       if (targetId === null) return;
 
-      // Cerrar el modal
-      hamburgerModal?.close();
-
-      // Restaurar el scroll del body
-      enableScroll();
+      closeModalWithAnimation();
 
       // Desplazarse suavemente a la sección correspondiente
       const targetElement = document.querySelector(targetId);
