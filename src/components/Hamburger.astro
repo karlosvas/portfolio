@@ -78,6 +78,32 @@ const data: i18nTranslations = Astro.props.data;
     }
   }
 
+  @keyframes bgDown {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes bgUp {
+    from {
+      opacity: 1;
+    }
+    to {
+      opacity: 0;
+    }
+  }
+
+  #hamburgerModal::backdrop {
+    animation: bgDown 0.3s ease-in-out forwards;
+  }
+
+  #hamburgerModal.closing::backdrop {
+    animation: bgUp 0.3s ease-in-out forwards;
+  }
+
   #hamburgerModal[open] {
     animation: slideDown 0.3s ease-in-out forwards;
   }
@@ -91,8 +117,12 @@ const data: i18nTranslations = Astro.props.data;
   function disableScroll() {
     // Guardar la posición actual del scroll
     const scrollY = window.scrollY;
+    // Calcular el ancho de la barra de scroll antes de bloquear
+    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
     // Guardar la posición en un atributo de datos en el body
     document.body.dataset.scrollPosition = scrollY.toString();
+    // Aplicar un padding-right igual al ancho de la barra de scroll para evitar el salto
+    document.body.style.paddingRight = `${scrollbarWidth}px`;
     document.body.style.position = "fixed";
     document.body.style.top = `-${scrollY}px`;
     document.body.style.width = "100%";
@@ -105,8 +135,8 @@ const data: i18nTranslations = Astro.props.data;
     document.body.style.position = "";
     document.body.style.top = "";
     document.body.style.width = "";
+    document.body.style.paddingRight = ""; // Eliminar el padding
     document.body.style.overflow = "";
-
     // Obtener la posición guardada y restaurarla
     const savedPosition = parseInt(scrollY || "0") * -1;
     window.scrollTo({
