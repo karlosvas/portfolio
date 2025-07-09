@@ -16,7 +16,7 @@ const data: i18nTranslations = Astro.props.data;
   <!-- Párrafo -->
   <section>
     <!-- Título -->
-    <h1 id="title" class="text-3xl font-bold text-purplePal min-h-20 lg:min-h-10"></h1>
+    <h1 id="title" class="text-3xl font-bold text-purplePal lg:min-h-10">{" "}</h1>
     <h3 class="font-bold text-purplePal">{data.profile.subtitle}</h3>
     <!-- Info -->
     <p class="text-pretty pt-3">
@@ -34,6 +34,12 @@ const data: i18nTranslations = Astro.props.data;
 
     if (title) {
       title.innerHTML = "";
+      title.style.minHeight = "5rem";
+
+      // Creamos un contenedor para el texto
+      const textSpan = document.createElement("span");
+      textSpan.style.whiteSpace = "pre-line";
+
       // Creamos el span del cursor y le damos la clase blinking-cursor
       const cursorSpan = document.createElement("span");
       cursorSpan.innerText = "|";
@@ -41,6 +47,7 @@ const data: i18nTranslations = Astro.props.data;
       cursorSpan.style.display = "inline-block";
       cursorSpan.style.width = "0.5em";
 
+      title.appendChild(textSpan);
       title.appendChild(cursorSpan);
 
       // Hacemos un bucle para ir añadiendo cada letra del nombre al título
@@ -49,9 +56,8 @@ const data: i18nTranslations = Astro.props.data;
       for (let i = 0; i < name.length; i++) {
         await new Promise((resolve) => setTimeout(resolve, 100));
         result += name[i];
-        if (result == "Carlos Raul") result += "\n";
-        title.innerText = result;
-        title.appendChild(cursorSpan);
+        if (result === "Carlos Raúl") result += "\n";
+        textSpan.textContent = result;
       }
 
       // Al finalizar, eliminamos el cursor y lo reemplazamos por un parpadeo
