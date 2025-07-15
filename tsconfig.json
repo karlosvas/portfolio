@@ -5,7 +5,6 @@
     "module": "ESNext",
     "strict": true,
     "moduleResolution": "node",
-    "types": ["astro/client", "astro"],
     "importHelpers": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -14,6 +13,7 @@
     "allowJs": false,
     "skipLibCheck": true,
     "allowImportingTsExtensions": true,
+    "noEmit": true,
     "baseUrl": "./",
     "paths": {
       "*": ["./node_modules/*"],

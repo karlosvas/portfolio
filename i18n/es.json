@@ -4,7 +4,7 @@
     "subtitle": "Desarrollador Backend",
     "name": "Carlos Raúl Vásquez Sánchez",
     "presentation": {
-      "v1": "Comencé a programar proyectos personales a los dieciocho años. Actualmente estoy estudiando un grado Superior de Desarollo de Aplicaciones Multiplataforma además de un curso de programación algorítmica en la Universidad Complutense de Madrid. Actualmente tengo veintiún años y soy de Valladolid (Castilla y León).",
+      "v1": "Comencé a programar proyectos personales a los dieciocho años. Actualmente estoy estudiando un grado Superior de Desarollo de Aplicaciones Multiplataforma además de un curso de programación algorítmica en la Universidad Complutense de Madrid. Actualmente tengo veintiún años y soy de España (Castilla y León).",
       "v2": "Puedo adaptarme a cualquier lenguaje, creo en la importancia del TDD, documentación y las buenas prácticas de desarollo."
     }
   },
@@ -22,6 +22,10 @@
       "name": "Chat con PDF",
       "description": "Conversación fluida con Ollama y Deepseek sobre un PDF pasado por el usuario, con implementación de chat con historial en tiempo real y subida de archivos, Astro y SvelteKit"
     },
+    "octa-rust": {
+      "name": "OctaRust",
+      "description": "Octa rust es un aplicacion par aprender a tocar piano de manera divertida y entretenida, con un enfoque en la gamificación y el aprendizaje progresivo. La aplicación está diseñada para ayudar a los usuarios a aprender a tocar el piano desde cero, sin necesidad de conocimientos previos."
+    },
     "bytes-colaborativos": {
       "name": "BytesColaborativos",
       "description": "Proyectos en Java. Con SpringBoot, Spring Security, JWT, documentación con Swagger y Javadoc, colas Kafka, etc.. propuesto por la comunidad BytesColaborativos"
@@ -29,7 +33,7 @@
   },
   "experience": {
     "title": "Experiencia",
-    "description": "Tengo experiencia con lenguajes y frameworks como C++, Java, JavaScript, TypeScript, Astro, React, Unreal Engine y Spring Boot. He desarrollado proyectos significativos en cada uno, adquiriendo un sólido conocimiento en desarrollo de software. ",
+    "description": "Tengo experiencia con lenguajes y frameworks como C++, Java, Spring Boot, JavaScript, TypeScript, Astro, React, Rust y motores como Unreal Engine. He desarrollado proyectos significativos en cada uno, adquiriendo un sólido conocimiento en desarrollo de software. ",
     "technologies": "También he trabajado con herramientas como MongoDB, Firebase, Vercel, Cloudflare, Tailwind, Node.js, máquinas virtuales, Git, GitHub e integración continua con GitHub Actions. Además, tengo experiencia en proyectos colaborativos en equipo utilizando Jira"
   },
   "history": {

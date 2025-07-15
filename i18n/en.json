@@ -4,7 +4,7 @@
     "subtitle": "Backend Developer",
     "name": "Carlos Raúl Vásquez Sánchez",
     "presentation": {
-      "v1": "I started programming personal projects at eighteen. I'm currently studying a Higher Degree in Multiplatform Application Development along with an algorithmic programming course at Complutense University of Madrid. I'm twenty-one years old and from Valladolid (Castilla y León).",
+      "v1": "I started programming personal projects at eighteen. I'm currently studying a Higher Degree in Multiplatform Application Development along with an algorithmic programming course at Complutense University of Madrid. I'm twenty-one years old and from Spain (Castilla y León).",
       "v2": "I can adapt to any programming language. I believe in the importance of TDD, documentation, and good development practices."
     }
   },
@@ -29,8 +29,8 @@
   },
   "experience": {
     "title": "Experience",
-    "description": "I have hands-on experience with programming languages and frameworks such as C++, Java, JavaScript, TypeScript, Astro, React, Unreal Engine and Spring Boot. I've developed significant projects using each of these technologies, gaining robust knowledge in software development principles and practices.",
-    "technologies": "Additionally, I've worked extensively with tools and platforms including MongoDB, Firebase, Vercel, Cloudflare, Tailwind, Node.js, virtual machines, Git, GitHub, and continuous integration via GitHub Actions. I also have experience collaborating on team projects using Jira for project management and workflow coordination."
+    "description": "I have experience with programming languages and frameworks such as C++, Java, Spring Boot, JavaScript, TypeScript, Astro, React, and Rust, as well as game engines like Unreal Engine. I have developed significant projects with each of them, gaining solid knowledge in software development.",
+    "technologies": "I have also worked with tools such as MongoDB, Firebase, Vercel, Cloudflare, Tailwind, Node.js, virtual machines, Git, GitHub, and continuous integration using GitHub Actions. Additionally, I have experience collaborating on team projects using Jira."
   },
   "history": {
     "title": "Work History",

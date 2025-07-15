@@ -19,7 +19,11 @@ export default defineConfig({
   },
   publicDir: 'public',
   output: 'server',
-  adapter: vercel(),
+  adapter: vercel({
+    webAnalytics: {
+      enabled: true,
+    },
+  }),
   i18n: {
     defaultLocale: 'es',
     locales: ['es', 'en'],

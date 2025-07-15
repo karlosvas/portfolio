@@ -3,11 +3,10 @@ import type { i18nTranslations, ProjectKey } from "@/../types/types";
 const data: i18nTranslations = Astro.props.data;
 ---
 
-<h1 class="pt-12 text-2xl font-bold" id="projects">
-  {data.projects.title}
-</h1>
-
-<div class="flex h-auto w-full flex-col items-center justify-between pt-5 md:w-3/4 lg:w-1/2 xl:w-2/4 mb-40">
+<div class="relative flex h-auto w-full flex-col items-center justify-between pt-5 md:w-3/4 lg:w-1/2 xl:w-2/4 mb-40">
+  <h1 class="pt-12 text-2xl font-bold" id="projects">
+    {data.projects.title}
+  </h1>
   {
     // Recorremos los proyectos obtenidos de las tarducciones de i18n y los mostramos
     Object.keys(data.projects).map((key) => {
@@ -20,7 +19,7 @@ const data: i18nTranslations = Astro.props.data;
         <>
           <div
             style={`background-image: url(/img/${key}.webp)`}
-            class={`h-60 md:h-72 w-full max-w-xl rounded-xl bg-opacity-10 bg-center transform transition-all duration-300 hover:scale-105 bg-contain bg-no-repeat m-10`}
+            class={`h-60 md:h-72 w-full max-w-xl rounded-xl bg-opacity-10 bg-center bg-cover transform transition-all duration-300 hover:scale-105 bg-no-repeat m-10`}
           >
             <a
               class="h-full w-full"
