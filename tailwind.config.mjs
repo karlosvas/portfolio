@@ -1,4 +1,8 @@
 /** @type {import('tailwindcss').Config} */
+import forms from '@tailwindcss/forms';
+import typography from '@tailwindcss/typography';
+import aspectRatio from '@tailwindcss/aspect-ratio';
+
 export const darkMode = "class";
 export const content = ["./src/**/*.astro", "./src/**/*.html"];
 export const theme = {
@@ -16,9 +20,9 @@ export const theme = {
   },
 };
 export const plugins = [
-  require("@tailwindcss/forms"),
-  require("@tailwindcss/typography"),
-  require("@tailwindcss/aspect-ratio"),
+  forms,
+  typography,
+  aspectRatio,
   function ({ addBase, config }) {
     addBase({
       "*::selection": { backgroundColor: config("theme.colors.purple.500") },

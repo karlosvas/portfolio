@@ -22,7 +22,7 @@
     "tailwindcss": "^3.4.17",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3",
-    "vite": "^5.4.19"
+    "vite": "^7.1.10"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
@@ -30,7 +30,7 @@
     "@astrojs/solid-js": "^5.1.0",
     "@astrojs/tailwind": "^6.0.2",
     "@astrojs/ts-plugin": "^1.10.4",
-    "@astrojs/vercel": "^8.2.2",
+    "@astrojs/vercel": "^8.0.4",
     "@solidjs/router": "^0.15.3",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@tailwindcss/forms": "^0.5.10",
@@ -43,7 +43,7 @@
     "resend": "^4.6.0",
     "solid-js": "^1.9.7",
     "solid-toast": "^0.5.0",
-    "vercel": "^44.4.1"
+    "vercel": "^25.2.0"
   },
   "keywords": [
     "Portfolio",

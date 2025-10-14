@@ -12,15 +12,19 @@
     "title": "Proyectos",
     "thefluentspanishhouse": {
       "name": "The Fluent Spanish House",
-      "description": "Academia de Español, con socialmedia, blog, suscripción a clases particulares y newsletter con implementacion de marketing digital con Mailchimp, hecho en React con TypeScript, .tsx"
+      "description": "Academia de Español, con socialmedia, blog, suscripción a clases particulares y newsletter, hecho con React y TypeScript."
+    },
+    "amanahacademia": {
+      "name": "Amanah Academia",
+      "description": "Academia de enseñanza del español, mediante un enfoque culturalmente inmersivo. Dirigida por Ana Ortega, conecta a estudiantes con profesores nativos que imparten las clases en el idioma nativo del estudiante, facilitando un aprendizaje más natural y efectivo. backend en Rust, frontend en Astro."
     },
     "olimpiadas-informaticas": {
       "name": "Olimpiada Informática Española",
-      "description": "Clases online de la UCM (Universidad Complutense de Madrid) de programación competitiva, con ejercicios de C++ y Java"
+      "description": "Clases online de la UCM (Universidad Complutense de Madrid) de programación competitiva, con ejercicios de C++ y Java."
     },
     "elend-talk": {
       "name": "Chat con PDF",
-      "description": "Conversación fluida con Ollama y Deepseek sobre un PDF pasado por el usuario, con implementación de chat con historial en tiempo real y subida de archivos, Astro y SvelteKit"
+      "description": "Conversación fluida con Ollama y Deepseek sobre un PDF pasado por el usuario, con implementación de chat con historial en tiempo real y subida de archivos, Astro y SvelteKit."
     },
     "octa-rust": {
       "name": "OctaRust",
@@ -28,7 +32,7 @@
     },
     "bytes-colaborativos": {
       "name": "BytesColaborativos",
-      "description": "Proyectos en Java. Con SpringBoot, Spring Security, JWT, documentación con Swagger y Javadoc, colas Kafka, etc.. propuesto por la comunidad BytesColaborativos"
+      "description": "Proyectos en Java. Con SpringBoot, Spring Security, JWT, documentación con Swagger y Javadoc, colas Kafka, etc.. propuesto por la comunidad BytesColaborativos."
     }
   },
   "experience": {
