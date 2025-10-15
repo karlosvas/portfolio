@@ -1,7 +1,17 @@
 ---
 import type { i18nTranslations } from "@/../types/types";
 import ButtonCustomized from "./ButtonCustomized.astro";
+import { getEntry } from "astro:content";
+const { currentLocale } = Astro;
+
+// Datos de traducción
 const data: i18nTranslations = Astro.props.data;
+
+// Obtener CV desde R2
+const R2_URL = import.meta.env.PUBLIC_R2_PUBLIC_URL;
+const cvId = currentLocale === "en" ? "current-en" : "current-es";
+const cv = await getEntry("cv", cvId);
+if (!cv) throw new Error(`CV entry not found for locale: ${currentLocale}`);
 ---
 
 <div class="flex h-auto w-full flex-col items-center justify-center text-black-50 light:bg-whitePal mb-40">
@@ -19,37 +29,7 @@ const data: i18nTranslations = Astro.props.data;
     ))
   }
   <br />
-  <span id="cv">
-    <ButtonCustomized>Descargar CV</ButtonCustomized>
-  </span>
+  <a href={R2_URL + cv.data.pdfUrl}>
+    <ButtonCustomized customStyle="px-10">Ver currículum completo</ButtonCustomized>
+  </a>
 </div>
-<script>
-  import toast from "solid-toast";
-
-  const cvbutton = document.getElementById("cv");
-  if (cvbutton) {
-    cvbutton.addEventListener("click", () => {
-      // Ruta al archivo en la carpeta public
-      let isSpanish = document.documentElement.lang === "es";
-      const cvPath = isSpanish ? "/curriculum/CV_CarlosVasquez_ES.pdf" : "/curriculum/CV_CarlosVasquez_EN.pdf";
-
-      try {
-        // Crear un elemento de enlace para la descarga
-        const downloadLink = document.createElement("a");
-        downloadLink.href = cvPath;
-        downloadLink.download = cvPath.split("/").pop() || "#";
-
-        // Simular clic en el enlace para iniciar la descarga
-        document.body.appendChild(downloadLink);
-        downloadLink.click();
-        document.body.removeChild(downloadLink);
-
-        // Mostrar mensaje de éxito (opcional)
-        toast.success(isSpanish ? "Descargando CV..." : "Downloading CV...");
-      } catch (error) {
-        // Mostrar mensaje de error (opcional)
-        toast.error(isSpanish ? "Error al descargar el CV" : "Error downloading CV");
-      }
-    });
-  }
-</script>

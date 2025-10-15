@@ -5,6 +5,6 @@ const data: i18nTranslations = Astro.props.data;
 
 <footer class="flex h-20 w-full items-center justify-center bg-black text-xs text-slate-200">
   <span class="ml-5 md:mr-10">
-    © 2025 Carlos Vásquez Sánchez <br /> Email: {data.contact.email}
+    © {new Date().getFullYear()} Carlos Vásquez Sánchez <br /> Email: {data.contact.email}
   </span>
 </footer>

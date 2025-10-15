@@ -36,6 +36,7 @@ const data: i18nTranslations = Astro.props.data;
   import toast from "solid-toast";
   import { FormEnum, FormEnumEnglish } from "@/../types/formEnum.ts";
 
+  // Obtenemos el formulario y el boton de enviar
   const form = document.getElementById("formEmail") as HTMLFormElement;
   const submitButton = form?.querySelector('button[type="submit"]');
 
