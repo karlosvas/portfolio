@@ -4,16 +4,12 @@
     "subtitle": "Desarrollador Backend",
     "name": "Carlos Raúl Vásquez Sánchez",
     "presentation": {
-      "v1": "Comencé a programar proyectos personales a los dieciocho años. Actualmente estoy estudiando un grado Superior de Desarollo de Aplicaciones Multiplataforma además de un curso de programación algorítmica en la Universidad Complutense de Madrid, tengo veintiún años y soy de España (Castilla y León).",
-      "v2": "Puedo adaptarme a cualquier lenguaje, creo en la importancia del TDD, documentación y las buenas prácticas de desarollo."
+      "v1": "Comencé a programar proyectos personales a los dieciocho años. Actualmente estoy estudiando un Grado Superior de Desarrollo de Aplicaciones Multiplataforma, también estudié un curso de programación algorítmica online de la Universidad Complutense de Madrid, y hago servicios y proyectos autodidactas. Tengo veintiún años y soy de España (Castilla y León, Valladolid).",
+      "v2": "Puedo adaptarme a cualquier lenguaje, creo en la importancia del TDD, documentación y las buenas prácticas de desarrollo."
     }
   },
   "projects": {
     "title": "Proyectos",
-    "thefluentspanishhouse": {
-      "name": "The Fluent Spanish House",
-      "description": "Academia de Español, con socialmedia, blog, suscripción a clases particulares y newsletter, hecho con React y TypeScript."
-    },
     "amanahacademia": {
       "name": "Amanah Academia",
       "description": "Academia de enseñanza del español, mediante un enfoque culturalmente inmersivo. Dirigida por Ana Ortega, conecta a estudiantes con profesores nativos que imparten las clases en el idioma nativo del estudiante, facilitando un aprendizaje más natural y efectivo. backend en Rust, frontend en Astro."
@@ -25,6 +21,10 @@
     "elend-talk": {
       "name": "Chat con PDF",
       "description": "Conversación fluida con Ollama y Deepseek sobre un PDF pasado por el usuario, con implementación de chat con historial en tiempo real y subida de archivos, Astro y SvelteKit."
+    },
+    "thefluentspanishhouse": {
+      "name": "The Fluent Spanish House",
+      "description": "Academia de Español, con socialmedia, blog, suscripción a clases particulares y newsletter, hecho con React y TypeScript."
     },
     "octa-rust": {
       "name": "OctaRust",

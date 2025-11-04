@@ -2,8 +2,8 @@
 
 ## Descripcion
 
-Comencé a programar páginas web y proyectos personales a los 18 años. Actualmente estoy estudiando programación competitiva en la Universidad Complutense de Madrid, ademas de un grado Superior de Desarollo de Aplicaciones Multiplataforma. Tengo 20 años y soy de Valladolid (Castilla y León).
-Puedo adaptarme a cualquier lenguaje, creo en la importancia del TDD, documentación y las buenas prácticas de desarollo.
+Comencé a programar proyectos personales a los dieciocho años. Actualmente estoy estudiando un Grado Superior de Desarrollo de Aplicaciones Multiplataforma, también estudié un curso de programación algorítmica online de la Universidad Complutense de Madrid, y hago servicios y proyectos autodidactas. Tengo veintiún años y soy de España (Castilla y León, Valladolid).
+Puedo adaptarme a cualquier lenguaje, creo en la importancia del TDD, documentación y las buenas prácticas de desarrollo."
 
 ## 📊 GitHub Stats
 
@@ -19,8 +19,6 @@ Puedes ver mis proyectos completos en mi web 🌐 👉 [carlos.dev](https://tusi
 [![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=karlosvas&repo=olimpiadas-informaticas&theme=tokyonight)](https://github.com/karlosvas/olimpiadas-informaticas)
 [![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=karlosvas&repo=octa-rust&theme=tokyonight)](https://github.com/karlosvas/octa-rust)
 [![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=karlosvas&repo=elend-talk&theme=tokyonight)](https://github.com/karlosvas/elend-talk)
-
-// ...existing code...
 
 ## 🛠️ Tech Stack
 
@@ -70,5 +68,5 @@ Puedes ver mis proyectos completos en mi web 🌐 👉 [carlos.dev](https://tusi
 
 - 💼 LinkedIn: [linkedin.com/in/carlos](https://linkedin.com/in/carlos)
 - :information_source: **Nota:**
-  ¡Contáctame! Puedes encontrarme en LinkedIn para discutir colaboraciones, proyectos o simplemente charlar sobre programación, mi correo es carlosvassan@gmail.com
+  ¡Contáctame! Puedes encontrarme en LinkedIn para discutir colaboraciones, proyectos o simplemente charlar sobre programación, mi correo es [carlosvassan@gmail.com](mailto:carlosvassan@gmail.com)
   ¡Gracias por visitar mi portfolio! 🚀

@@ -4,16 +4,12 @@
     "subtitle": "Backend Developer",
     "name": "Carlos Raúl Vásquez Sánchez",
     "presentation": {
-      "v1": "I started programming personal projects at eighteen. I'm currently studying a Higher Degree in Multiplatform Application Development along with an algorithmic programming course at Complutense University of Madrid. I'm twenty-one years old and from Spain (Castilla y León).",
-      "v2": "I can adapt to any programming language. I believe in the importance of TDD, documentation, and good development practices."
+      "v1": "I started programming personal projects at eighteen. Currently studying a Higher Degree in Multiplatform Application Development, I also completed an online algorithmic programming course from Universidad Complutense de Madrid, and I provide freelance services and self-taught projects. I'm twenty-one years old and based in Spain (Castile and León, Valladolid).",
+      "v2": "I can adapt to any language, I believe in the importance of TDD, documentation, and development best practices."
     }
   },
   "projects": {
     "title": "Projects",
-    "thefluentspanishhouse": {
-      "name": "The Fluent Spanish House",
-      "description": "Spanish academy with social media, blog, private class subscriptions, and newsletter. Built with React and TypeScript."
-    },
     "amanahacademia": {
       "name": "Amanah Academia",
       "description": "Spanish teaching academy with a culturally immersive approach. Led by Ana Ortega, it connects students with native teachers who teach in the student's native language, enabling more natural and effective learning. Backend in Rust, frontend in Astro."
@@ -25,6 +21,10 @@
     "elend-talk": {
       "name": "PDF Chat",
       "description": "Real-time chat system with Ollama and Deepseek for PDF analysis, featuring file uploads and chat history. Built with Astro and SvelteKit"
+    },
+    "thefluentspanishhouse": {
+      "name": "The Fluent Spanish House",
+      "description": "Spanish academy with social media, blog, private class subscriptions, and newsletter. Built with React and TypeScript."
     },
     "bytes-colaborativos": {
       "name": "BytesColaborativos",
