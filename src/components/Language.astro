@@ -1,4 +1,4 @@
-<span onclick="toggleModal('modalLanguage')" id="lang" class="flex justify-center align-middle sm:mr-10 relative">
+<span id="lang" class="flex justify-center align-middle sm:mr-10 relative">
   <svg
     xmlns="http://www.w3.org/2000/svg"
     class="hover:text-purplePal transition-color duration-200 icon icon-tabler icon-tabler-language cursor-pointer"
@@ -20,10 +20,10 @@
   </svg>
   <div
     id="modalLanguage"
-    class="absolute hidden top-11 rigth-10 w-20 h-20 z-50 bg-blackPal outline outline-2 outline-whitePal transition-bg duration-200 flex flex-col justify-center items-center select-none cursor-pointer rounded-md"
+    class="absolute hidden top-11 right-[-10] w-20 h-20 z-50 bg-blackPal outline outline-2 outline-whitePal transition-bg duration-200 flex flex-col justify-center items-center select-none cursor-pointer rounded-md"
   >
-    <button class="m-1" onclick="getSpain()">Spanish</button>
-    <button class="m-1" onclick="getEnglish()">English</button>
+    <button class="m-1 lang-button" data-lang="es">Spanish</button>
+    <button class="m-1 lang-button" data-lang="en">English</button>
   </div>
 </span>
 
@@ -31,15 +31,32 @@
   import { getSpain, getEnglish } from "@/services/language";
   import { toggleModal } from "@/services/logicModal";
 
-  // Función para mostrar el modal al hacer clic en el botón de idioma
-  document.addEventListener("click", (event) => {
-    const modal = document.getElementById("modalLanguage");
-    const langButton = document.getElementById("lang");
-    if (event.target && !langButton?.contains(event.target as Node)) {
-      // Si el clic no fue dentro del botón de idioma, ocultar el modal
-      if (modal) {
-        modal.classList.add("hidden");
-      }
+  const langButton = document.getElementById("lang");
+  const modal = document.getElementById("modalLanguage");
+
+  // Toggle modal
+  langButton?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    toggleModal("modalLanguage");
+  });
+
+  // Cambiar idioma
+  modal?.addEventListener("click", (e) => {
+    const target = e.target as HTMLElement;
+    const lang = target.dataset.lang;
+
+    console.log("Modal clicked:", target); // Debug
+    console.log("Dataset:", target.dataset); // Debug
+    console.log("Lang:", lang); // Debug
+
+    if (lang === "es") getSpain();
+    else if (lang === "en") getEnglish();
+  });
+
+  // Cerrar al hacer clic fuera
+  document.addEventListener("click", (e) => {
+    if (!langButton?.contains(e.target as Node)) {
+      modal?.classList.add("hidden");
     }
   });
 </script>

@@ -1,14 +1,11 @@
 // Enseñar u ocultar un modal
-export function toggleModal(event: Event, id: string) {
-  event.preventDefault();
+export function toggleModal(id: string) {
   const modal = document.getElementById(id);
   modal?.classList.toggle("hidden");
 }
 
 declare global {
   interface Window {
-    toggleModal: (event: Event, id: string) => void;
+    toggleModal: (id: string) => void;
   }
 }
-
-window.toggleModal = toggleModal;
