@@ -1,0 +1,15 @@
+# Bienvenido robot curioso, aquí está mi robots.txt.
+# Por favor, comportate, y indexame.
+
+User-agent: *
+Allow: /
+Disallow: /api/  # API endpoints privados
+
+# Sitemap
+Sitemap: https://carlosvassan.dev/sitemap-index.xml
+
+# Crawl-delay para ser amable con los servidores
+Crawl-delay: 1
+
+# Se que un portfolio es algo serio pero creo que el sentido del humor es necesario
+# para cualquier ser humano

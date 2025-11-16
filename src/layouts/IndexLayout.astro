@@ -1,24 +1,70 @@
 ---
 import "@/styles/global.css";
-import { PUBLIC_TURNSTILE_SITE_KEY } from "astro:env/client";
 import { Toaster } from "solid-toast";
 
 const { title, language } = Astro.props;
+const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
+
+// SEO Meta Tags
+const description =
+  language === "en"
+    ? "Portfolio of Carlos Vásquez Sánchez, showcasing software development projects and skills in TypeScript, Rust, Java, React, and more."
+    : "Portafolio de Carlos Vásquez Sánchez, mostrando sus proyectos, habilidades en desarrollo de software con TypeScript, Rust, Java, React y más.";
+
+const siteUrl = "https://carlosvassan.dev"; // Actualiza con tu URL real
+const ogImage = `${siteUrl}/img/perfile.webp`;
+
+// Para TS seguro en scripts de cliente
+declare global {
+  interface Window {
+    turnstile?: any;
+  }
+}
 ---
 
 <!doctype html>
 <html lang={language} class="dark">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="Carlos Vásquez Sánchez portafolio de desarrollo de software"
-      content="Portafolio de Carlos Vásquez Sánchez, mostrando sus proyectos, habilidades en desarrollo de software"
-    />
     <meta name="viewport" content="width=device-width" />
-    <link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta name="description" content={description} />
+    <meta name="author" content="Carlos Vásquez Sánchez" />
+    <meta
+      name="keywords"
+      content="Portfolio, Web Developer, Backend, TypeScript, Rust, Java, Spring Boot, React, Astro"
+    />
     <meta name="generator" content={Astro.generator} />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={siteUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={ogImage} />
+    <meta property="og:locale" content={language === "en" ? "en_US" : "es_ES"} />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content={siteUrl} />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+
+    <!-- Favicons -->
+    <link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="canonical" href={`${siteUrl}${language === "en" ? "/en" : ""}`} />
+
+    <!-- Content Security Policy -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self' https:; script-src 'self' https://challenges.cloudflare.com https://cdn.vercel-insights.com 'unsafe-inline'; connect-src 'self' https://challenges.cloudflare.com https://api.vercel.com; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https:;"
+    />
+
     <title>{title}</title>
+
+    <!-- Script de Turnstile -->
     <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" defer></script>
+
     <style>
       html {
         overflow-x: hidden;
@@ -28,19 +74,16 @@ const { title, language } = Astro.props;
         width: 0.5rem;
         background-color: #6166ff49;
       }
-
       html::-webkit-scrollbar-thumb {
         background-color: #5156edd3;
         border-radius: 100px;
       }
-
       body {
         overflow-x: hidden;
         font-family: "Roboto", sans-serif;
         font-weight: 400;
         font-style: normal;
       }
-
       @media (prefers-reduced-motion: reduce) {
         html {
           scroll-behavior: auto;
@@ -48,24 +91,34 @@ const { title, language } = Astro.props;
       }
     </style>
   </head>
+
   <body>
     <!-- Cloudflare Turnstile -->
-    <div class="cf-turnstile" data-sitekey={PUBLIC_TURNSTILE_SITE_KEY} data-size="invisible"></div>
+    {
+      TURNSTILE_SITE_KEY && (
+        <div id="turnstile-main" class="cf-turnstile" data-sitekey={TURNSTILE_SITE_KEY} data-size="invisible" />
+      )
+    }
+
+    <!-- Slot para contenido de página -->
     <slot />
-    <script is:inline define:vars={{ PUBLIC_TURNSTILE_SITE_KEY }}>
-      console.log("PUBLIC_TURNSTILE_SITE_KEY", PUBLIC_TURNSTILE_SITE_KEY);
-      // Inicializar Turnstile Invisible
-      document.addEventListener("DOMContentLoaded", function () {
-        turnstile.render(".cf-turnstile", {
-          sitekey: PUBLIC_TURNSTILE_SITE_KEY,
-          size: "invisible",
-          callback: function () {
-            console.log("Cloudflare Turnstile, you are not a robot");
-          },
-        });
-      });
-    </script>
-    <!-- Añade el componente Toaster -->
+
+    <!-- Toaster de Solid -->
     <Toaster client:load position="bottom-right" />
   </body>
 </html>
+<script>
+  const key = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
+
+  document.addEventListener("DOMContentLoaded", () => {
+    if (window.turnstile && key) {
+      window.turnstile.render("#turnstile-main", {
+        sitekey: key,
+        size: "invisible",
+        callback: () => {
+          // Turnstile verificado exitosamente
+        },
+      });
+    }
+  });
+</script>

@@ -2,9 +2,11 @@ import { defineConfig, envField } from 'astro/config';
 import tailwind from "@astrojs/tailwind";
 import vercel from '@astrojs/vercel';
 import solidJs from '@astrojs/solid-js';
+import sitemap from '@astrojs/sitemap';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://carlosvassan.dev',
   env: {
     schema: {
       PUBLIC_TURNSTILE_SITE_KEY: envField.string({
@@ -31,7 +33,19 @@ export default defineConfig({
       prefixDefaultLocale: false
     }
   },
-  integrations: [tailwind(), solidJs()],
+  integrations: [
+    tailwind(),
+    solidJs(),
+    sitemap({
+      i18n: {
+        defaultLocale: 'es',
+        locales: {
+          es: 'es-ES',
+          en: 'en-US',
+        },
+      },
+    })
+  ],
   vite: {
     resolve: {
       alias: {
