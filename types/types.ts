@@ -35,6 +35,7 @@ export interface i18nTranslations {
   };
   history: {
     title: string;
+    viewFullResume: string;
     jobs: Array<{
       title: string;
       company: string;

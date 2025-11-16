@@ -11,7 +11,7 @@ const description =
     ? "Portfolio of Carlos Vásquez Sánchez, showcasing software development projects and skills in TypeScript, Rust, Java, React, and more."
     : "Portafolio de Carlos Vásquez Sánchez, mostrando sus proyectos, habilidades en desarrollo de software con TypeScript, Rust, Java, React y más.";
 
-const siteUrl = "https://carlosvassan.dev"; // Actualiza con tu URL real
+const siteUrl = "https://carlosvassan.dev";
 const ogImage = `${siteUrl}/img/perfile.webp`;
 
 // Para TS seguro en scripts de cliente
@@ -116,7 +116,7 @@ declare global {
         sitekey: key,
         size: "invisible",
         callback: () => {
-          // Turnstile verificado exitosamente
+          console.log("Turnstile challenge completed.");
         },
       });
     }

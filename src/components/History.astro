@@ -30,6 +30,6 @@ if (!cv) throw new Error(`CV entry not found for locale: ${currentLocale}`);
   }
   <br />
   <a href={R2_URL + cv.data.pdfUrl}>
-    <ButtonCustomized customStyle="px-10">Ver currículum completo</ButtonCustomized>
+    <ButtonCustomized customStyle="px-10">{data.history.viewFullResume}</ButtonCustomized>
   </a>
 </div>

@@ -1,7 +1,7 @@
 {
   "profile": {
     "title": "Perfil",
-    "subtitle": "Desarrollador Backend",
+    "subtitle": "Desarrollador de Software",
     "name": "Carlos Raúl Vásquez Sánchez",
     "presentation": {
       "v1": "Comencé a programar proyectos personales a los dieciocho años. Actualmente estoy estudiando un Grado Superior de Desarrollo de Aplicaciones Multiplataforma, también estudié un curso de programación algorítmica online de la Universidad Complutense de Madrid, y hago servicios y proyectos autodidactas. Tengo veintiún años y soy de España (Castilla y León, Valladolid).",
@@ -37,11 +37,12 @@
   },
   "experience": {
     "title": "Experiencia",
-    "description": "Tengo experiencia con lenguajes y frameworks como C++, Java, Spring Boot, JavaScript, TypeScript, Astro, React, Rust y motores como Unreal Engine. He desarrollado proyectos significativos en cada uno, adquiriendo un sólido conocimiento en desarrollo de software. ",
-    "technologies": "También he trabajado con herramientas como MongoDB, Firebase, Vercel, Cloudflare, Tailwind, Node.js, máquinas virtuales, Git, GitHub e integración continua con GitHub Actions. Además, tengo experiencia en proyectos colaborativos en equipo utilizando Jira"
+    "description": "Tengo experiencia con <strong class='strong'>lenguajes y frameworks</strong> como C++, Rust, Java, Spring Boot, JavaScript, TypeScript, Astro, React, Futter y motores como Unreal Engine.<br> He desarrollado proyectos significativos en cada uno, adquiriendo un sólido conocimiento en desarrollo de software.<br>",
+    "technologies": "También he trabajado con <strong class='strong'>herramientas</strong> como MongoDB, Firebase, Vercel, Cloudflare, Tailwind, Node.js, máquinas virtuales, Git, GitHub e integración continua con GitHub Actions.<br> Además, tengo experiencia en proyectos colaborativos en equipo utilizando Jira y Taiga."
   },
   "history": {
     "title": "Historial Laboral",
+    "viewFullResume": "Ver currículum completo",
     "jobs": [
       {
         "title": "Prácticas, Desarrollador Unreal Engine 5",

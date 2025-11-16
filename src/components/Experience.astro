@@ -1,24 +1,13 @@
 ---
 import type { i18nTranslations } from "@/../types/types";
 const data: i18nTranslations = Astro.props.data;
-
-// Formateo de la descripcion para que se vea bien en el frontend
-const formatDescription = (desc: string) => {
-  return desc
-    .split(".")
-    .map((sentence) => sentence.trim())
-    .filter((sentence) => sentence)
-    .join(".\n");
-};
 ---
 
 <div id="experiencie" class="w-3/4 2xl:w-1/2 flex flex-col justify-center items-center mb-40 xl:px-36">
   <h1 class="text-2xl font-bold mb-3">
     {data.experience.title}
   </h1>
-  <p style="white-space: pre-line; pt-3 text-pretty">
-    {formatDescription(data.experience.description)}
-  </p>
+  <p style="white-space: pre-line; pt-3 text-pretty" set:html={data.experience.description} />
   <br />
   <div class="w-full flex flex-row justify-center align-middle items-center flex-wrap">
     <img src="/svg/languajes/typescript.svg" class="m-1 mx-5 h-20 w-14" />
@@ -29,11 +18,10 @@ const formatDescription = (desc: string) => {
     <img src="/svg/languajes/react.svg" class="m-1 mx-5 h-20 w-14" />
     <img src="/svg/languajes/rust.svg" class="m-1 mx-2 h-16 w-20" />
     <img id="unrealLogo" class="m-1 mx-5 h-20 w-14" />
+    <img src="/svg/languajes/flutter.svg" class="m-1 mx-3 h-16 w-14" />
   </div>
   <br />
-  <p style="white-space: pre-line; pt-3 text-pretty">
-    {data.experience.technologies}
-  </p>
+  <p style="white-space: pre-line; pt-3 text-pretty" set:html={data.experience.technologies} />
   <br />
   <div class="w-full flex flex-row justify-center align-middle items-center flex-wrap">
     <img src="/svg/technologies/cloudflare.svg" class="m-1 mx-5 h-20 w-14" />
@@ -44,6 +32,8 @@ const formatDescription = (desc: string) => {
     <img src="/svg/technologies/vercel.svg" class="m-1 mx-5 h-20 w-14" />
     <img src="/svg/technologies/docker.svg" class="m-1 mx-5 h-20 w-14" />
     <img src="/svg/technologies/jira.svg" class="m-1 mx-5 h-20 w-14" />
+    <img src="/svg/technologies/taiga.svg" class="m-1 mx-5 h-20 w-14" />
+    <img src="/svg/technologies/postgresql.svg" class="m-1 pt-4 mx-3 h-20 w-14" />
   </div>
   <br />
 </div>
@@ -70,3 +60,10 @@ const formatDescription = (desc: string) => {
   // Clean up observer when the component is removed
   window.addEventListener("beforeunload", () => observer.disconnect());
 </script>
+
+<style is:global>
+  .strong {
+    color: var(--purplePal);
+    font-weight: bold;
+  }
+</style>

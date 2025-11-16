@@ -1,7 +1,7 @@
 {
   "profile": {
     "title": "Profile",
-    "subtitle": "Backend Developer",
+    "subtitle": "Software Developer",
     "name": "Carlos Raúl Vásquez Sánchez",
     "presentation": {
       "v1": "I started programming personal projects at eighteen. Currently studying a Higher Degree in Multiplatform Application Development, I also completed an online algorithmic programming course from Universidad Complutense de Madrid, and I provide freelance services and self-taught projects. I'm twenty-one years old and based in Spain (Castile and León, Valladolid).",
@@ -33,11 +33,12 @@
   },
   "experience": {
     "title": "Experience",
-    "description": "I have experience with programming languages and frameworks such as C++, Java, Spring Boot, JavaScript, TypeScript, Astro, React, and Rust, as well as game engines like Unreal Engine. I have developed significant projects with each of them, gaining solid knowledge in software development.",
-    "technologies": "I have also worked with tools such as MongoDB, Firebase, Vercel, Cloudflare, Tailwind, Node.js, virtual machines, Git, GitHub, and continuous integration using GitHub Actions. Additionally, I have experience collaborating on team projects using Jira."
+    "description": "I have experience with <strong class='strong'>programming languages and frameworks</strong> such as C++, Rust, Java, Spring Boot, JavaScript, TypeScript, Astro, React, Futter and game engines like Unreal Engine.<br> I have developed significant projects with each of them, gaining solid knowledge in software development.<br>",
+    "technologies": "I have also worked with <strong class='strong'>tools</strong> such as MongoDB, Firebase, Vercel, Cloudflare, Tailwind, Node.js, virtual machines, Git, GitHub, and continuous integration using GitHub Actions.<br> Additionally, I have experience collaborating on team projects using Jira and Taiga."
   },
   "history": {
     "title": "Work History",
+    "viewFullResume": "View full resume",
     "jobs": [
       {
         "title": "Internship, Unreal Engine 5 Developer",
