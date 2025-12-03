@@ -5,7 +5,7 @@
     "name": "Carlos Raúl Vásquez Sánchez",
     "presentation": {
       "v1": "I started programming personal projects at eighteen. Currently studying a Higher Degree in Multiplatform Application Development, I also completed an online algorithmic programming course from Universidad Complutense de Madrid, and I provide freelance services and self-taught projects. I'm twenty-one years old and based in Spain (Castile and León, Valladolid).",
-      "v2": "I can adapt to any language, I believe in the importance of TDD, documentation, and development best practices."
+      "v2": "I can adapt to any language, I believe in the importance of documentation and development best practices."
     }
   },
   "projects": {
@@ -26,6 +26,10 @@
       "name": "The Fluent Spanish House",
       "description": "Spanish academy with social media, blog, private class subscriptions, and newsletter. Built with React and TypeScript."
     },
+    "octa-rust": {
+      "name": "OctaRust",
+      "description": "Octa Rust is an application to learn to play piano in a fun and entertaining way, with a focus on gamification and progressive learning. The application is designed to help users learn to play the piano from scratch, without the need for prior knowledge."
+    },
     "bytes-colaborativos": {
       "name": "BytesColaborativos",
       "description": "Java projects using SpringBoot, Spring Security, JWT, Swagger/Javadoc documentation, Kafka queues, etc. Community-driven initiatives from BytesColaborativos"
@@ -33,7 +37,7 @@
   },
   "experience": {
     "title": "Experience",
-    "description": "I have experience with <strong class='strong'>programming languages and frameworks</strong> such as C++, Rust, Java, Spring Boot, JavaScript, TypeScript, Astro, React, Futter and game engines like Unreal Engine.<br> I have developed significant projects with each of them, gaining solid knowledge in software development.<br>",
+    "description": "I have experience with <strong class='strong'>languages and frameworks</strong> such as Rust, C++, TypeScript, Java, Spring Boot, TypeScript, Astro, React, Python, and game engines like Unreal Engine and Unity.<br> I have developed significant projects with each, gaining solid knowledge in software development.<br>",
     "technologies": "I have also worked with <strong class='strong'>tools</strong> such as MongoDB, Firebase, Vercel, Cloudflare, Tailwind, Node.js, virtual machines, Git, GitHub, and continuous integration using GitHub Actions.<br> Additionally, I have experience collaborating on team projects using Jira and Taiga."
   },
   "history": {

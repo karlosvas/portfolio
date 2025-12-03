@@ -3,67 +3,186 @@ import type { i18nTranslations } from "@/../types/types";
 const data: i18nTranslations = Astro.props.data;
 ---
 
-<div id="experiencie" class="w-3/4 2xl:w-1/2 flex flex-col justify-center items-center mb-40 xl:px-36">
-  <h1 class="text-2xl font-bold mb-3">
+<div id="experiencie" class="w-11/12 md:w-3/4 2xl:w-2/3 flex flex-col justify-center items-center mb-40 xl:px-20 px-4">
+  <h1 class="md:text-4xl font-bold mb-6 text-3xl text-blackPal dark:text-whitePal">
     {data.experience.title}
   </h1>
-  <p style="white-space: pre-line; pt-3 text-pretty" set:html={data.experience.description} />
-  <br />
-  <div class="w-full flex flex-row justify-center align-middle items-center flex-wrap">
-    <img src="/svg/languajes/typescript.svg" class="m-1 mx-5 h-20 w-14" />
-    <img src="/svg/languajes/cpp.svg" class="m-1 mx-5 h-20 w-14" />
-    <img src="/svg/languajes/java.svg" class="m-1 mx-5 h-20 w-14" />
-    <img src="/svg/languajes/spring-boot.svg" class="m-1 mx-5 h-20 w-14" />
-    <img src="/svg/languajes/astro.svg" class="m-1 mx-5 mt-4 h-16 w-14" />
-    <img src="/svg/languajes/react.svg" class="m-1 mx-5 h-20 w-14" />
-    <img src="/svg/languajes/rust.svg" class="m-1 mx-2 h-16 w-20" />
-    <img id="unrealLogo" class="m-1 mx-5 h-20 w-14" />
-    <img src="/svg/languajes/flutter.svg" class="m-1 mx-3 h-16 w-14" />
+  <p
+    class="text-base md:text-lg text-center leading-relaxed opacity-90 mb-12"
+    style="white-space: pre-line;"
+    set:html={data.experience.description}
+  />
+
+  <!-- Stack de Lenguajes - Layout en columnas -->
+  <div class="w-full grid grid-cols-2 md:grid-cols-5 gap-4 mb-12">
+    <div class="tech-card group">
+      <img src="/svg/languajes/rust.svg" class="tech-card-icon h-12 w-16" alt="Rust" />
+      <span class="tech-card-label">Rust</span>
+    </div>
+    <div class="tech-card group">
+      <img src="/svg/languajes/cpp.svg" class="tech-card-icon h-12 w-12" alt="C++" />
+      <span class="tech-card-label">C++</span>
+    </div>
+    <div class="tech-card group">
+      <img src="/svg/languajes/unreal.svg" class="tech-card-icon h-12 w-12" alt="Unreal" />
+      <span class="tech-card-label">Unreal</span>
+    </div>
+    <div class="tech-card group">
+      <img src="/svg/languajes/unity.svg" class="tech-card-icon h-12 w-12" alt="Unity" />
+      <span class="tech-card-label">Unity</span>
+    </div>
+    <div class="tech-card group">
+      <img src="/svg/languajes/typescript.svg" class="tech-card-icon h-12 w-12" alt="TypeScript" />
+      <span class="tech-card-label">TypeScript</span>
+    </div>
+    <div class="tech-card group">
+      <img src="/svg/languajes/java.svg" class="tech-card-icon h-12 w-12" alt="Java" />
+      <span class="tech-card-label">Java</span>
+    </div>
+    <div class="tech-card group">
+      <img src="/svg/languajes/spring-boot.svg" class="tech-card-icon h-12 w-12" alt="Spring Boot" />
+      <span class="tech-card-label">Spring</span>
+    </div>
+    <div class="tech-card group">
+      <img src="/svg/languajes/astro.svg" class="tech-card-icon h-12 w-12" alt="Astro" />
+      <span class="tech-card-label">Astro</span>
+    </div>
+    <div class="tech-card group">
+      <img src="/svg/languajes/react.svg" class="tech-card-icon h-12 w-12" alt="React" />
+      <span class="tech-card-label">React</span>
+    </div>
+    <div class="tech-card group">
+      <img src="/svg/languajes/python.svg" class="tech-card-icon h-12 w-12" alt="Python" />
+      <span class="tech-card-label">Python</span>
+    </div>
   </div>
-  <br />
-  <p style="white-space: pre-line; pt-3 text-pretty" set:html={data.experience.technologies} />
-  <br />
-  <div class="w-full flex flex-row justify-center align-middle items-center flex-wrap">
-    <img src="/svg/technologies/cloudflare.svg" class="m-1 mx-5 h-20 w-14" />
-    <img src="/svg/technologies/firebase.svg" class="m-1 mx-5 h-20 w-14" />
-    <img src="/svg/technologies/git.svg" class="m-1 mx-5 h-20 w-14" />
-    <img src="/svg/technologies/mongo.svg" class="m-1 mx-5 h-14 w-14" />
-    <img src="/svg/technologies/tailwind.svg" class="m-1 mx-5 h-20 w-14" />
-    <img src="/svg/technologies/vercel.svg" class="m-1 mx-5 h-20 w-14" />
-    <img src="/svg/technologies/docker.svg" class="m-1 mx-5 h-20 w-14" />
-    <img src="/svg/technologies/jira.svg" class="m-1 mx-5 h-20 w-14" />
-    <img src="/svg/technologies/taiga.svg" class="m-1 mx-5 h-20 w-14" />
-    <img src="/svg/technologies/postgresql.svg" class="m-1 pt-4 mx-3 h-20 w-14" />
+
+  <p
+    class="text-base md:text-lg text-center leading-relaxed opacity-90 mb-12"
+    style="white-space: pre-line;"
+    set:html={data.experience.technologies}
+  />
+
+  <!-- Stack de Tecnologías - Layout en columnas -->
+  <div class="w-full grid grid-cols-2 md:grid-cols-5 gap-4">
+    <div class="tech-card group">
+      <img src="/svg/technologies/cloudflare.svg" class="tech-card-icon h-12 w-12" alt="Cloudflare" />
+      <span class="tech-card-label">Cloudflare</span>
+    </div>
+    <div class="tech-card group">
+      <img src="/svg/technologies/firebase.svg" class="tech-card-icon h-12 w-12" alt="Firebase" />
+      <span class="tech-card-label">Firebase</span>
+    </div>
+    <div class="tech-card group">
+      <img src="/svg/technologies/git.svg" class="tech-card-icon h-12 w-12" alt="Git" />
+      <span class="tech-card-label">Git</span>
+    </div>
+    <div class="tech-card group">
+      <img src="/svg/technologies/mongo.svg" class="tech-card-icon h-12 w-12" alt="MongoDB" />
+      <span class="tech-card-label">MongoDB</span>
+    </div>
+    <div class="tech-card group">
+      <img src="/svg/technologies/tailwind.svg" class="tech-card-icon h-12 w-12" alt="Tailwind" />
+      <span class="tech-card-label">Tailwind</span>
+    </div>
+    <div class="tech-card group">
+      <img src="/svg/technologies/vercel.svg" class="tech-card-icon h-12 w-12" alt="Vercel" />
+      <span class="tech-card-label">Vercel</span>
+    </div>
+    <div class="tech-card group">
+      <img src="/svg/technologies/docker.svg" class="tech-card-icon h-12 w-12" alt="Docker" />
+      <span class="tech-card-label">Docker</span>
+    </div>
+    <div class="tech-card group">
+      <img src="/svg/technologies/jira.svg" class="tech-card-icon h-12 w-12" alt="Jira" />
+      <span class="tech-card-label">Jira</span>
+    </div>
+    <div class="tech-card group">
+      <img src="/svg/technologies/taiga.svg" class="tech-card-icon h-12 w-12" alt="Taiga" />
+      <span class="tech-card-label">Taiga</span>
+    </div>
+    <div class="tech-card group">
+      <img src="/svg/technologies/postgresql.svg" class="tech-card-icon h-12 w-12" alt="PostgreSQL" />
+      <span class="tech-card-label">PostgreSQL</span>
+    </div>
   </div>
-  <br />
 </div>
-
-<script>
-  const logo = document.getElementById("unrealLogo") as HTMLImageElement;
-
-  // Function to update the logo based on dark mode
-  const updateLogo = () => {
-    const isDarkMode = document.documentElement.classList.contains("dark");
-    logo.src = isDarkMode ? "/svg/languajes/unreal-white.svg" : "/svg/languajes/unreal-dark.svg";
-  };
-
-  // Initial check
-  updateLogo();
-
-  // Observe changes to the class attribute of <html>
-  const observer = new MutationObserver(() => {
-    updateLogo();
-  });
-
-  observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
-
-  // Clean up observer when the component is removed
-  window.addEventListener("beforeunload", () => observer.disconnect());
-</script>
 
 <style is:global>
   .strong {
     color: var(--purplePal);
     font-weight: bold;
+  }
+
+  .tech-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1.5rem 1rem;
+    background: transparent;
+    border: 1px solid rgba(108, 92, 231, 0.2);
+    border-radius: 0.75rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .tech-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--purplePal), transparent);
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+  }
+
+  .tech-card:hover::before {
+    transform: translateX(100%);
+  }
+
+  .tech-card:hover {
+    border-color: var(--purplePal);
+    background: rgba(108, 92, 231, 0.05);
+    transform: translateY(-2px);
+  }
+
+  .tech-card-icon {
+    transition: all 0.3s ease;
+    opacity: 0.85;
+    margin: 0 auto;
+  }
+
+  .tech-card:hover .tech-card-icon {
+    opacity: 1;
+    transform: scale(1.1);
+  }
+
+  .tech-card-label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    opacity: 0.7;
+    transition: all 0.3s ease;
+    text-align: center;
+  }
+
+  .tech-card:hover .tech-card-label {
+    opacity: 1;
+    color: var(--purplePal);
+  }
+
+  @media (max-width: 768px) {
+    .tech-card {
+      padding: 1rem 0.75rem;
+    }
+
+    .tech-card-label {
+      font-size: 0.75rem;
+    }
   }
 </style>

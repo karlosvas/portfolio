@@ -10,9 +10,61 @@ const data: i18nTranslations = Astro.props.data;
 ---
 
 <main class="flex mt-10 h-auto w-full flex-col items-center justify-center p-10 text-black-50 light:bg-whitePal">
-  <Profile data={data} />
-  <Projects data={data} />
-  <Experience data={data} />
-  <History data={data} />
-  <Contact data={data} />
+  <div class="reveal-element w-full flex justify-center">
+    <Profile data={data} />
+  </div>
+  <div class="reveal-element w-full flex justify-center">
+    <Projects data={data} />
+  </div>
+  <div class="reveal-element w-full flex justify-center">
+    <Experience data={data} />
+  </div>
+  <div class="reveal-element w-full flex justify-center">
+    <History data={data} />
+  </div>
+  <div class="reveal-element w-full flex justify-center">
+    <Contact data={data} />
+  </div>
 </main>
+
+<style>
+  .reveal-element {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  }
+
+  .reveal-element.revealed {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+
+<script>
+  // Forzar scroll al inicio cuando se carga/recarga la página
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+  window.scrollTo(0, 0);
+
+  // Intersection Observer para animaciones de scroll reveal
+  const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('revealed');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  // Observar todos los elementos reveal
+  document.addEventListener('DOMContentLoaded', () => {
+    const revealElements = document.querySelectorAll('.reveal-element');
+    revealElements.forEach(el => observer.observe(el));
+  });
+</script>

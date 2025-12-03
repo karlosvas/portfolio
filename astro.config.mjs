@@ -13,6 +13,10 @@ export default defineConfig({
         context: "client",
         access: "public"
       }),
+      TURNSTILE_SECRET_KEY: envField.string({
+        context: "server",
+        access: "secret"
+      }),
       RESEND_API_KEY: envField.string({
         context: "server",
         access: "secret"

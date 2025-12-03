@@ -31,5 +31,24 @@
 
 body {
   font-family: "Onest Variable", system-ui, sans-serif;
-  font-size: 15px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+section {
+  scroll-margin-top: 2rem;
+}
+
+img[src*="unity.svg"],
+img[src*="unreal.svg"] {
+  filter: brightness(0) saturate(100%);
+}
+
+.dark img[src*="unity.svg"],
+.dark img[src*="unreal.svg"] {
+  filter: brightness(0) saturate(100%) invert(0.95) opacity(1);
 }

@@ -5,7 +5,7 @@
     "name": "Carlos Raúl Vásquez Sánchez",
     "presentation": {
       "v1": "Comencé a programar proyectos personales a los dieciocho años. Actualmente estoy estudiando un Grado Superior de Desarrollo de Aplicaciones Multiplataforma, también estudié un curso de programación algorítmica online de la Universidad Complutense de Madrid, y hago servicios y proyectos autodidactas. Tengo veintiún años y soy de España (Castilla y León, Valladolid).",
-      "v2": "Puedo adaptarme a cualquier lenguaje, creo en la importancia del TDD, documentación y las buenas prácticas de desarrollo."
+      "v2": "Puedo adaptarme a cualquier lenguaje, creo en la importancia de  documentación y las buenas prácticas de desarrollo."
     }
   },
   "projects": {
@@ -37,7 +37,7 @@
   },
   "experience": {
     "title": "Experiencia",
-    "description": "Tengo experiencia con <strong class='strong'>lenguajes y frameworks</strong> como C++, Rust, Java, Spring Boot, JavaScript, TypeScript, Astro, React, Futter y motores como Unreal Engine.<br> He desarrollado proyectos significativos en cada uno, adquiriendo un sólido conocimiento en desarrollo de software.<br>",
+    "description": "Tengo experiencia con <strong class='strong'>lenguajes y frameworks</strong> como Rust, C++, TypeScript, Java, Spring Boot, TypeScript, Astro, React, Python, motores como Unreal Engine y Unity.<br> He desarrollado proyectos significativos en cada uno, adquiriendo un sólido conocimiento en desarrollo de software.<br>",
     "technologies": "También he trabajado con <strong class='strong'>herramientas</strong> como MongoDB, Firebase, Vercel, Cloudflare, Tailwind, Node.js, máquinas virtuales, Git, GitHub e integración continua con GitHub Actions.<br> Además, tengo experiencia en proyectos colaborativos en equipo utilizando Jira y Taiga."
   },
   "history": {

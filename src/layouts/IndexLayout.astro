@@ -3,7 +3,6 @@ import "@/styles/global.css";
 import { Toaster } from "solid-toast";
 
 const { title, language } = Astro.props;
-const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 
 // SEO Meta Tags
 const description =
@@ -12,14 +11,7 @@ const description =
     : "Portafolio de Carlos Vásquez Sánchez, mostrando sus proyectos, habilidades en desarrollo de software con TypeScript, Rust, Java, React y más.";
 
 const siteUrl = "https://carlosvassan.dev";
-const ogImage = `${siteUrl}/img/perfile.webp`;
-
-// Para TS seguro en scripts de cliente
-declare global {
-  interface Window {
-    turnstile?: any;
-  }
-}
+const ogImage = `${siteUrl}/img/profile.webp`;
 ---
 
 <!doctype html>
@@ -62,9 +54,6 @@ declare global {
 
     <title>{title}</title>
 
-    <!-- Script de Turnstile -->
-    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" defer></script>
-
     <style>
       html {
         overflow-x: hidden;
@@ -93,13 +82,6 @@ declare global {
   </head>
 
   <body>
-    <!-- Cloudflare Turnstile -->
-    {
-      TURNSTILE_SITE_KEY && (
-        <div id="turnstile-main" class="cf-turnstile" data-sitekey={TURNSTILE_SITE_KEY} data-size="invisible" />
-      )
-    }
-
     <!-- Slot para contenido de página -->
     <slot />
 
@@ -107,18 +89,3 @@ declare global {
     <Toaster client:load position="bottom-right" />
   </body>
 </html>
-<script>
-  const key = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
-
-  document.addEventListener("DOMContentLoaded", () => {
-    if (window.turnstile && key) {
-      window.turnstile.render("#turnstile-main", {
-        sitekey: key,
-        size: "invisible",
-        callback: () => {
-          console.log("Turnstile challenge completed.");
-        },
-      });
-    }
-  });
-</script>

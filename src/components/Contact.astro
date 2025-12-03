@@ -3,34 +3,73 @@ import type { i18nTranslations } from "@/../types/types";
 import ButtonCustomized from "./ButtonCustomized.astro";
 
 const data: i18nTranslations = Astro.props.data;
+const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
+
+// Para TS seguro en scripts de cliente
+declare global {
+  interface Window {
+    turnstile?: any;
+  }
+}
 ---
 
+<!-- Script de Turnstile -->
+<script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" defer></script>
+
 <!-- Contacto -->
-<h1 id="contact" class="text-center text-2xl font-bold mb-3">{data.contact.title}</h1>
-<form class="flex flex-col gap-4 w-full max-w-md mb-28" id="formEmail">
-  <div class="flex flex-col gap-2">
-    <label for="email" class="font-medium">{data.contact.formEmail}</label>
-    <input
-      id="email"
-      name="email"
-      class="p-2 border border-gray-300 rounded-md bg-gray-700 dark:bg-gray-50 light:bg-red-500 dark:text-black text-white"
-    />
-  </div>
+<div class="w-full max-w-2xl px-4 mb-32">
+  <h1 id="contact" class="text-center text-3xl md:text-4xl font-bold mb-8 text-darkPal dark:text-whitePal">
+    {data.contact.title}
+  </h1>
 
-  <div class="flex flex-col gap-2">
-    <label for="mensaje" class="font-medium">{data.contact.formMessage}</label>
-    <textarea
-      id="mensaje"
-      name="mensaje"
-      rows="4"
-      class="p-2 border border-gray-300 rounded-md resize-none bg-gray-700 dark:bg-gray-50 dark:text-black text-white"
-    ></textarea>
-  </div>
+  <form
+    class="flex flex-col gap-6 w-full bg-gradient-to-br from-purple-500/5 to-blue-500/5 backdrop-blur-sm border border-purple-500/10 rounded-2xl p-6 md:p-8 shadow-xl"
+    id="formEmail"
+  >
+    <div class="flex flex-col gap-3 group">
+      <label
+        for="email"
+        class="font-semibold text-sm md:text-base transition-colors duration-300 group-focus-within:text-purplePal"
+      >
+        {data.contact.formEmail}
+      </label>
+      <input
+        id="email"
+        name="email"
+        type="email"
+        placeholder="tu@email.com"
+        class="p-3 md:p-4 border-2 border-gray-700/40 dark:border-gray-400/40 rounded-lg bg-gray-900/80 dark:bg-white/90 dark:text-black text-white transition-all duration-300 focus:border-purplePal focus:ring-2 focus:ring-purplePal/20 focus:outline-none placeholder:text-gray-400 dark:placeholder:text-gray-500"
+      />
+    </div>
 
-  <ButtonCustomized>
-    {data.contact.formSubmit}
-  </ButtonCustomized>
-</form>
+    <div class="flex flex-col gap-3 group">
+      <label
+        for="mensaje"
+        class="font-semibold text-sm md:text-base transition-colors duration-300 group-focus-within:text-purplePal"
+      >
+        {data.contact.formMessage}
+      </label>
+      <textarea
+        id="mensaje"
+        name="mensaje"
+        rows="5"
+        placeholder="Escribe tu mensaje aquí..."
+        class="p-3 md:p-4 border-2 border-gray-700/40 dark:border-gray-400/40 rounded-lg resize-none bg-gray-900/80 dark:bg-white/90 dark:text-black text-white transition-all duration-300 focus:border-purplePal focus:ring-2 focus:ring-purplePal/20 focus:outline-none placeholder:text-gray-400 dark:placeholder:text-gray-500"
+      ></textarea>
+    </div>
+
+    <!-- Cloudflare Turnstile Widget (invisible) -->
+    {
+      TURNSTILE_SITE_KEY && (
+        <div id="turnstile-widget" class="cf-turnstile" data-sitekey={TURNSTILE_SITE_KEY} data-size="invisible" />
+      )
+    }
+
+    <ButtonCustomized>
+      {data.contact.formSubmit}
+    </ButtonCustomized>
+  </form>
+</div>
 
 <script>
   import toast from "solid-toast";
@@ -42,6 +81,27 @@ const data: i18nTranslations = Astro.props.data;
 
   // Verificamos el idioma
   const formEnum = document.documentElement.lang === "es" ? FormEnum : FormEnumEnglish;
+
+  // Inicializar Turnstile cuando el DOM esté listo
+  const initTurnstile = () => {
+    const turnstileKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
+    if (window.turnstile && turnstileKey) {
+      window.turnstile.render("#turnstile-widget", {
+        sitekey: turnstileKey,
+        size: "invisible",
+        callback: (token: string) => {
+          console.log("Turnstile challenge completed");
+        },
+      });
+    }
+  };
+
+  // Esperar a que se cargue Turnstile
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", initTurnstile);
+  } else {
+    initTurnstile();
+  }
 
   // Agregamos un evento al formulario
   if (form) {
@@ -57,10 +117,17 @@ const data: i18nTranslations = Astro.props.data;
         if (form.email.value === "") throw new Error(formEnum.EMPTY_EMAIL);
         if (form.mensaje.value === "") throw new Error(formEnum.EMPTY_MESSAGE);
 
+        // Obtener el token de Turnstile
+        const turnstileToken = window.turnstile?.getResponse();
+        if (!turnstileToken) {
+          throw new Error(formEnum.MESSAGE_ERROR);
+        }
+
         // Enviamos la peticion POST a el enpoint /api/resend para enviar el mensaje
         const data = {
           email: form.email.value,
           message: form.mensaje.value,
+          turnstileToken: turnstileToken,
         };
         const response = await fetch("/api/resend", {
           method: "POST",
@@ -76,11 +143,13 @@ const data: i18nTranslations = Astro.props.data;
             id: loadingToastId,
             duration: 3000,
           });
+          // Vaciamos el formulario
+          form.reset();
+          // Resetear Turnstile
+          window.turnstile?.reset();
         } else {
           throw new Error(formEnum.MESSAGE_ERROR);
         }
-        // Vaciamos el formulario
-        form.reset();
       } catch (error) {
         console.error(error);
         if (error instanceof Error) {

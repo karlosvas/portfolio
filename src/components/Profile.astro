@@ -5,26 +5,36 @@ const data: i18nTranslations = Astro.props.data;
 
 <div
   id="profile"
-  class="min-h-screen sm:py-20 md:pb-80 md:pt-40 grid justify-center gap-5 sm:grid-cols-2 md:w-3/4 lg:w-1/2"
+  class="min-h-screen sm:py-20 md:pb-80 md:pt-20 grid justify-center gap-8 sm:grid-cols-2 md:w-3/4 lg:w-1/2 px-4"
 >
   <!-- Imagen -->
   <img
-    class="h-full w-full xl:w-3/4 rounded-md object-cover select-none m-auto lg:my-0"
-    src="/img/perfile.webp"
+    class="h-96 w-full xl:w-3/4 rounded-lg object-cover select-none m-auto lg:my-0"
+    src="/img/profile.webp"
     alt="Imagen de perfil Carlos Vásquez Sánchez"
   />
-  <!-- Párrafo -->
-  <section>
+
+  <!-- Párrafo con mejor espaciado -->
+  <section class="flex flex-col justify-center space-y-4">
     <!-- Título -->
-    <h1 id="title" class="text-3xl font-bold text-purplePal lg:min-h-10">{" "}</h1>
-    <h3 class="font-bold text-purplePal">{data.profile.subtitle}</h3>
+    <div class="space-y-2">
+      <h1
+        id="title"
+        class="text-4xl font-bold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent lg:min-h-10"
+      >
+        {" "}
+      </h1>
+      <p class="text-lg md:text-xl font-semibold text-purplePal/80">{data.profile.subtitle}</p>
+    </div>
     <!-- Info -->
-    <p class="text-pretty pt-3">
-      {data.profile.presentation.v1}
-    </p>
-    <p class="text-pretty pt-3">
-      {data.profile.presentation.v2}
-    </p>
+    <div class="space-y-4 text-base md:text-base leading-relaxed">
+      <p class="text-pretty opacity-90 hover:opacity-100 transition-opacity duration-300">
+        {data.profile.presentation.v1}
+      </p>
+      <p class="text-pretty opacity-90 hover:opacity-100 transition-opacity duration-300">
+        {data.profile.presentation.v2}
+      </p>
+    </div>
   </section>
 </div>
 <script is:inline define:vars={{ data }}>
