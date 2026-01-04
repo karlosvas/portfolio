@@ -12,7 +12,8 @@
     "title": "Proyectos",
     "amanahacademia": {
       "name": "Amanah Academia",
-      "description": "Academia de enseñanza del español, mediante un enfoque culturalmente inmersivo. Dirigida por Ana Ortega, conecta a estudiantes con profesores nativos que imparten las clases en el idioma nativo del estudiante, facilitando un aprendizaje más natural y efectivo. backend en Rust, frontend en Astro."
+      "description": "Academia de Español, con socialmedia, dasboard, newsletter, emails, pagos, y reservas. Backend en Rust (Axum), Frontend en Astro (Typescript).",
+      "url": "https://amanahacademia.com"
     },
     "olimpiadas-informaticas": {
       "name": "Olimpiada Informática Española",
@@ -24,15 +25,17 @@
     },
     "thefluentspanishhouse": {
       "name": "The Fluent Spanish House",
-      "description": "Academia de Español, con socialmedia, blog, suscripción a clases particulares y newsletter, hecho con React y TypeScript."
+      "description": "Academia de Inglés, con socialmedia, blog, contenido dinámico, emails, suscripción a clases particulares y newsletter. Hecho con Frontend en React y Backend en NodeJS ambos con TypeScript.",
+      "url": "https://thefluentspanishhouse.vercel.app"
     },
     "octa-rust": {
       "name": "OctaRust",
-      "description": "Octa rust es un aplicacion par aprender a tocar piano de manera divertida y entretenida, con un enfoque en la gamificación y el aprendizaje progresivo. La aplicación está diseñada para ayudar a los usuarios a aprender a tocar el piano desde cero, sin necesidad de conocimientos previos."
+      "description": "Octa rust es un aplicación par aprender a tocar piano de manera divertida y entretenida. Echo al completo con Rust."
     },
     "bytes-colaborativos": {
       "name": "BytesColaborativos",
-      "description": "Proyectos en Java. Con SpringBoot, Spring Security, JWT, documentación con Swagger y Javadoc, colas Kafka, etc.. propuesto por la comunidad BytesColaborativos."
+      "description": "Proyectos en Java. Con SpringBoot, Spring Security, JWT, documentación con Swagger y Javadoc, colas Kafka, etc.. propuesto por la comunidad BytesColaborativos.",
+      "url": "https://bytes-colaborativos.vercel.app"
     }
   },
   "experience": {

@@ -11,21 +11,10 @@ export interface i18nTranslations {
   };
   projects: {
     title: string;
-    thefluentspanishhouse: {
+    [key: string]: string | {
       name: string;
       description: string;
-    };
-    "olimpiadas-informaticas": {
-      name: string;
-      description: string;
-    };
-    "elend-talk": {
-      name: string;
-      description: string;
-    };
-    "bytes-colaborativos": {
-      name: string;
-      description: string;
+      url?: string;
     };
   };
   experience: {
@@ -52,7 +41,13 @@ export interface i18nTranslations {
   };
 }
 
-export type ProjectKey = "thefluentspanishhouse" | "olimpiadas-informaticas" | "elend-talk" | "bytes-colaborativos";
+export type ProjectKey =
+  | "amanahacademia"
+  | "thefluentspanishhouse"
+  | "olimpiadas-informaticas"
+  | "elend-talk"
+  | "octa-rust"
+  | "bytes-colaborativos";
 
 export type TypeFormEnum = {
   SENDING: string;

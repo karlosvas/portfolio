@@ -8,33 +8,7 @@
       "v2": "I can adapt to any language, I believe in the importance of documentation and development best practices."
     }
   },
-  "projects": {
-    "title": "Projects",
-    "amanahacademia": {
-      "name": "Amanah Academia",
-      "description": "Spanish teaching academy with a culturally immersive approach. Led by Ana Ortega, it connects students with native teachers who teach in the student's native language, enabling more natural and effective learning. Backend in Rust, frontend in Astro."
-    },
-    "olimpiadas-informaticas": {
-      "name": "Spanish Informatics Olympiad",
-      "description": "Competitive programming online classes from UCM (Complutense University of Madrid) with C++ and Java exercises"
-    },
-    "elend-talk": {
-      "name": "PDF Chat",
-      "description": "Real-time chat system with Ollama and Deepseek for PDF analysis, featuring file uploads and chat history. Built with Astro and SvelteKit"
-    },
-    "thefluentspanishhouse": {
-      "name": "The Fluent Spanish House",
-      "description": "Spanish academy with social media, blog, private class subscriptions, and newsletter. Built with React and TypeScript."
-    },
-    "octa-rust": {
-      "name": "OctaRust",
-      "description": "Octa Rust is an application to learn to play piano in a fun and entertaining way, with a focus on gamification and progressive learning. The application is designed to help users learn to play the piano from scratch, without the need for prior knowledge."
-    },
-    "bytes-colaborativos": {
-      "name": "BytesColaborativos",
-      "description": "Java projects using SpringBoot, Spring Security, JWT, Swagger/Javadoc documentation, Kafka queues, etc. Community-driven initiatives from BytesColaborativos"
-    }
-  },
+
   "experience": {
     "title": "Experience",
     "description": "I have experience with <strong class='strong'>languages and frameworks</strong> such as Rust, C++, TypeScript, Java, Spring Boot, TypeScript, Astro, React, Python, and game engines like Unreal Engine and Unity.<br> I have developed significant projects with each, gaining solid knowledge in software development.<br>",
@@ -57,6 +31,36 @@
         "description": "Full tech inventory restoration. Developed VBA scripts for equipment identification and registration to optimize data collection and organization. Collaborated on administrative tasks and technical support for IT asset management. Initiated efficiency improvements that enhanced inventory accuracy and processing times."
       }
     ]
+  },
+  "projects": {
+    "title": "Projects",
+    "amanahacademia": {
+      "name": "Amanah Academia",
+      "description": "Spanish Academy, with social media, dashboard, newsletter, emails, payments, and bookings. Backend in Rust (Axum), Frontend in Astro (TypeScript).",
+      "url": "https://amanahacademia.com"
+    },
+    "olimpiadas-informaticas": {
+      "name": "Spanish Computer Science Olympiad",
+      "description": "Online classes from UCM (Complutense University of Madrid) on competitive programming, with C++ and Java exercises."
+    },
+    "elend-talk": {
+      "name": "Chat with PDF",
+      "description": "Fluid conversation with Ollama and Deepseek about a user-provided PDF, with real-time chat history implementation and file upload, Astro and SvelteKit."
+    },
+    "thefluentspanishhouse": {
+      "name": "The Fluent Spanish House",
+      "description": "English Academy, with social media, blog, dynamic content, emails, private class subscription and newsletter. Built with React Frontend and NodeJS Backend both in TypeScript.",
+      "url": "https://thefluentspanishhouse.vercel.app"
+    },
+    "octa-rust": {
+      "name": "OctaRust",
+      "description": "Octa rust is an application to learn to play piano in a fun and entertaining way. Fully built with Rust."
+    },
+    "bytes-colaborativos": {
+      "name": "BytesColaborativos",
+      "description": "Java projects. With SpringBoot, Spring Security, JWT, documentation with Swagger and Javadoc, Kafka queues, etc., proposed by the BytesColaborativos community.",
+      "url": "https://bytes-colaborativos.vercel.app"
+    }
   },
   "contact": {
     "title": "Contact",
