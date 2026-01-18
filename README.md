@@ -2,8 +2,9 @@
 
 ## Descripcion
 
-Comencé a programar proyectos personales a los dieciocho años. Actualmente estoy estudiando un Grado Superior de Desarrollo de Aplicaciones Multiplataforma, también estudié un curso de programación algorítmica online de la Universidad Complutense de Madrid, y hago servicios y proyectos autodidactas. Tengo veintiún años y soy de España (Castilla y León, Valladolid).  
-Puedo adaptarme a cualquier lenguaje, creo en la importancia del TDD, documentación y las buenas prácticas de desarrollo.
+Comencé a programar proyectos personales a los dieciocho años. Actualmente estoy estudiando un Grado Superior de Desarrollo de Aplicaciones Multiplataforma, también estudié un curso de programación algorítmica online de la Universidad Complutense de Madrid, y hago servicios y proyectos autodidactas. Tengo veintiún años y soy de España (Castilla y León, Valladolid).
+
+Puedo adaptarme a cualquier lenguaje, creo en la importancia de documentación y las buenas prácticas de desarrollo.
 
 ## 📊 GitHub Stats
 
@@ -13,14 +14,6 @@ Puedo adaptarme a cualquier lenguaje, creo en la importancia del TDD, documentac
 ## 📂 Proyectos
 
 Puedes ver mis proyectos completos en mi web 🌐 👉 [carlos.dev](https://carlosvas.dev)
-
-[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=karlosvas&repo=amanahacademia&theme=tokyonight)](https://github.com/karlosvas/amanahacademia)
-[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=karlosvas&repo=thefluentspanishhouse&theme=tokyonight)](https://github.com/karlosvas/thefluentspanishhouse)
-[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=karlosvas&repo=olimpiadas-informaticas&theme=tokyonight)](https://github.com/karlosvas/olimpiadas-informaticas)
-[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=karlosvas&repo=octa-rust&theme=tokyonight)](https://github.com/karlosvas/octa-rust)
-[![Readme Card](https://github-readme-stats.vercel.app/api/pin/?username=karlosvas&repo=elend-talk&theme=tokyonight)](https://github.com/karlosvas/elend-talk)
-
-## 🛠️ Tech Stack
 
 ### Lenguajes y Frameworks
 
@@ -33,11 +26,13 @@ Puedes ver mis proyectos completos en mi web 🌐 👉 [carlos.dev](https://carl
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 ![Astro](https://img.shields.io/badge/Astro-FF5D01?style=for-the-badge&logo=astro&logoColor=white)
 ![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
-![Flutter](https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white)
+![Kotlin](https://img.shields.io/badge/Kotlin-7F52FF?style=for-the-badge&logo=kotlin&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
 
 ### Motores y Game Development
 
 ![Unreal Engine](https://img.shields.io/badge/Unreal_Engine-0E1128?style=for-the-badge&logo=unrealengine&logoColor=white)
+![Unity](https://img.shields.io/badge/Unity-100000?style=for-the-badge&logo=unity&logoColor=white)
 
 ### Bases de Datos y Backend Services
 
@@ -71,7 +66,7 @@ Puedes ver mis proyectos completos en mi web 🌐 👉 [carlos.dev](https://carl
 
 ## 📫 Contacto
 
-- 💼 LinkedIn: [linkedin.com/in/carlos](https://linkedin.com/in/carlos)
+- 💼 LinkedIn: [Carlos Vásquez Sánchez](https://www.linkedin.com/in/carlosvassan)
 - :information_source: **Nota:**
   ¡Contáctame! Puedes encontrarme en LinkedIn para discutir colaboraciones, proyectos o simplemente charlar sobre programación, mi correo es [carlosvassan@gmail.com](mailto:carlosvassan@gmail.com)
   ¡Gracias por visitar mi portfolio! 🚀
