@@ -1,16 +1,9 @@
 ---
-import type { i18nTranslations } from "@/../types/types";
+import type { I18nTranslations } from "@/../types/types";
 import ButtonCustomized from "./ButtonCustomized.astro";
 
-const data: i18nTranslations = Astro.props.data;
+const data: I18nTranslations = Astro.props.data;
 const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
-
-// Para TS seguro en scripts de cliente
-declare global {
-  interface Window {
-    turnstile?: any;
-  }
-}
 ---
 
 <!-- Script de Turnstile -->
@@ -75,18 +68,18 @@ declare global {
   import toast from "solid-toast";
   import { FormEnum, FormEnumEnglish } from "@/../types/formEnum.ts";
 
-  // Obtenemos el formulario y el boton de enviar
+  // Get form and submit button
   const form = document.getElementById("formEmail") as HTMLFormElement;
   const submitButton = form?.querySelector('button[type="submit"]');
 
-  // Verificamos el idioma
+  // Detect current language
   const formEnum = document.documentElement.lang === "es" ? FormEnum : FormEnumEnglish;
 
-  // Inicializar Turnstile cuando el DOM esté listo
+  // Initialize Turnstile when the DOM is ready
   const initTurnstile = () => {
     const turnstileKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
-    if (window.turnstile && turnstileKey) {
-      window.turnstile.render("#turnstile-widget", {
+    if (globalThis.turnstile && turnstileKey) {
+      globalThis.turnstile.render("#turnstile-widget", {
         sitekey: turnstileKey,
         size: "invisible",
         callback: (token: string) => {
@@ -96,34 +89,34 @@ declare global {
     }
   };
 
-  // Esperar a que se cargue Turnstile
+  // Wait for Turnstile to load
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", initTurnstile);
   } else {
     initTurnstile();
   }
 
-  // Agregamos un evento al formulario
+  // Register submit handler
   if (form) {
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
-      // Deshabilitamos el boton de enviar
+      // Disable submit button
       if (submitButton instanceof HTMLButtonElement) submitButton.disabled = true;
-      // Mostrar toast de carga
+      // Show loading toast
       const loadingToastId = toast.loading("Ejemplo");
 
       try {
-        // Validaciones
+        // Basic validations
         if (form.email.value === "") throw new Error(formEnum.EMPTY_EMAIL);
         if (form.mensaje.value === "") throw new Error(formEnum.EMPTY_MESSAGE);
 
-        // Obtener el token de Turnstile
-        const turnstileToken = window.turnstile?.getResponse();
+        // Get Turnstile token
+        const turnstileToken = globalThis.turnstile?.getResponse();
         if (!turnstileToken) {
           throw new Error(formEnum.MESSAGE_ERROR);
         }
 
-        // Enviamos la peticion POST a el enpoint /api/resend para enviar el mensaje
+        // Send POST request to /api/resend
         const data = {
           email: form.email.value,
           message: form.mensaje.value,
@@ -137,32 +130,23 @@ declare global {
           body: JSON.stringify(data),
         });
 
-        // Procesar la respuesta
+        // Process response
         if (response.ok) {
           toast.success(formEnum.MESSAGE_SENT, {
             id: loadingToastId,
             duration: 3000,
           });
-          // Vaciamos el formulario
           form.reset();
-          // Resetear Turnstile
-          window.turnstile?.reset();
+          // Reset Turnstile if needed for another submission
+          globalThis.turnstile.reset();
         } else {
           throw new Error(formEnum.MESSAGE_ERROR);
         }
       } catch (error) {
-        console.error(error);
-        if (error instanceof Error) {
-          toast.error(error.message, {
-            id: loadingToastId,
-            duration: 3000,
-          });
-        } else {
-          toast.error(formEnum.MESSAGE_ERROR, {
-            id: loadingToastId,
-            duration: 3000,
-          });
-        }
+        toast.error(formEnum.MESSAGE_ERROR, {
+          id: loadingToastId,
+          duration: 3000,
+        });
       } finally {
         if (submitButton instanceof HTMLButtonElement) submitButton.disabled = false;
       }

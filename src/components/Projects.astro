@@ -1,6 +1,6 @@
 ---
-import type { i18nTranslations } from "@/../types/types";
-const data: i18nTranslations = Astro.props.data;
+import type { I18nTranslations } from "@/../types/types";
+const data: I18nTranslations = Astro.props.data;
 ---
 
 <div
@@ -16,7 +16,7 @@ const data: i18nTranslations = Astro.props.data;
         if (typeof project === "string") return;
         const { name, description, url } = project;
 
-        // Diferentes tamaños para crear un diseño tipo bento box
+        // Different sizes to create a bento-box style layout
         const sizeClasses = [
           "md:col-span-2 lg:col-span-2 md:row-span-2",
           "md:col-span-1 lg:col-span-1",

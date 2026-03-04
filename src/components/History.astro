@@ -1,13 +1,13 @@
 ---
-import type { i18nTranslations } from "@/../types/types";
+import type { I18nTranslations } from "@/../types/types";
 import ButtonCustomized from "./ButtonCustomized.astro";
 import { getEntry } from "astro:content";
 const { currentLocale } = Astro;
 
-// Datos de traducción
-const data: i18nTranslations = Astro.props.data;
+// Translation data
+const data: I18nTranslations = Astro.props.data;
 
-// Obtener CV desde R2
+// Get CV from R2
 const R2_URL = import.meta.env.PUBLIC_R2_PUBLIC_URL;
 const cvId = currentLocale === "en" ? "current-en" : "current-es";
 const cv = await getEntry("cv", cvId);

@@ -1,11 +1,6 @@
-// Enseñar u ocultar un modal
+// Show or hide a modal
 export function toggleModal(id: string) {
   const modal = document.getElementById(id);
   modal?.classList.toggle("hidden");
-}
-
-declare global {
-  interface Window {
-    toggleModal: (id: string) => void;
-  }
+  modal?.classList.toggle("flex");
 }

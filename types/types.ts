@@ -1,5 +1,14 @@
-// Tipos de Typescript
-export interface i18nTranslations {
+declare global {
+  var turnstile: any;
+  var toggleModal: (id: string) => void;
+  var toggleDarkTheme: () => void;
+  var toggleLightTheme: () => void;
+  var getSpain: (event: Event) => void;
+  var getEnglish: (event: Event) => void;
+}
+
+// TypeScript types
+export interface I18nTranslations {
   profile: {
     title: string;
     subtitle: string;
@@ -11,11 +20,13 @@ export interface i18nTranslations {
   };
   projects: {
     title: string;
-    [key: string]: string | {
-      name: string;
-      description: string;
-      url?: string;
-    };
+    [key: string]:
+      | string
+      | {
+          name: string;
+          description: string;
+          url?: string;
+        };
   };
   experience: {
     title: string;

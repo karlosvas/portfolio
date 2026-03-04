@@ -1,4 +1,4 @@
-// Mostrae el tema oscuro de la web
+// Enable dark theme
 function toggleDarkTheme() {
   document.documentElement.classList.add("dark");
   document.documentElement.classList.remove("light");
@@ -8,7 +8,7 @@ function toggleDarkTheme() {
   }
 }
 
-// Mostar el tema claro de la web
+// Enable light theme
 function toggleLightTheme() {
   document.documentElement.classList.add("light");
   document.documentElement.classList.remove("dark");
@@ -18,15 +18,7 @@ function toggleLightTheme() {
   }
 }
 
-// Declaramos los tipos de las las funciones globales
-declare global {
-  interface Window {
-    toggleDarkTheme: () => void;
-    toggleLightTheme: () => void;
-  }
-}
-
-window.toggleLightTheme = toggleLightTheme;
-window.toggleDarkTheme = toggleDarkTheme;
+globalThis.toggleLightTheme = toggleLightTheme;
+globalThis.toggleDarkTheme = toggleDarkTheme;
 
 export { toggleDarkTheme, toggleLightTheme };

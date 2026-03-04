@@ -4,9 +4,9 @@ import Experience from "@/components/Experience.astro";
 import Profile from "@/components/Profile.astro";
 import Contact from "@/components/Contact.astro";
 import History from "@/components/History.astro";
-import type { i18nTranslations } from "@/../types/types";
+import type { I18nTranslations } from "@/../types/types";
 
-const data: i18nTranslations = Astro.props.data;
+const data: I18nTranslations = Astro.props.data;
 ---
 
 <main class="flex mt-10 h-auto w-full flex-col items-center justify-center p-10 text-black-50 light:bg-whitePal">
@@ -43,13 +43,11 @@ const data: i18nTranslations = Astro.props.data;
 </style>
 
 <script>
-  // Forzar scroll al inicio cuando se carga/recarga la página
-  if ("scrollRestoration" in history) {
-    history.scrollRestoration = "manual";
-  }
-  window.scrollTo(0, 0);
+  // Force scroll restoration to top on page load
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+  globalThis.scrollTo(0, 0);
 
-  // Intersection Observer para animaciones de scroll reveal
+  // Intersection Observer to reveal elements on scroll
   const observerOptions = {
     threshold: 0.1,
     rootMargin: "0px 0px -50px 0px",
@@ -64,7 +62,7 @@ const data: i18nTranslations = Astro.props.data;
     });
   }, observerOptions);
 
-  // Observar todos los elementos reveal
+  // Observe all reveal elements on DOMContentLoaded
   document.addEventListener("DOMContentLoaded", () => {
     const revealElements = document.querySelectorAll(".reveal-element");
     revealElements.forEach((el) => observer.observe(el));

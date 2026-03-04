@@ -1,6 +1,6 @@
 ---
-import type { i18nTranslations } from "@/../types/types";
-const data: i18nTranslations = Astro.props.data;
+import type { I18nTranslations } from "@/../types/types";
+const data: I18nTranslations = Astro.props.data;
 ---
 
 <div class="absolute left-10">
@@ -115,13 +115,13 @@ const data: i18nTranslations = Astro.props.data;
 
 <script>
   function disableScroll() {
-    // Guardar la posición actual del scroll
-    const scrollY = window.scrollY;
-    // Calcular el ancho de la barra de scroll antes de bloquear
-    const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
-    // Guardar la posición en un atributo de datos en el body
+    // Save current scroll position
+    const scrollY = globalThis.scrollY;
+    // Calculate scrollbar width before locking
+    const scrollbarWidth = globalThis.innerWidth - document.documentElement.clientWidth;
+    // Store the position in a body data attribute
     document.body.dataset.scrollPosition = scrollY.toString();
-    // Aplicar un padding-right igual al ancho de la barra de scroll para evitar el salto
+    // Apply right padding equal to scrollbar width to avoid layout shift
     document.body.style.paddingRight = `${scrollbarWidth}px`;
     document.body.style.position = "fixed";
     document.body.style.top = `-${scrollY}px`;
@@ -129,17 +129,17 @@ const data: i18nTranslations = Astro.props.data;
     document.body.style.overflow = "hidden";
   }
 
-  // Función para restaurar el scroll
+  // Restore page scroll
   function enableScroll() {
     const scrollY = document.body.style.top;
     document.body.style.position = "";
     document.body.style.top = "";
     document.body.style.width = "";
-    document.body.style.paddingRight = ""; // Eliminar el padding
+    document.body.style.paddingRight = ""; // Remove padding
     document.body.style.overflow = "";
-    // Obtener la posición guardada y restaurarla
+    // Read saved position and restore it
     const savedPosition = parseInt(scrollY || "0") * -1;
-    window.scrollTo({
+    globalThis.scrollTo({
       top: savedPosition,
       behavior: "instant",
     });
@@ -147,49 +147,49 @@ const data: i18nTranslations = Astro.props.data;
 
   function closeModalWithAnimation() {
     if (hamburgerModal) {
-      // Devolbemos el scroll para que pueda ir a las distintas secciones
+      // Re-enable scrolling so section navigation works
       enableScroll();
 
-      // Añadir clase para la animación de cierre
+      // Add class for close animation
       hamburgerModal.classList.add("closing");
 
-      // Esperar a que termine la animación antes de cerrar el modal
+      // Wait for animation to finish before closing modal
       setTimeout(() => {
         hamburgerModal.close();
         hamburgerModal.classList.remove("closing");
-        // Restaurar el scroll del body
-      }, 300); // Mismo tiempo que la duración de la animación (0.3s)
+        // Body scroll is already restored
+      }, 300); // Same duration as the animation (0.3s)
     }
   }
 
-  // EVENTOS
+  // EVENTS
   const hamburgerBtn = document.getElementById("hamburgerBtn");
   const hamburgerModal = document.getElementById("hamburgerModal") as HTMLDialogElement;
 
-  // Abrir el modal al hacer clic en el botón de hamburguesa
+  // Open modal on hamburger button click
   hamburgerBtn?.addEventListener("click", () => {
     if (hamburgerModal) {
       hamburgerModal.showModal();
-      // Prevenir el scroll en el body cunado el modal está abierto
+      // Prevent body scroll while modal is open
       disableScroll();
     }
   });
 
-  // Cerrar el modal al hacer clic fuera de él
+  // Close modal when clicking outside
   hamburgerModal?.addEventListener("click", (event) => {
-    // Cerrar solo cunado se hace clic fuera del contenido del modal
+    // Close only when clicking outside modal content
     const rect = hamburgerModal.getBoundingClientRect();
-    // Verificar si el clic está dentro del modal
+    // Check whether click is inside dialog bounds
     const isInDialog =
       rect.top <= event.clientY &&
       event.clientY <= rect.top + rect.height &&
       rect.left <= event.clientX &&
       event.clientX <= rect.left + rect.width;
-    // Si no está dentro del modal, cerrarlo
+    // If click is outside, close modal
     if (!isInDialog) closeModalWithAnimation();
   });
 
-  // Cerrar el modal al hacer clic en un enlace dentro de él
+  // Close modal when clicking a link inside it
   document.querySelectorAll(".nav-item a").forEach((item) => {
     item.addEventListener("click", (event) => {
       const targetId = item.getAttribute("href");
@@ -198,7 +198,7 @@ const data: i18nTranslations = Astro.props.data;
 
       closeModalWithAnimation();
 
-      // Desplazarse suavemente a la sección correspondiente
+      // Smoothly scroll to the target section
       const targetElement = document.querySelector(targetId);
       if (targetElement) {
         event.preventDefault();

@@ -20,7 +20,7 @@
   </svg>
   <div
     id="modalLanguage"
-    class="absolute hidden top-11 right-[-10] w-20 h-20 z-50 bg-blackPal outline outline-2 outline-whitePal transition-bg duration-200 flex flex-col justify-center items-center select-none cursor-pointer rounded-md"
+    class="absolute hidden top-11 right-[-10] w-20 h-20 z-50 bg-blackPal outline outline-2 outline-whitePal transition-bg duration-200 flex-col justify-center items-center select-none cursor-pointer rounded-md"
   >
     <button class="m-1 lang-button" data-lang="es">Spanish</button>
     <button class="m-1 lang-button" data-lang="en">English</button>
@@ -40,23 +40,20 @@
     toggleModal("modalLanguage");
   });
 
-  // Cambiar idioma
+  // Change language
   modal?.addEventListener("click", (e) => {
     const target = e.target as HTMLElement;
     const lang = target.dataset.lang;
-
-    console.log("Modal clicked:", target); // Debug
-    console.log("Dataset:", target.dataset); // Debug
-    console.log("Lang:", lang); // Debug
 
     if (lang === "es") getSpain();
     else if (lang === "en") getEnglish();
   });
 
-  // Cerrar al hacer clic fuera
+  // Close when clicking outside
   document.addEventListener("click", (e) => {
     if (!langButton?.contains(e.target as Node)) {
       modal?.classList.add("hidden");
+      modal?.classList.remove("flex");
     }
   });
 </script>

@@ -1,22 +1,22 @@
 ---
-import type { i18nTranslations } from "@/../types/types";
-const data: i18nTranslations = Astro.props.data;
+import type { I18nTranslations } from "@/../types/types";
+const data: I18nTranslations = Astro.props.data;
 ---
 
 <div
   id="profile"
   class="min-h-screen sm:py-28 md:pb-80 md:pt-28 grid justify-center gap-8 sm:grid-cols-2 md:w-3/4 lg:w-1/2 px-4"
 >
-  <!-- Imagen -->
+  <!-- Img Profile -->
   <img
     class="h-full w-full xl:w-3/4 rounded-lg object-cover select-none m-auto lg:my-0"
     src="/img/profile.webp"
     alt="Imagen de perfil Carlos Vásquez Sánchez"
   />
 
-  <!-- Párrafo con mejor espaciado -->
+  <!-- Info Profile -->
   <section class="flex flex-col justify-center space-y-4">
-    <!-- Título -->
+    <!-- Name -->
     <div class="space-y-2">
       <h1
         id="title"
@@ -38,7 +38,7 @@ const data: i18nTranslations = Astro.props.data;
   </section>
 </div>
 <script is:inline define:vars={{ data }}>
-  // Actualizar el título con un efecto de escritura
+  // Update title with a typing effect
   async function updateTitle(name) {
     const title = document.getElementById("title");
 
@@ -46,11 +46,11 @@ const data: i18nTranslations = Astro.props.data;
       title.innerHTML = "";
       title.style.minHeight = "5rem";
 
-      // Creamos un contenedor para el texto
+      // Create a container for the text
       const textSpan = document.createElement("span");
       textSpan.style.whiteSpace = "pre-line";
 
-      // Creamos el span del cursor y le damos la clase blinking-cursor
+      // Create the cursor span and assign the blinking-cursor class
       const cursorSpan = document.createElement("span");
       cursorSpan.innerText = "|";
       cursorSpan.classList.add("blinking-cursor");
@@ -60,8 +60,7 @@ const data: i18nTranslations = Astro.props.data;
       title.appendChild(textSpan);
       title.appendChild(cursorSpan);
 
-      // Hacemos un bucle para ir añadiendo cada letra del nombre al título
-      // y simulamos un efecto de escritura
+      // Iterate through each letter and simulate a typing effect
       let result = "";
       for (let i = 0; i < name.length; i++) {
         await new Promise((resolve) => setTimeout(resolve, 100));
@@ -70,7 +69,7 @@ const data: i18nTranslations = Astro.props.data;
         textSpan.textContent = result;
       }
 
-      // Al finalizar, eliminamos el cursor y lo reemplazamos por un parpadeo
+      // At the end, keep the cursor blinking and then remove it
       cursorSpan.style.animation = "blink 1s infinite";
       setTimeout(() => {
         cursorSpan.remove();
@@ -78,7 +77,7 @@ const data: i18nTranslations = Astro.props.data;
     }
   }
 
-  window.addEventListener("DOMContentLoaded", () => updateTitle(data.profile.name));
+  globalThisaddEventListener("DOMContentLoaded", () => updateTitle(data.profile.name));
 </script>
 <style>
   @keyframes blink {
