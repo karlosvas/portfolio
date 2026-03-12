@@ -1,43 +1,84 @@
-<span id="lang" class="flex justify-center align-middle sm:mr-10 relative">
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    class="hover:text-purplePal transition-color duration-200 icon icon-tabler icon-tabler-language cursor-pointer"
-    width="25"
-    height="30"
-    viewBox="0 0 24 24"
-    stroke-width="2"
-    stroke="currentColor"
-    fill="none"
-    stroke-linecap="round"
-    stroke-linejoin="round"
+<div class="flex justify-center align-middle sm:mr-10 relative">
+  <button
+    id="langButton"
+    type="button"
+    class="inline-flex items-center justify-center rounded-md p-1 hover:text-purplePal transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purplePal focus-visible:ring-offset-2"
+    aria-label="Cambiar idioma"
+    aria-haspopup="menu"
+    aria-expanded="false"
+    aria-controls="modalLanguage"
   >
-    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-    <path d="M4 5h7"></path>
-    <path d="M9 3v2c0 4.418 -2.239 8 -5 8"></path>
-    <path d="M5 9c0 2.144 2.952 3.908 6.7 4"></path>
-    <path d="M12 20l4 -9l4 9"></path>
-    <path d="M19.1 18h-6.2"></path>
-  </svg>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="icon icon-tabler icon-tabler-language"
+      width="25"
+      height="30"
+      viewBox="0 0 24 24"
+      stroke-width="2"
+      stroke="currentColor"
+      fill="none"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      aria-hidden="true"
+    >
+      <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+      <path d="M4 5h7"></path>
+      <path d="M9 3v2c0 4.418 -2.239 8 -5 8"></path>
+      <path d="M5 9c0 2.144 2.952 3.908 6.7 4"></path>
+      <path d="M12 20l4 -9l4 9"></path>
+      <path d="M19.1 18h-6.2"></path>
+    </svg>
+  </button>
+
   <div
     id="modalLanguage"
-    class="absolute hidden top-11 right-[-10] w-20 h-20 z-50 bg-blackPal outline outline-2 outline-whitePal transition-bg duration-200 flex-col justify-center items-center select-none cursor-pointer rounded-md"
+    role="menu"
+    aria-labelledby="langButton"
+    class="absolute hidden top-11 right-[-10] w-28 h-auto z-50 bg-blackPal outline outline-2 outline-whitePal transition-bg duration-200 flex-col justify-center items-center select-none rounded-md py-2"
   >
-    <button class="m-1 lang-button" data-lang="es">Spanish</button>
-    <button class="m-1 lang-button" data-lang="en">English</button>
+    <button class="m-1 lang-button px-2 py-1 rounded" data-lang="es" role="menuitem">Spanish</button>
+    <button class="m-1 lang-button px-2 py-1 rounded" data-lang="en" role="menuitem">English</button>
   </div>
-</span>
+</div>
 
 <script>
   import { getSpain, getEnglish } from "@/services/language";
-  import { toggleModal } from "@/services/logicModal";
 
-  const langButton = document.getElementById("lang");
-  const modal = document.getElementById("modalLanguage");
+  const langButton = document.getElementById("langButton") as HTMLButtonElement | null;
+  const modal = document.getElementById("modalLanguage") as HTMLDivElement | null;
+  const menuItems = modal?.querySelectorAll<HTMLButtonElement>(".lang-button") ?? [];
+
+  function openMenu() {
+    if (!modal || !langButton) return;
+    modal.classList.remove("hidden");
+    modal.classList.add("flex");
+    langButton.setAttribute("aria-expanded", "true");
+  }
+
+  function closeMenu() {
+    if (!modal || !langButton) return;
+    modal.classList.add("hidden");
+    modal.classList.remove("flex");
+    langButton.setAttribute("aria-expanded", "false");
+  }
+
+  function isMenuOpen() {
+    return modal?.classList.contains("flex") ?? false;
+  }
 
   // Toggle modal
   langButton?.addEventListener("click", (e) => {
     e.stopPropagation();
-    toggleModal("modalLanguage");
+    if (isMenuOpen()) closeMenu();
+    else openMenu();
+  });
+
+  langButton?.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowDown" || e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      openMenu();
+      menuItems[0]?.focus();
+    }
   });
 
   // Change language
@@ -49,11 +90,34 @@
     else if (lang === "en") getEnglish();
   });
 
+  modal?.addEventListener("keydown", (e) => {
+    const currentIndex = Array.from(menuItems).findIndex((item) => item === document.activeElement);
+
+    if (e.key === "Escape") {
+      e.preventDefault();
+      closeMenu();
+      langButton?.focus();
+      return;
+    }
+
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      const nextIndex = (currentIndex + 1) % menuItems.length;
+      menuItems[nextIndex]?.focus();
+    }
+
+    if (e.key === "ArrowUp") {
+      e.preventDefault();
+      const nextIndex = (currentIndex - 1 + menuItems.length) % menuItems.length;
+      menuItems[nextIndex]?.focus();
+    }
+  });
+
   // Close when clicking outside
   document.addEventListener("click", (e) => {
-    if (!langButton?.contains(e.target as Node)) {
-      modal?.classList.add("hidden");
-      modal?.classList.remove("flex");
+    const target = e.target as Node;
+    if (!langButton?.contains(target) && !modal?.contains(target)) {
+      closeMenu();
     }
   });
 </script>
@@ -72,6 +136,11 @@
   #modalLanguage button:hover {
     color: var(--purplePal);
     transition: color 0.2s;
+  }
+
+  #modalLanguage button:focus-visible {
+    outline: 2px solid var(--purplePal);
+    outline-offset: 2px;
   }
 
   button {

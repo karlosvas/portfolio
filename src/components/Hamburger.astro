@@ -4,17 +4,25 @@ const data: I18nTranslations = Astro.props.data;
 ---
 
 <div class="absolute left-10">
-  <svg
+  <button
     id="hamburgerBtn"
-    xmlns="http://www.w3.org/2000/svg"
-    fill="none"
-    viewBox="0 0 24 24"
-    stroke-width="1.5"
-    stroke="currentColor"
-    class="h-10 w-10 sm:hidden cursor-pointer"
+    type="button"
+    class="h-10 w-10 sm:hidden inline-flex items-center justify-center rounded-md hover:text-purplePal transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purplePal focus-visible:ring-offset-2"
+    aria-label="Abrir menu de navegacion"
+    aria-controls="hamburgerModal"
+    aria-expanded="false"
   >
-    <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
-  </svg>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke-width="1.5"
+      stroke="currentColor"
+      aria-hidden="true"
+    >
+      <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
+    </svg>
+  </button>
 
   <dialog
     id="hamburgerModal"
@@ -23,25 +31,34 @@ const data: I18nTranslations = Astro.props.data;
     <div class="h-full overflow-hidden">
       <ul class="flex flex-col items-center justify-start h-full mt-10">
         <li class="my-2 text-lg nav-item">
-          <a href="#profile" class="block px-4 py-2 transition-colors duration-200 hover:text-purplePal outline-none">
+          <a
+            href="#profile"
+            class="block px-4 py-2 transition-colors duration-200 hover:text-purplePal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purplePal focus-visible:ring-offset-2"
+          >
             {data.profile.title}
           </a>
         </li>
         <li class="my-2 text-lg nav-item">
-          <a href="#projects" class="block px-4 py-2 transition-colors duration-200 hover:text-purplePal outline-none">
+          <a
+            href="#projects"
+            class="block px-4 py-2 transition-colors duration-200 hover:text-purplePal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purplePal focus-visible:ring-offset-2"
+          >
             {data.projects.title}
           </a>
         </li>
         <li class="my-2 text-lg nav-item">
           <a
             href="#experiencie"
-            class="block px-4 py-2 transition-colors duration-200 hover:text-purplePal outline-none"
+            class="block px-4 py-2 transition-colors duration-200 hover:text-purplePal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purplePal focus-visible:ring-offset-2"
           >
             {data.experience.title}
           </a>
         </li>
         <li class="my-2 text-lg nav-item">
-          <a href="#contact" class="block px-4 py-2 transition-colors duration-200 hover:text-purplePal outline-none">
+          <a
+            href="#contact"
+            class="block px-4 py-2 transition-colors duration-200 hover:text-purplePal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purplePal focus-visible:ring-offset-2"
+          >
             {data.contact.title}
           </a>
         </li>
@@ -145,6 +162,11 @@ const data: I18nTranslations = Astro.props.data;
     });
   }
 
+  // EVENTS
+  const hamburgerBtn = document.getElementById("hamburgerBtn") as HTMLButtonElement | null;
+  const hamburgerModal = document.getElementById("hamburgerModal") as HTMLDialogElement | null;
+  let lastFocusedElement: HTMLElement | null = null;
+
   function closeModalWithAnimation() {
     if (hamburgerModal) {
       // Re-enable scrolling so section navigation works
@@ -157,21 +179,33 @@ const data: I18nTranslations = Astro.props.data;
       setTimeout(() => {
         hamburgerModal.close();
         hamburgerModal.classList.remove("closing");
+        hamburgerBtn?.setAttribute("aria-expanded", "false");
+        (lastFocusedElement ?? hamburgerBtn)?.focus();
         // Body scroll is already restored
       }, 300); // Same duration as the animation (0.3s)
     }
   }
 
-  // EVENTS
-  const hamburgerBtn = document.getElementById("hamburgerBtn");
-  const hamburgerModal = document.getElementById("hamburgerModal") as HTMLDialogElement;
-
   // Open modal on hamburger button click
   hamburgerBtn?.addEventListener("click", () => {
     if (hamburgerModal) {
+      lastFocusedElement = document.activeElement as HTMLElement;
       hamburgerModal.showModal();
+      hamburgerBtn.setAttribute("aria-expanded", "true");
       // Prevent body scroll while modal is open
       disableScroll();
+
+      // Move focus inside the menu for keyboard users
+      const firstLink = hamburgerModal.querySelector<HTMLAnchorElement>(".nav-item a");
+      firstLink?.focus();
+    }
+  });
+
+  // Close modal with Escape key
+  hamburgerModal?.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") {
+      event.preventDefault();
+      closeModalWithAnimation();
     }
   });
 

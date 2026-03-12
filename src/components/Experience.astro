@@ -8,7 +8,7 @@ const data: I18nTranslations = Astro.props.data;
     {data.experience.title}
   </h1>
   <p
-    class="text-pretty text-start leading-relaxed opacity-90 mb-12 px-20"
+    class="text-pretty text-start leading-relaxed opacity-90 mb-12 md:px-20"
     style="white-space: pre-line;"
     set:html={data.experience.description}
   />
@@ -58,7 +58,7 @@ const data: I18nTranslations = Astro.props.data;
   </div>
 
   <p
-    class="text-pretty text-start leading-relaxed opacity-90 mb-12 px-20"
+    class="text-pretty text-start leading-relaxed opacity-90 mb-12 md:px-20"
     style="white-space: pre-line;"
     set:html={data.experience.technologies}
   />
