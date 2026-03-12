@@ -20,13 +20,14 @@ export interface I18nTranslations {
   };
   projects: {
     title: string;
-    [key: string]:
-      | string
-      | {
-          name: string;
-          description: string;
-          url?: string;
-        };
+    list: Record<
+      string,
+      {
+        name: string;
+        description: string;
+        url?: string;
+      }
+    >;
   };
   experience: {
     title: string;

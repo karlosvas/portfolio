@@ -4,38 +4,41 @@
     "subtitle": "Desarrollador de Software",
     "name": "Carlos Raúl Vásquez Sánchez",
     "presentation": {
-      "v1": "Comencé a programar proyectos personales a los dieciocho años. Actualmente estoy estudiando un Grado Superior de Desarrollo de Aplicaciones Multiplataforma, también estudié un curso de programación algorítmica online de la Universidad Complutense de Madrid, y hago servicios y proyectos autodidactas. Tengo veintiún años y soy de España (Castilla y León, Valladolid).",
+      "v1": "Comencé a programar proyectos personales a los dieciocho años. Actualmente estoy estudiando un Grado Superior de Desarrollo de Aplicaciones Multiplataforma, también estudié un curso de programación algorítmica online de la Universidad Complutense de Madrid, y hago servicios y proyectos autodidactas. Tengo {age} años y soy de España (Castilla y León, Valladolid).",
       "v2": "Puedo adaptarme a cualquier lenguaje, creo en la importancia de  documentación y las buenas prácticas de desarrollo."
     }
   },
   "projects": {
     "title": "Proyectos",
-    "amanahacademia": {
-      "name": "Amanah Academia",
-      "description": "Academia de Español, con socialmedia, dasboard, newsletter, emails, pagos, y reservas. Backend en Rust (Axum), Frontend en Astro (Typescript).",
-      "url": "https://amanahacademia.com"
-    },
-    "olimpiadas-informaticas": {
-      "name": "Olimpiada Informática Española",
-      "description": "Clases online de la UCM (Universidad Complutense de Madrid) de programación competitiva, con ejercicios de C++ y Java."
-    },
-    "elend-talk": {
-      "name": "Chat con PDF",
-      "description": "Conversación fluida con Ollama y Deepseek sobre un PDF pasado por el usuario, con implementación de chat con historial en tiempo real y subida de archivos, Astro y SvelteKit."
-    },
-    "thefluentspanishhouse": {
-      "name": "The Fluent Spanish House",
-      "description": "Academia de Inglés, con socialmedia, blog, contenido dinámico, emails, suscripción a clases particulares y newsletter. Hecho con Frontend en React y Backend en NodeJS ambos con TypeScript.",
-      "url": "https://thefluentspanishhouse.vercel.app"
-    },
-    "octa-rust": {
-      "name": "OctaRust",
-      "description": "Octa rust es un aplicación par aprender a tocar piano de manera divertida y entretenida. Echo al completo con Rust."
-    },
-    "bytes-colaborativos": {
-      "name": "BytesColaborativos",
-      "description": "Proyectos en Java. Con SpringBoot, Spring Security, JWT, documentación con Swagger y Javadoc, colas Kafka, etc.. propuesto por la comunidad BytesColaborativos.",
-      "url": "https://bytes-colaborativos.vercel.app"
+    "list": {
+      "amanahacademia": {
+        "name": "Amanah Academia",
+        "description": "Academia de Español, con socialmedia, dasboard, newsletter, emails, pagos, y reservas. Backend en Rust (Axum), Frontend en Astro (Typescript).",
+        "url": "https://amanahacademia.com"
+      },
+      "olimpiadas-informaticas": {
+        "name": "Olimpiada Informática Española",
+        "description": "Clases online de la UCM (Universidad Complutense de Madrid) de programación competitiva, con ejercicios de C++ y Java."
+      },
+      "elend-talk": {
+        "name": "Chat con PDF",
+        "description": "Conversación fluida con Ollama y Deepseek sobre un PDF pasado por el usuario, con implementación de chat con historial en tiempo real y subida de archivos, Astro y SvelteKit."
+      },
+      "thefluentspanishhouse": {
+        "name": "The Fluent Spanish House",
+        "description": "Academia de Inglés, con socialmedia, blog, contenido dinámico, emails, suscripción a clases particulares y newsletter. Hecho con Frontend en React y Backend en NodeJS ambos con TypeScript.",
+        "url": "https://thefluentspanishhouse.vercel.app"
+      },
+      "bytes-colaborativos": {
+        "name": "BytesColaborativos",
+        "description": "Proyectos en Java. Con SpringBoot, Spring Security, JWT, documentación con Swagger y Javadoc, colas Kafka, etc.. propuesto por la comunidad BytesColaborativos.",
+        "url": "https://bytes-colaborativos.vercel.app"
+      },
+      "ferrum": {
+        "name": "Ferrum - 3D Engine",
+        "description": "Motor 3D educativo enfocado en la biología vegetal 🌿, permite explorar la vida de las plantas desde la morfología externa hasta el nivel celular y molecular. El objetivo es facilitar el aprendizaje de la botánica ofreciendo una navegación fluida que conecte la estructura visible con los procesos biológicos internos.",
+        "url": "https://ferrum-theta.vercel.app/"
+      }
     }
   },
   "experience": {

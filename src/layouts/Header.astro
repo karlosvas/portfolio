@@ -32,7 +32,9 @@ const data: I18nTranslations = Astro.props.data;
 <script>
   // Animate header on scroll
   const header: HTMLHeadElement | null = document.querySelector("header");
-  const hamburgerModal = document.getElementById("hamburgerModal") as HTMLDialogElement;
+  const hamburgerModal: HTMLDialogElement | null = document.getElementById(
+    "hamburgerModal",
+  ) as HTMLDialogElement | null;
 
   document.addEventListener("scroll", () => {
     if (globalThis.scrollY > 0) {

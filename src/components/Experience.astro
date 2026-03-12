@@ -4,11 +4,11 @@ const data: I18nTranslations = Astro.props.data;
 ---
 
 <div id="experiencie" class="w-11/12 md:w-3/4 2xl:w-2/3 flex flex-col justify-center items-center mb-40 xl:px-20 px-4">
-  <h1 class="md:text-4xl font-bold mb-6 text-3xl text-blackPal dark:text-whitePal">
+  <h1 class="md:text-3xl font-bold mb-6 text-3xl text-blackPal dark:text-whitePal">
     {data.experience.title}
   </h1>
   <p
-    class="text-base md:text-lg text-center leading-relaxed opacity-90 mb-12"
+    class="text-pretty text-start leading-relaxed opacity-90 mb-12 px-20"
     style="white-space: pre-line;"
     set:html={data.experience.description}
   />
@@ -58,7 +58,7 @@ const data: I18nTranslations = Astro.props.data;
   </div>
 
   <p
-    class="text-base md:text-lg text-center leading-relaxed opacity-90 mb-12"
+    class="text-pretty text-start leading-relaxed opacity-90 mb-12 px-20"
     style="white-space: pre-line;"
     set:html={data.experience.technologies}
   />

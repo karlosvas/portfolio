@@ -4,11 +4,43 @@
     "subtitle": "Software Developer",
     "name": "Carlos Raúl Vásquez Sánchez",
     "presentation": {
-      "v1": "I started programming personal projects at eighteen. Currently studying a Higher Degree in Multiplatform Application Development, I also completed an online algorithmic programming course from Universidad Complutense de Madrid, and I provide freelance services and self-taught projects. I'm twenty-one years old and based in Spain (Castile and León, Valladolid).",
+      "v1": "I started programming personal projects at eighteen. Currently studying a Higher Degree in Multiplatform Application Development, I also completed an online algorithmic programming course from Universidad Complutense de Madrid, and I provide freelance services and self-taught projects. I'm {age} years old and based in Spain (Castile and León, Valladolid).",
       "v2": "I can adapt to any language, I believe in the importance of documentation and development best practices."
     }
   },
-
+  "projects": {
+    "title": "Projects",
+    "list": {
+      "amanahacademia": {
+        "name": "Amanah Academia",
+        "description": "Spanish Academy, with social media, dashboard, newsletter, emails, payments, and bookings. Backend in Rust (Axum), Frontend in Astro (TypeScript).",
+        "url": "https://amanahacademia.com"
+      },
+      "olimpiadas-informaticas": {
+        "name": "Spanish Computer Science Olympiad",
+        "description": "Online classes from UCM (Complutense University of Madrid) on competitive programming, with C++ and Java exercises."
+      },
+      "elend-talk": {
+        "name": "Chat with PDF",
+        "description": "Fluid conversation with Ollama and Deepseek about a user-provided PDF, with real-time chat history implementation and file upload, Astro and SvelteKit."
+      },
+      "thefluentspanishhouse": {
+        "name": "The Fluent Spanish House",
+        "description": "English Academy, with social media, blog, dynamic content, emails, private class subscription and newsletter. Built with React Frontend and NodeJS Backend both in TypeScript.",
+        "url": "https://thefluentspanishhouse.vercel.app"
+      },
+      "bytes-colaborativos": {
+        "name": "BytesColaborativos",
+        "description": "Java projects. With SpringBoot, Spring Security, JWT, documentation with Swagger and Javadoc, Kafka queues, etc., proposed by the BytesColaborativos community.",
+        "url": "https://bytes-colaborativos.vercel.app"
+      },
+      "ferrum": {
+        "name": "Ferrum - 3D Engine",
+        "description": "An educational 3D engine focused on plant biology 🌿, allowing users to explore plant life from external morphology to the cellular and molecular level. The goal is to make botany easier to learn through fluid navigation that connects visible structure with internal biological processes.",
+        "url": "https://ferrum-theta.vercel.app/"
+      }
+    }
+  },
   "experience": {
     "title": "Experience",
     "description": "I have experience with <strong class='strong'>languages and frameworks</strong> such as Rust, C++, TypeScript, Java, Spring Boot, TypeScript, Astro, React, Python, and game engines like Unreal Engine and Unity.<br> I have developed significant projects with each, gaining solid knowledge in software development.<br>",
@@ -22,45 +54,15 @@
         "title": "Internship, Unreal Engine 5 Developer",
         "company": "Rapture Games",
         "date": "04/2025 - 06/2025",
-        "description": "During my internship, I worked on the development of a project using Unreal Engine focused on orbital physics simulation. I implemented the balance between centrifugal and centripetal forces, as well as the use of propellant to enable orbital transfers. Additionally, I created custom shaders and 3D models, integrating them into the simulation environment. It was an experience that allowed me to apply and expand my knowledge in programming, physics, and computer graphics."
+        "description": "During my internship, I worked on the development of a project using Unreal Engine focused on orbital physics simulation. I implemented the balance between centrifugal and centripetal forces, as well as the use of propellant to enable orbital transfers. Additionally, I created custom shaders and 3D models, integrating them into the simulation environment. An experience that allowed me to apply and expand my knowledge in programming, physics, and computer graphics."
       },
       {
         "title": "Internship, New Technologies Technical Support",
         "company": "Valladolid Provincial Council",
         "date": "04/2024 - 06/2024",
-        "description": "Full tech inventory restoration. Developed VBA scripts for equipment identification and registration to optimize data collection and organization. Collaborated on administrative tasks and technical support for IT asset management. Initiated efficiency improvements that enhanced inventory accuracy and processing times."
+        "description": "Full tech inventory restoration. Developed VBA scripts for equipment identification and registration to optimize data collection and organization. Collaborated on administrative and technical support tasks related to IT asset management. Own initiative to implement efficient solutions, improving inventory times and accuracy."
       }
     ]
-  },
-  "projects": {
-    "title": "Projects",
-    "amanahacademia": {
-      "name": "Amanah Academia",
-      "description": "Spanish Academy, with social media, dashboard, newsletter, emails, payments, and bookings. Backend in Rust (Axum), Frontend in Astro (TypeScript).",
-      "url": "https://amanahacademia.com"
-    },
-    "olimpiadas-informaticas": {
-      "name": "Spanish Computer Science Olympiad",
-      "description": "Online classes from UCM (Complutense University of Madrid) on competitive programming, with C++ and Java exercises."
-    },
-    "elend-talk": {
-      "name": "Chat with PDF",
-      "description": "Fluid conversation with Ollama and Deepseek about a user-provided PDF, with real-time chat history implementation and file upload, Astro and SvelteKit."
-    },
-    "thefluentspanishhouse": {
-      "name": "The Fluent Spanish House",
-      "description": "English Academy, with social media, blog, dynamic content, emails, private class subscription and newsletter. Built with React Frontend and NodeJS Backend both in TypeScript.",
-      "url": "https://thefluentspanishhouse.vercel.app"
-    },
-    "octa-rust": {
-      "name": "OctaRust",
-      "description": "Octa rust is an application to learn to play piano in a fun and entertaining way. Fully built with Rust."
-    },
-    "bytes-colaborativos": {
-      "name": "BytesColaborativos",
-      "description": "Java projects. With SpringBoot, Spring Security, JWT, documentation with Swagger and Javadoc, Kafka queues, etc., proposed by the BytesColaborativos community.",
-      "url": "https://bytes-colaborativos.vercel.app"
-    }
   },
   "contact": {
     "title": "Contact",

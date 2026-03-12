@@ -1,15 +1,50 @@
 ---
 import type { I18nTranslations } from "@/../types/types";
 const data: I18nTranslations = Astro.props.data;
+
+const birthDate = new Date(2004, 3, 13);
+const today = new Date();
+const age =
+  today.getFullYear() -
+  birthDate.getFullYear() -
+  (today < new Date(today.getFullYear(), birthDate.getMonth(), birthDate.getDate()) ? 1 : 0);
+
+const ageWords: Record<number, string> = {
+  21: "veintiún",
+  22: "veintidós",
+  23: "veintitrés",
+  24: "veinticuatro",
+  25: "veinticinco",
+  26: "veintiséis",
+  27: "veintisiete",
+  28: "veintiocho",
+  29: "veintinueve",
+};
+
+const ageWordsEnglish: Record<number, string> = {
+  21: "twenty-one",
+  22: "twenty-two",
+  23: "twenty-three",
+  24: "twenty-four",
+  25: "twenty-five",
+  26: "twenty-six",
+  27: "twenty-seven",
+  28: "twenty-eight",
+  29: "twenty-nine",
+};
+
+const ageLabel = data.profile.presentation.v1.includes("{age}")
+  ? (ageWordsEnglish[age] ?? age.toString())
+  : (ageWords[age] ?? age.toString());
 ---
 
 <div
   id="profile"
-  class="min-h-screen sm:py-28 md:pb-80 md:pt-28 grid justify-center gap-8 sm:grid-cols-2 md:w-3/4 lg:w-1/2 px-4"
+  class="min-h-[90dvh] grid items-center justify-center gap-8 py-10 sm:grid-cols-2 md:w-3/4 lg:w-1/2 px-4"
 >
   <!-- Img Profile -->
   <img
-    class="h-full w-full xl:w-3/4 rounded-lg object-cover select-none m-auto lg:my-0"
+    class="w-full max-w-[260px] sm:max-w-[320px] md:max-w-[360px] lg:max-w-[380px] xl:max-w-[420px] rounded-lg object-cover select-none m-auto lg:my-0"
     src="/img/profile.webp"
     alt="Imagen de perfil Carlos Vásquez Sánchez"
   />
@@ -29,7 +64,7 @@ const data: I18nTranslations = Astro.props.data;
     <!-- Info -->
     <div class="space-y-4 text-base md:text-base leading-relaxed">
       <p class="text-pretty opacity-90 hover:opacity-100 transition-opacity duration-300">
-        {data.profile.presentation.v1}
+        {data.profile.presentation.v1.replace("{age}", ageLabel)}
       </p>
       <p class="text-pretty opacity-90 hover:opacity-100 transition-opacity duration-300">
         {data.profile.presentation.v2}
@@ -77,7 +112,7 @@ const data: I18nTranslations = Astro.props.data;
     }
   }
 
-  globalThisaddEventListener("DOMContentLoaded", () => updateTitle(data.profile.name));
+  globalThis.addEventListener("DOMContentLoaded", () => updateTitle(data.profile.name));
 </script>
 <style>
   @keyframes blink {
