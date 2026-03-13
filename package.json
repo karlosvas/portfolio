@@ -7,7 +7,8 @@
     "build": "astro check && astro build",
     "preview": "astro preview",
     "dev": "astro dev",
-    "astro": "astro"
+    "astro": "astro",
+    "format:check": "prettier --check ."
   },
   "devDependencies": {
     "@types/cookie": "^0.6.0",

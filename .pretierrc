@@ -1,0 +1,17 @@
+{
+  "plugins": [
+    "prettier-plugin-astro",
+    "prettier-plugin-tailwindcss"
+  ],
+  "printWidth": 120,
+  "tabWidth": 2,
+  "tailwindConfig": "./tailwind.cjs",
+  "overrides": [
+    {
+      "files": "*.astro",
+      "options": {
+        "parser": "astro"
+      }
+    }
+  ]
+}

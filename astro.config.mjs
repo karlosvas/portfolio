@@ -1,63 +1,63 @@
-import { defineConfig, envField } from 'astro/config';
+import { defineConfig, envField } from "astro/config";
 import tailwind from "@astrojs/tailwind";
-import vercel from '@astrojs/vercel';
-import solidJs from '@astrojs/solid-js';
-import sitemap from '@astrojs/sitemap';
+import vercel from "@astrojs/vercel";
+import solidJs from "@astrojs/solid-js";
+import sitemap from "@astrojs/sitemap";
 
 // https://astro.build/config
 export default defineConfig({
-  site: 'https://carlosvassan.dev',
+  site: "https://carlosvassan.dev",
   env: {
     schema: {
       PUBLIC_TURNSTILE_SITE_KEY: envField.string({
         context: "client",
-        access: "public"
+        access: "public",
       }),
       TURNSTILE_SECRET_KEY: envField.string({
         context: "server",
-        access: "secret"
+        access: "secret",
       }),
       RESEND_API_KEY: envField.string({
         context: "server",
-        access: "secret"
+        access: "secret",
       }),
-    }
+    },
   },
-  publicDir: 'public',
-  output: 'server',
+  publicDir: "public",
+  output: "server",
   adapter: vercel({
     webAnalytics: {
       enabled: true,
     },
   }),
   i18n: {
-    defaultLocale: 'es',
-    locales: ['es', 'en'],
+    defaultLocale: "es",
+    locales: ["es", "en"],
     routing: {
-      prefixDefaultLocale: false
-    }
+      prefixDefaultLocale: false,
+    },
   },
   integrations: [
     tailwind(),
     solidJs(),
     sitemap({
       i18n: {
-        defaultLocale: 'es',
+        defaultLocale: "es",
         locales: {
-          es: 'es-ES',
-          en: 'en-US',
+          es: "es-ES",
+          en: "en-US",
         },
       },
-    })
+    }),
   ],
   vite: {
     resolve: {
       alias: {
-        '@': new URL('./src', import.meta.url),
-      }
-    }
+        "@": new URL("./src", import.meta.url),
+      },
+    },
   },
   pages: {
-    extensions: ['astro', 'md', 'ts', 'tsx', 'json']
+    extensions: ["astro", "md", "ts", "tsx", "json"],
   },
 });

@@ -4,7 +4,9 @@ const THEME_STORAGE_KEY = "portfolio-theme";
 
 function applyTheme(theme: ThemeMode) {
   const root = document.documentElement;
-  const toggle = document.getElementById("themeToggle") as HTMLButtonElement | null;
+  const toggle = document.getElementById(
+    "themeToggle",
+  ) as HTMLButtonElement | null;
   const darkIcon = document.getElementById("themeIconDark");
   const lightIcon = document.getElementById("themeIconLight");
 
@@ -17,7 +19,10 @@ function applyTheme(theme: ThemeMode) {
 
   if (toggle) {
     toggle.setAttribute("aria-pressed", String(isDark));
-    toggle.setAttribute("aria-label", isDark ? "Cambiar a tema claro" : "Cambiar a tema oscuro");
+    toggle.setAttribute(
+      "aria-label",
+      isDark ? "Cambiar a tema claro" : "Cambiar a tema oscuro",
+    );
   }
 
   localStorage.setItem(THEME_STORAGE_KEY, theme);
@@ -32,13 +37,19 @@ function getInitialTheme(): ThemeMode {
 }
 
 function initThemeToggle() {
-  const toggle = document.getElementById("themeToggle") as HTMLButtonElement | null;
+  const toggle = document.getElementById(
+    "themeToggle",
+  ) as HTMLButtonElement | null;
   if (!toggle) return;
 
   applyTheme(getInitialTheme());
 
   toggle.addEventListener("click", () => {
-    const nextTheme: ThemeMode = document.documentElement.classList.contains("dark") ? "light" : "dark";
+    const nextTheme: ThemeMode = document.documentElement.classList.contains(
+      "dark",
+    )
+      ? "light"
+      : "dark";
     applyTheme(nextTheme);
   });
 }
