@@ -69,6 +69,15 @@
     "email": "carlosvassan@gmail.com",
     "formEmail": "Your email",
     "formMessage": "Message",
-    "formSubmit": "Send"
+    "formSubmit": "Send",
+    "toasts": {
+      "success": "Message sent successfully!",
+      "error": "An error occurred while sending the message. Please try again later.",
+      "loading": "Sending message..."
+    },
+    "placeholders": {
+      "email": "Type your email here..",
+      "message": "Type your message here.."
+    }
   }
 }

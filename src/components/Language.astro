@@ -1,8 +1,8 @@
-<div class="flex justify-center align-middle sm:mr-10 relative">
+<div class="relative flex justify-center align-middle sm:mr-10">
   <button
     id="langButton"
     type="button"
-    class="inline-flex items-center justify-center rounded-md p-1 hover:text-purplePal transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purplePal focus-visible:ring-offset-2"
+    class="transition-colors inline-flex items-center justify-center rounded-md p-1 duration-200 hover:text-purplePal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purplePal focus-visible:ring-offset-2"
     aria-label="Cambiar idioma"
     aria-haspopup="menu"
     aria-expanded="false"
@@ -34,10 +34,10 @@
     id="modalLanguage"
     role="menu"
     aria-labelledby="langButton"
-    class="absolute hidden top-11 right-[-10] w-28 h-auto z-50 bg-blackPal outline outline-2 outline-whitePal transition-bg duration-200 flex-col justify-center items-center select-none rounded-md py-2"
+    class="absolute right-[-10] top-11 z-50 hidden h-auto w-28 select-none flex-col items-center justify-center rounded-md bg-blackPal py-2 outline outline-2 outline-whitePal transition-bg duration-200"
   >
-    <button class="m-1 lang-button px-2 py-1 rounded" data-lang="es" role="menuitem">Spanish</button>
-    <button class="m-1 lang-button px-2 py-1 rounded" data-lang="en" role="menuitem">English</button>
+    <button class="lang-button m-1 rounded px-2 py-1" data-lang="es" role="menuitem">Spanish</button>
+    <button class="lang-button m-1 rounded px-2 py-1" data-lang="en" role="menuitem">English</button>
   </div>
 </div>
 

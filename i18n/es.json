@@ -69,6 +69,15 @@
     "email": "carlosvassan@gmail.com",
     "formEmail": "Tu email",
     "formMessage": "Mensaje",
-    "formSubmit": "Enviar"
+    "formSubmit": "Enviar",
+    "toasts": {
+      "success": "Mensaje enviado con éxito. ¡Gracias por contactarme!",
+      "error": "Error al enviar el mensaje. Por favor, inténtalo de nuevo más tarde.",
+      "loading": "Enviando mensaje..."
+    },
+    "placeholders": {
+      "email": "Escribe tu email aquí..",
+      "message": "Escribe tu mensaje aquí.."
+    }
   }
 }

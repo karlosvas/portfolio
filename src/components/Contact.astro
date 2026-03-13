@@ -7,22 +7,22 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 ---
 
 <!-- Script de Turnstile -->
-<script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" defer></script>
+<script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"></script>
 
 <!-- Contacto -->
-<div class="w-full max-w-2xl px-2 sm:px-4 mb-32">
-  <h1 id="contact" class="text-center text-3xl md:text-4xl font-bold mb-8 text-darkPal dark:text-whitePal">
+<div class="mb-32 w-full max-w-2xl px-2 sm:px-4">
+  <h1 id="contact" class="text-darkPal mb-8 text-center text-3xl font-bold dark:text-whitePal md:text-4xl">
     {data.contact.title}
   </h1>
 
   <form
-    class="flex flex-col gap-6 w-full bg-gradient-to-br from-purple-500/5 to-blue-500/5 backdrop-blur-sm border border-purple-500/10 rounded-2xl p-6 md:p-8 shadow-xl"
+    class="flex w-full flex-col gap-6 rounded-2xl border border-purple-500/10 bg-gradient-to-br from-purple-500/5 to-blue-500/5 p-6 shadow-xl backdrop-blur-sm md:p-8"
     id="formEmail"
   >
-    <div class="flex flex-col gap-3 group">
+    <div class="group flex flex-col gap-3">
       <label
         for="email"
-        class="font-semibold text-sm md:text-base transition-colors duration-300 group-focus-within:text-purplePal"
+        class="transition-colors text-sm font-semibold duration-300 group-focus-within:text-purplePal md:text-base"
       >
         {data.contact.formEmail}
       </label>
@@ -30,15 +30,15 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
         id="email"
         name="email"
         type="email"
-        placeholder="tu@email.com"
-        class="p-3 md:p-4 border-2 border-gray-700/40 dark:border-gray-400/40 rounded-lg bg-gray-900/80 dark:bg-white/90 dark:text-black text-white transition-all duration-300 focus:border-purplePal focus:ring-2 focus:ring-purplePal/20 focus:outline-none placeholder:text-gray-400 dark:placeholder:text-gray-500"
+        placeholder={data.contact.placeholders.email}
+        class="transition-all rounded-lg border-2 border-gray-700/40 bg-gray-900/80 p-3 text-white duration-300 placeholder:text-gray-400 focus:border-purplePal focus:outline-none focus:ring-2 focus:ring-purplePal/20 dark:border-gray-400/40 dark:bg-white/90 dark:text-black dark:placeholder:text-gray-500 md:p-4"
       />
     </div>
 
-    <div class="flex flex-col gap-3 group">
+    <div class="group flex flex-col gap-3">
       <label
         for="mensaje"
-        class="font-semibold text-sm md:text-base transition-colors duration-300 group-focus-within:text-purplePal"
+        class="transition-colors text-sm font-semibold duration-300 group-focus-within:text-purplePal md:text-base"
       >
         {data.contact.formMessage}
       </label>
@@ -46,17 +46,13 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
         id="mensaje"
         name="mensaje"
         rows="5"
-        placeholder="Escribe tu mensaje aquí..."
-        class="p-3 md:p-4 border-2 border-gray-700/40 dark:border-gray-400/40 rounded-lg resize-none bg-gray-900/80 dark:bg-white/90 dark:text-black text-white transition-all duration-300 focus:border-purplePal focus:ring-2 focus:ring-purplePal/20 focus:outline-none placeholder:text-gray-400 dark:placeholder:text-gray-500"
+        placeholder={data.contact.placeholders.message}
+        class="transition-all resize-none rounded-lg border-2 border-gray-700/40 bg-gray-900/80 p-3 text-white duration-300 placeholder:text-gray-400 focus:border-purplePal focus:outline-none focus:ring-2 focus:ring-purplePal/20 dark:border-gray-400/40 dark:bg-white/90 dark:text-black dark:placeholder:text-gray-500 md:p-4"
       ></textarea>
     </div>
 
     <!-- Cloudflare Turnstile Widget -->
-    {
-      TURNSTILE_SITE_KEY && (
-        <div id="turnstile-widget" class="cf-turnstile" data-sitekey={TURNSTILE_SITE_KEY} data-size="invisible" />
-      )
-    }
+    {TURNSTILE_SITE_KEY && <div class="cf-turnstile" data-sitekey={TURNSTILE_SITE_KEY} data-size="invisible" />}
 
     <ButtonCustomized>
       {data.contact.formSubmit}
@@ -68,88 +64,96 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
   import toast from "solid-toast";
   import { FormEnum, FormEnumEnglish } from "@/../types/formEnum.ts";
 
-  // Get form and submit button
+  // ─── Constants ────────────────────────────────────────────────────────────
+  const TURNSTILE_TIMEOUT_MS = 10_000;
   const form = document.getElementById("formEmail") as HTMLFormElement;
-  const submitButton = form?.querySelector('button[type="submit"]');
-
-  // Detect current language
+  const submitButton = form?.querySelector('button[type="submit"]') as HTMLButtonElement | null;
   const formEnum = document.documentElement.lang === "es" ? FormEnum : FormEnumEnglish;
+  const turnstileKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 
-  // Initialize Turnstile when the DOM is ready
-  const initTurnstile = () => {
-    const turnstileKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
-    if (globalThis.turnstile && turnstileKey) {
-      globalThis.turnstile.render("#turnstile-widget", {
-        sitekey: turnstileKey,
-        size: "invisible",
-        callback: (token: string) => {
-          console.log("Turnstile challenge completed");
-        },
-      });
-    }
-  };
+  // ─── Turnstile State ──────────────────────────────────────────────────────
+  let widgetId: string | null = null;
+  let resolveToken: ((token: string) => void) | null = null;
+  let rejectToken: ((reason: unknown) => void) | null = null;
 
-  // Wait for Turnstile to load
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initTurnstile);
-  } else {
-    initTurnstile();
-  }
+  // ─── Turnstile Init ───────────────────────────────────────────────────────
+  widgetId = globalThis.turnstile.render(".cf-turnstile", {
+    sitekey: turnstileKey,
+    size: "invisible",
+    execution: "execute",
+    callback: (token: string) => {
+      resolveToken?.(token);
+      resolveToken = null;
+      rejectToken = null;
+    },
+    "error-callback": () => {
+      rejectToken?.(new Error(formEnum.MESSAGE_ERROR));
+      resolveToken = null;
+      rejectToken = null;
+    },
+  });
 
-  // Register submit handler
-  if (form) {
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      // Disable submit button
-      if (submitButton instanceof HTMLButtonElement) submitButton.disabled = true;
-      // Show loading toast
-      const loadingToastId = toast.loading("Ejemplo");
+  // ─── Turnstile Token ──────────────────────────────────────────────────────
+  function requestToken(): Promise<string> {
+    return new Promise<string>((resolve, reject) => {
+      const timeout = window.setTimeout(() => reject(new Error(formEnum.MESSAGE_ERROR)), TURNSTILE_TIMEOUT_MS);
 
-      try {
-        // Basic validations
-        if (form.email.value === "") throw new Error(formEnum.EMPTY_EMAIL);
-        if (form.mensaje.value === "") throw new Error(formEnum.EMPTY_MESSAGE);
+      resolveToken = (token) => {
+        clearTimeout(timeout);
+        resolve(token);
+      };
+      rejectToken = (reason) => {
+        clearTimeout(timeout);
+        reject(reason);
+      };
 
-        // Get Turnstile token
-        const turnstileToken = globalThis.turnstile?.getResponse();
-        if (!turnstileToken) {
-          throw new Error(formEnum.MESSAGE_ERROR);
-        }
-
-        // Send POST request to /api/resend
-        const data = {
-          email: form.email.value,
-          message: form.mensaje.value,
-          turnstileToken: turnstileToken,
-        };
-        const response = await fetch("/api/resend", {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        });
-
-        // Process response
-        if (response.ok) {
-          toast.success(formEnum.MESSAGE_SENT, {
-            id: loadingToastId,
-            duration: 3000,
-          });
-          form.reset();
-          // Reset Turnstile if needed for another submission
-          globalThis.turnstile.reset();
-        } else {
-          throw new Error(formEnum.MESSAGE_ERROR);
-        }
-      } catch (error) {
-        toast.error(formEnum.MESSAGE_ERROR, {
-          id: loadingToastId,
-          duration: 3000,
-        });
-      } finally {
-        if (submitButton instanceof HTMLButtonElement) submitButton.disabled = false;
-      }
+      globalThis.turnstile.execute(widgetId);
     });
   }
+
+  // ─── Form Validation ──────────────────────────────────────────────────────
+  function validateForm(): void {
+    if (!form.email.value) throw new Error(formEnum.EMPTY_EMAIL);
+    if (!form.mensaje.value) throw new Error(formEnum.EMPTY_MESSAGE);
+  }
+
+  // ─── API ──────────────────────────────────────────────────────────────────
+  async function sendEmail(turnstileToken: string): Promise<void> {
+    const response = await fetch("/api/resend", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: form.email.value,
+        message: form.mensaje.value,
+        turnstileToken,
+      }),
+    });
+
+    if (!response.ok) throw new Error(formEnum.MESSAGE_ERROR);
+  }
+
+  // ─── Submit Handler ───────────────────────────────────────────────────────
+  async function handleSubmit(e: Event): Promise<void> {
+    e.preventDefault();
+    if (submitButton) submitButton.disabled = true;
+
+    const loadingToastId = toast.loading(formEnum.SENDING);
+
+    try {
+      validateForm();
+      const token = await requestToken();
+      await sendEmail(token);
+
+      toast.success(formEnum.MESSAGE_SENT, { id: loadingToastId, duration: 3000 });
+      form.reset();
+      globalThis.turnstile?.reset(widgetId);
+    } catch (error) {
+      toast.error(formEnum.MESSAGE_ERROR, { id: loadingToastId, duration: 3000 });
+      globalThis.turnstile?.reset(widgetId);
+    } finally {
+      if (submitButton) submitButton.disabled = false;
+    }
+  }
+
+  form?.addEventListener("submit", handleSubmit);
 </script>

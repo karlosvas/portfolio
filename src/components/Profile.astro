@@ -40,11 +40,11 @@ const ageLabel = data.profile.presentation.v1.includes("{age}")
 
 <div
   id="profile"
-  class="min-h-[90dvh] grid items-center justify-center gap-8 py-10 sm:grid-cols-2 md:w-3/4 lg:w-1/2 px-4"
+  class="grid min-h-[90dvh] items-center justify-center gap-8 px-4 py-10 sm:grid-cols-2 md:w-3/4 lg:w-1/2"
 >
   <!-- Img Profile -->
   <img
-    class="w-full max-w-[260px] sm:max-w-[320px] md:max-w-[360px] lg:max-w-[380px] xl:max-w-[420px] rounded-lg object-cover select-none m-auto lg:my-0"
+    class="m-auto w-full max-w-[260px] select-none rounded-lg object-cover sm:max-w-[320px] md:max-w-[360px] lg:my-0 lg:max-w-[380px] xl:max-w-[420px]"
     src="/img/profile.webp"
     alt="Imagen de perfil Carlos Vásquez Sánchez"
   />
@@ -55,18 +55,18 @@ const ageLabel = data.profile.presentation.v1.includes("{age}")
     <div class="space-y-2">
       <h1
         id="title"
-        class="text-4xl font-bold bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-transparent lg:min-h-10"
+        class="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-4xl font-bold text-transparent lg:min-h-10"
       >
         {" "}
       </h1>
-      <p class="text-lg md:text-xl font-semibold text-purplePal/80">{data.profile.subtitle}</p>
+      <p class="text-lg font-semibold text-purplePal/80 md:text-xl">{data.profile.subtitle}</p>
     </div>
     <!-- Info -->
-    <div class="space-y-4 text-base md:text-base leading-relaxed">
-      <p class="text-pretty opacity-90 hover:opacity-100 transition-opacity duration-300">
+    <div class="space-y-4 text-base leading-relaxed md:text-base">
+      <p class="transition-opacity text-pretty opacity-90 duration-300 hover:opacity-100">
         {data.profile.presentation.v1.replace("{age}", ageLabel)}
       </p>
-      <p class="text-pretty opacity-90 hover:opacity-100 transition-opacity duration-300">
+      <p class="transition-opacity text-pretty opacity-90 duration-300 hover:opacity-100">
         {data.profile.presentation.v2}
       </p>
     </div>

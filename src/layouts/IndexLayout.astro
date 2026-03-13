@@ -49,7 +49,19 @@ const ogImage = `${siteUrl}/img/profile.webp`;
     <!-- Content Security Policy -->
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self' https:; script-src 'self' https://challenges.cloudflare.com https://cdn.vercel-insights.com 'unsafe-inline'; connect-src 'self' https://challenges.cloudflare.com https://api.vercel.com; img-src 'self' data: https:; style-src 'self' 'unsafe-inline' https:;"
+      content="default-src 'self' https:; 
+    script-src 'self' 
+      https://challenges.cloudflare.com 
+      https://cdn.vercel-insights.com 
+      https://vercel.live
+      'unsafe-inline'; 
+    frame-src https://challenges.cloudflare.com https://vercel.live;
+    connect-src 'self' 
+      https://challenges.cloudflare.com 
+      https://api.vercel.com 
+      https://vercel.live; 
+    img-src 'self' data: https:; 
+    style-src 'self' 'unsafe-inline' https:;"
     />
 
     <title>{title}</title>

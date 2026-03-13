@@ -50,6 +50,15 @@ export interface I18nTranslations {
     formEmail: string;
     formMessage: string;
     formSubmit: string;
+    toasts: {
+      success: string;
+      error: string;
+      loading: string;
+    };
+    placeholders: {
+      email: string;
+      message: string;
+    };
   };
 }
 

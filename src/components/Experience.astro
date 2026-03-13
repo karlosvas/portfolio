@@ -3,18 +3,18 @@ import type { I18nTranslations } from "@/../types/types";
 const data: I18nTranslations = Astro.props.data;
 ---
 
-<div id="experiencie" class="w-11/12 md:w-3/4 2xl:w-2/3 flex flex-col justify-center items-center mb-40 xl:px-20 px-4">
-  <h1 class="md:text-3xl font-bold mb-6 text-3xl text-blackPal dark:text-whitePal">
+<div id="experiencie" class="mb-40 flex w-11/12 flex-col items-center justify-center px-4 md:w-3/4 xl:px-20 2xl:w-2/3">
+  <h1 class="mb-6 text-3xl font-bold text-blackPal dark:text-whitePal md:text-3xl">
     {data.experience.title}
   </h1>
   <p
-    class="text-pretty text-start leading-relaxed opacity-90 mb-12 md:px-20"
+    class="mb-12 text-pretty text-start leading-relaxed opacity-90 md:px-20"
     style="white-space: pre-line;"
     set:html={data.experience.description}
   />
 
   <!-- Stack de Lenguajes - Layout en columnas -->
-  <div class="w-full grid grid-cols-2 md:grid-cols-5 gap-4 mb-12">
+  <div class="mb-12 grid w-full grid-cols-2 gap-4 md:grid-cols-5">
     <div class="tech-card group">
       <img src="/svg/languajes/rust.svg" class="tech-card-icon h-12 w-16" alt="Rust" />
       <span class="tech-card-label">Rust</span>
@@ -58,13 +58,13 @@ const data: I18nTranslations = Astro.props.data;
   </div>
 
   <p
-    class="text-pretty text-start leading-relaxed opacity-90 mb-12 md:px-20"
+    class="mb-12 text-pretty text-start leading-relaxed opacity-90 md:px-20"
     style="white-space: pre-line;"
     set:html={data.experience.technologies}
   />
 
   <!-- Stack de Tecnologías - Layout en columnas -->
-  <div class="w-full grid grid-cols-2 md:grid-cols-5 gap-4">
+  <div class="grid w-full grid-cols-2 gap-4 md:grid-cols-5">
     <div class="tech-card group">
       <img src="/svg/technologies/cloudflare.svg" class="tech-card-icon h-12 w-12" alt="Cloudflare" />
       <span class="tech-card-label">Cloudflare</span>

@@ -14,13 +14,13 @@ const cv = await getEntry("cv", cvId);
 if (!cv) throw new Error(`CV entry not found for locale: ${currentLocale}`);
 ---
 
-<div class="flex h-auto w-full flex-col items-center justify-center text-black-50 light:bg-whitePal mb-40">
-  <h1 class="text-3xl font-bold mb-3 text-blackPal dark:text-whitePal">
+<div class="text-black-50 light:bg-whitePal mb-40 flex h-auto w-full flex-col items-center justify-center">
+  <h1 class="mb-3 text-3xl font-bold text-blackPal dark:text-whitePal">
     {data.history.title}
   </h1>
   {
     data.history.jobs.map((job) => (
-      <div class="flex flex-col w-full max-w-xl rounded-xl bg-opacity-10 bg-center transform bg-contain bg-no-repeat py-5 text-blackPal dark:text-whitePal ">
+      <div class="flex w-full max-w-xl transform flex-col rounded-xl bg-opacity-10 bg-contain bg-center bg-no-repeat py-5 text-blackPal dark:text-whitePal">
         <h2 class="text-2xl font-bold text-purplePal">{job.title}</h2>
         <h3 class="font-bold text-purplePal">{job.company}</h3>
         <p class="text-pretty pt-3">{job.date}</p>

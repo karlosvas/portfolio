@@ -7,7 +7,7 @@ const data: I18nTranslations = Astro.props.data;
   <button
     id="hamburgerBtn"
     type="button"
-    class="h-10 w-10 sm:hidden inline-flex items-center justify-center rounded-md hover:text-purplePal transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purplePal focus-visible:ring-offset-2"
+    class="transition-colors inline-flex h-10 w-10 items-center justify-center rounded-md duration-200 hover:text-purplePal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purplePal focus-visible:ring-offset-2 sm:hidden"
     aria-label="Abrir menu de navegacion"
     aria-controls="hamburgerModal"
     aria-expanded="false"
@@ -26,38 +26,38 @@ const data: I18nTranslations = Astro.props.data;
 
   <dialog
     id="hamburgerModal"
-    class="fixed left-0 w-80 h-full z-50 bg-whitePal p-0 border-none m-0 backdrop:bg-blackPal backdrop:bg-opacity-50 text-blackPal dark:text-whitePal dark:bg-blackPal"
+    class="fixed left-0 z-50 m-0 h-full w-80 border-none bg-whitePal p-0 text-blackPal backdrop:bg-blackPal backdrop:bg-opacity-50 dark:bg-blackPal dark:text-whitePal"
   >
     <div class="h-full overflow-hidden">
-      <ul class="flex flex-col items-center justify-start h-full mt-10">
-        <li class="my-2 text-lg nav-item">
+      <ul class="mt-10 flex h-full flex-col items-center justify-start">
+        <li class="nav-item my-2 text-lg">
           <a
             href="#profile"
-            class="block px-4 py-2 transition-colors duration-200 hover:text-purplePal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purplePal focus-visible:ring-offset-2"
+            class="transition-colors block px-4 py-2 duration-200 hover:text-purplePal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purplePal focus-visible:ring-offset-2"
           >
             {data.profile.title}
           </a>
         </li>
-        <li class="my-2 text-lg nav-item">
+        <li class="nav-item my-2 text-lg">
           <a
             href="#projects"
-            class="block px-4 py-2 transition-colors duration-200 hover:text-purplePal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purplePal focus-visible:ring-offset-2"
+            class="transition-colors block px-4 py-2 duration-200 hover:text-purplePal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purplePal focus-visible:ring-offset-2"
           >
             {data.projects.title}
           </a>
         </li>
-        <li class="my-2 text-lg nav-item">
+        <li class="nav-item my-2 text-lg">
           <a
             href="#experiencie"
-            class="block px-4 py-2 transition-colors duration-200 hover:text-purplePal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purplePal focus-visible:ring-offset-2"
+            class="transition-colors block px-4 py-2 duration-200 hover:text-purplePal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purplePal focus-visible:ring-offset-2"
           >
             {data.experience.title}
           </a>
         </li>
-        <li class="my-2 text-lg nav-item">
+        <li class="nav-item my-2 text-lg">
           <a
             href="#contact"
-            class="block px-4 py-2 transition-colors duration-200 hover:text-purplePal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purplePal focus-visible:ring-offset-2"
+            class="transition-colors block px-4 py-2 duration-200 hover:text-purplePal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purplePal focus-visible:ring-offset-2"
           >
             {data.contact.title}
           </a>

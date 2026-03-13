@@ -8,7 +8,8 @@
     "preview": "astro preview",
     "dev": "astro dev",
     "astro": "astro",
-    "format:check": "prettier --check ."
+    "format:check": "prettier --check .",
+    "prepare": "husky"
   },
   "devDependencies": {
     "@types/cookie": "^0.6.0",
@@ -18,9 +19,12 @@
     "@types/yargs-parser": "^21.0.3",
     "autoprefixer": "^10.4.21",
     "baseline-browser-mapping": "^2.9.11",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.3.3",
     "postcss": "^8.5.6",
     "prettier": "^3.6.2",
     "prettier-plugin-astro": "^0.13.0",
+    "prettier-plugin-tailwindcss": "^0.7.2",
     "tailwindcss": "^3.4.17",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3",
@@ -54,6 +58,11 @@
     "Web Developer",
     "Backend"
   ],
+  "lint-staged": {
+    "**/*.{ts,tsx,js,astro,css,json}": [
+      "prettier --write"
+    ]
+  },
   "author": "Carlos Vásquez Sánchez",
   "license": "GNU"
 }

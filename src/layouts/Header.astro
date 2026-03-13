@@ -8,7 +8,7 @@ import type { I18nTranslations } from "@/../types/types";
 const data: I18nTranslations = Astro.props.data;
 ---
 
-<header class="flex h-20 justify-end align-middle items-center bg-black p-10 text-white fixed top-0 w-full z-50">
+<header class="fixed top-0 z-50 flex h-20 w-full items-center justify-end bg-black p-10 align-middle text-white">
   <Hamburger data={data} />
   <!-- Contacto -->
   <ContactHeader />
