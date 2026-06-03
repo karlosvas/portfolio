@@ -54,6 +54,8 @@ export default defineConfig({
     resolve: {
       alias: {
         "@": new URL("./src", import.meta.url),
+        "@i18n": new URL("./i18n", import.meta.url),
+        "@app-types": new URL("./types", import.meta.url),
       },
     },
   },

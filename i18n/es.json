@@ -4,7 +4,7 @@
     "subtitle": "Desarrollador de Software",
     "name": "Carlos Raúl Vásquez Sánchez",
     "presentation": {
-      "v1": "Comencé a programar proyectos personales a los dieciocho años. Actualmente estoy estudiando un Grado Superior de Desarrollo de Aplicaciones Multiplataforma, también estudié un curso de programación algorítmica online de la Universidad Complutense de Madrid, y hago servicios y proyectos autodidactas. Tengo {age} años y soy de España (Castilla y León, Valladolid).",
+      "v1": "Comencé a programar proyectos personales a los diecinueve años. Cursé un Grado Superior de Desarrollo de Aplicaciones Multiplataforma, también estudié un curso de programación algorítmica online de la Universidad Complutense de Madrid, y hago servicios y proyectos autodidactas. Tengo {age} años y soy de España (Castilla y León, Valladolid).",
       "v2": "Puedo adaptarme a cualquier lenguaje, creo en la importancia de  documentación y las buenas prácticas de desarrollo."
     }
   },
@@ -53,13 +53,19 @@
       {
         "title": "Prácticas, Desarrollador Unreal Engine 5",
         "company": "Rapture Games",
-        "date": "04/2025 - 06/2025",
+        "date": "03/2025 - Actualidad",
+        "description": "Desarrollo del videojuego Pipal en Unreal Engine con C++. He migrado lógica de Blueprints a C++ nativo, implementado mecánicas como, menús, opciones, pausa, guardar el esatdo de la partida. Integrado autenticación JWT mediante GameInstance, y desarrollado un sistema de movimiento de personajes dirigido por LLM a través de microservicios HTTP. También he trabajado en efectos visuales post-process y sistemas de guardado/carga."
+      },
+      {
+        "title": "Prácticas, Desarrollador Unreal Engine 5",
+        "company": "Rapture Games",
+        "date": "03/2025 - 06/2025",
         "description": "Durante mis prácticas, he trabajado en el desarrollo de un proyecto con Unreal Engine centrado en la simulación de físicas orbitales. He implementado el equilibrio entre fuerzas centrífugas y centrípetas, así como el uso de propelente para permitir el desplazamiento entre órbitas. Además, he recreado shaders personalizados y modelos 3D, integrándolos en el entorno de simulación. Una experiencia que me ha permitido aplicar y ampliar mis conocimientos en programación, física y gráficos por ordenador."
       },
       {
         "title": "Prácticas, Soporte Técnico Nuevas Tecnologías",
         "company": "Diputación de Valladolid",
-        "date": "04/2024 - 06/2024",
+        "date": "03/2024 - 06/2024",
         "description": "Restauración completa de inventario de equipos tecnológicos. Desarollo de scripts en VBA para identificar y reguistrar equipos para la optimizacion del proceso de recopilacion y organización de datos. Colaboración con el equipo en tareas adminsitrativas y de soporte técnico relacionadas con la gestión de activos tecnológicos. Iniciativa propia para implementar soluciones eficientes, mejorando los tiempos y la precisión del inventario."
       }
     ]

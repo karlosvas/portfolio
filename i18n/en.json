@@ -4,7 +4,7 @@
     "subtitle": "Software Developer",
     "name": "Carlos Raúl Vásquez Sánchez",
     "presentation": {
-      "v1": "I started programming personal projects at eighteen. Currently studying a Higher Degree in Multiplatform Application Development, I also completed an online algorithmic programming course from Universidad Complutense de Madrid, and I provide freelance services and self-taught projects. I'm {age} years old and based in Spain (Castile and León, Valladolid).",
+      "v1": "I started programming personal projects at nineteen. Currently studying a Higher Degree in Multiplatform Application Development, I also completed an online algorithmic programming course from Universidad Complutense de Madrid, and I provide freelance services and self-taught projects. I'm {age} years old and based in Spain (Castile and León, Valladolid).",
       "v2": "I can adapt to any language, I believe in the importance of documentation and development best practices."
     }
   },
@@ -50,6 +50,12 @@
     "title": "Work History",
     "viewFullResume": "View full resume",
     "jobs": [
+      {
+        "title": "Internship, Unreal Engine 5 Developer",
+        "company": "Rapture Games",
+        "date": "03/2025 - Present",
+        "description": "Development of the video game Pipal in Unreal Engine with C++. I migrated logic from Blueprints to native C++, implemented mechanics such as menus, options, pause, and save game state. I integrated JWT authentication using GameInstance and developed a character movement system controlled by LLM through HTTP microservices. I also worked on post-processing visual effects and save/load systems."
+      },
       {
         "title": "Internship, Unreal Engine 5 Developer",
         "company": "Rapture Games",

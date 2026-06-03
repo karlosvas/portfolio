@@ -1,5 +1,5 @@
 {
-  "extends": "astro/tsconfigs/strict",
+  "extends": "./node_modules/astro/tsconfigs/strict.json",
   "compilerOptions": {
     "target": "ESNext",
     "module": "ESNext",
@@ -16,8 +16,8 @@
     "noEmit": true,
     "baseUrl": "./",
     "paths": {
-      "*": ["./node_modules/*"],
-      "@i18n/*": ["src/i18n/*"],
+      "@i18n/*": ["i18n/*"],
+      "@app-types/*": ["types/*"],
       "@/*": ["src/*"]
     },
     "plugins": [
@@ -26,5 +26,12 @@
       }
     ]
   },
-  "include": ["./src/**/*.ts", "./src/**/*.tsx", "./src/**/*.astro", "env.d.ts"]
+  "include": [
+    "./src/**/*.ts",
+    "./src/**/*.tsx",
+    "./src/**/*.astro",
+    "./i18n/**/*.ts",
+    "./src/env.d.ts",
+    "./types/**/*.ts"
+  ]
 }

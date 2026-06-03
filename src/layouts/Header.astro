@@ -1,9 +1,9 @@
 ---
-import Language from "../components/Language.astro";
-import Hamburger from "../components/Hamburger.astro";
-import Theme from "../components/Theme.astro";
-import ContactHeader from "../components/ContactHeader.astro";
-import type { I18nTranslations } from "@/../types/types";
+import Language from "@/components/Language.astro";
+import Hamburger from "@/components/Hamburger.astro";
+import Theme from "@/components/Theme.astro";
+import ContactHeader from "@/components/ContactHeader.astro";
+import type { I18nTranslations } from "@app-types/types";
 
 const data: I18nTranslations = Astro.props.data;
 ---
@@ -19,12 +19,10 @@ const data: I18nTranslations = Astro.props.data;
 </header>
 
 <style>
-  /* Hacemos que sea mas grande cunao no se mueve y se contraiga cuando se mueva */
   header {
     height: 10dvh;
     transition: height 0.3s;
   }
-  /* Hacemos que se mueva cuando se haga scroll */
   header.scrolled {
     height: 4dvh;
   }
