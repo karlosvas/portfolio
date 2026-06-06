@@ -43,8 +43,8 @@
   },
   "experience": {
     "title": "Experiencia",
-    "description": "Tengo experiencia con <strong class='strong'>lenguajes y frameworks</strong> como Rust, C++, TypeScript, Java, Spring Boot, TypeScript, Astro, React, Python, motores como Unreal Engine y Unity.<br> He desarrollado proyectos significativos en cada uno, adquiriendo un sólido conocimiento en desarrollo de software.<br>",
-    "technologies": "También he trabajado con <strong class='strong'>herramientas</strong> como MongoDB, Firebase, Vercel, Cloudflare, Tailwind, Node.js, máquinas virtuales, Git, GitHub e integración continua con GitHub Actions.<br> Además, tengo experiencia en proyectos colaborativos en equipo utilizando Jira y Taiga."
+    "description": "Tengo experiencia con <strong class='strong'>lenguajes y frameworks</strong> como Rust, C++, TypeScript, Java, Spring Boot, TypeScript, Astro, React, Python, Flutter, Dart, motores como Unreal Engine y Unity.<br> He desarrollado proyectos significativos en cada uno, adquiriendo un sólido conocimiento en desarrollo de software.<br>",
+    "technologies": "También he trabajado con <strong class='strong'>herramientas</strong> como MongoDB, PostgreSQL, MySQL, Firebase, Vercel, Cloudflare, Tailwind, Docker, Node.js, máquinas virtuales, Git, GitHub e integración continua con GitHub Actions.<br> Además, tengo experiencia en proyectos colaborativos en equipo utilizando Jira y Taiga."
   },
   "history": {
     "title": "Historial Laboral",
