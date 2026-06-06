@@ -51,7 +51,7 @@
     "viewFullResume": "Ver currículum completo",
     "jobs": [
       {
-        "title": "Prácticas, Desarrollador Unreal Engine 5",
+        "title": "Desarrollador Unreal Engine 5",
         "company": "Rapture Games",
         "date": "03/2025 - Actualidad",
         "description": "Desarrollo del videojuego Pipal en Unreal Engine con C++. He migrado lógica de Blueprints a C++ nativo, implementado mecánicas como, menús, opciones, pausa, guardar el esatdo de la partida. Integrado autenticación JWT mediante GameInstance, y desarrollado un sistema de movimiento de personajes dirigido por LLM a través de microservicios HTTP. También he trabajado en efectos visuales post-process y sistemas de guardado/carga."

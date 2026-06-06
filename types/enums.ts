@@ -13,3 +13,8 @@ export enum FormEnumEnglish {
   MESSAGE_SENT = "Message sent successfully!",
   MESSAGE_ERROR = "Error sending message",
 }
+
+export enum Lang {
+  SPANISH = "es",
+  ENGLISH = "en",
+}

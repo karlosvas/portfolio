@@ -1,4 +1,4 @@
 allowBuilds:
-  esbuild: true
-  sharp: true
-  vercel: true
+  esbuild: set this to true or false
+  sharp: set this to true or false
+  vercel: set this to true or false

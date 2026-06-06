@@ -51,7 +51,7 @@
     "viewFullResume": "View full resume",
     "jobs": [
       {
-        "title": "Internship, Unreal Engine 5 Developer",
+        "title": "Unreal Engine 5 Developer",
         "company": "Rapture Games",
         "date": "03/2025 - Present",
         "description": "Development of the video game Pipal in Unreal Engine with C++. I migrated logic from Blueprints to native C++, implemented mechanics such as menus, options, pause, and save game state. I integrated JWT authentication using GameInstance and developed a character movement system controlled by LLM through HTTP microservices. I also worked on post-processing visual effects and save/load systems."

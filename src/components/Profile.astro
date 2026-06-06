@@ -1,6 +1,8 @@
 ---
-import type { I18nTranslations } from "@/../types/types";
+import type { Lang } from "@app-types/enums";
+import type { I18nTranslations } from "@app-types/types";
 const data: I18nTranslations = Astro.props.data;
+const currentLang = Astro.currentLocale as Lang;
 
 const birthDate = new Date(2004, 3, 13);
 const today = new Date();
@@ -9,33 +11,32 @@ const age =
   birthDate.getFullYear() -
   (today < new Date(today.getFullYear(), birthDate.getMonth(), birthDate.getDate()) ? 1 : 0);
 
-const ageWords: Record<number, string> = {
-  21: "veintiún",
-  22: "veintidós",
-  23: "veintitrés",
-  24: "veinticuatro",
-  25: "veinticinco",
-  26: "veintiséis",
-  27: "veintisiete",
-  28: "veintiocho",
-  29: "veintinueve",
+const ageWords: Record<Lang, Record<number, string>> = {
+  es: {
+    21: "veintiún",
+    22: "veintidós",
+    23: "veintitrés",
+    24: "veinticuatro",
+    25: "veinticinco",
+    26: "veintiséis",
+    27: "veintisiete",
+    28: "veintiocho",
+    29: "veintinueve",
+  },
+  en: {
+    21: "twenty-one",
+    22: "twenty-two",
+    23: "twenty-three",
+    24: "twenty-four",
+    25: "twenty-five",
+    26: "twenty-six",
+    27: "twenty-seven",
+    28: "twenty-eight",
+    29: "twenty-nine",
+  },
 };
 
-const ageWordsEnglish: Record<number, string> = {
-  21: "twenty-one",
-  22: "twenty-two",
-  23: "twenty-three",
-  24: "twenty-four",
-  25: "twenty-five",
-  26: "twenty-six",
-  27: "twenty-seven",
-  28: "twenty-eight",
-  29: "twenty-nine",
-};
-
-const ageLabel = data.profile.presentation.v1.includes("{age}")
-  ? (ageWordsEnglish[age] ?? age.toString())
-  : (ageWords[age] ?? age.toString());
+const ageLabel: string = ageWords[currentLang][age];
 ---
 
 <div
