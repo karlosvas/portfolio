@@ -28,6 +28,14 @@ export interface I18nTranslations {
         url?: string;
       }
     >;
+    others: Record<
+      string,
+      {
+        name: string;
+        description: string;
+        url: string;
+      }
+    >;
   };
   experience: {
     title: string;

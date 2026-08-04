@@ -4,7 +4,7 @@
     "subtitle": "Software Developer",
     "name": "Carlos Raúl Vásquez Sánchez",
     "presentation": {
-      "v1": "I started programming personal projects at nineteen. Currently studying a Higher Degree in Multiplatform Application Development, I also completed an online algorithmic programming course from Universidad Complutense de Madrid, and I provide freelance services and self-taught projects. I'm {age} years old and based in Spain (Castile and León, Valladolid).",
+      "v1": "I started programming personal projects when I was eighteen. I completed a Higher Degree in Multiplatform Application Development, I am currently doing Computer Engineering at the URIR, I also took an online algorithmic programming course at the Complutense University of Madrid, and I do self-taught services and projects. I am {age} years old and I am from Spain (Castilla y León, Valladolid).",
       "v2": "I can adapt to any language, I believe in the importance of documentation and development best practices."
     }
   },
@@ -36,8 +36,54 @@
       },
       "ferrum": {
         "name": "Ferrum - 3D Engine",
-        "description": "An educational 3D engine focused on plant biology 🌿, allowing users to explore plant life from external morphology to the cellular and molecular level. The goal is to make botany easier to learn through fluid navigation that connects visible structure with internal biological processes.",
+        "description": "A real-time 3D rendering engine built in Rust, designed for educational and real-world applications. Features hardware sensor integration via Raspberry Pi, physics simulation, and interactive visualizations — demonstrated through a living plant environment driven by live telemetry data.",
         "url": "https://ferrum-theta.vercel.app/"
+      },
+      "tsl2591-rs": {
+        "name": "tsl-2591-rs",
+        "description": "Platform-agnostic Rust driver for the TSL2591 high dynamic range digital light sensor.",
+        "url": "https://github.com/karlosvas/tsl2591-rs"
+      },
+      "jetbrains": {
+        "name": "JetBrains-Youth-Coding-Club",
+        "description": "Codeforces classes and contests with live debates in English, led by Pavel Mavrin (pashka): 2004 ICPC world champion, 2002 IOI silver medalist, and instructor at JetBrains Academy.",
+        "url": "https://github.com/karlosvas/JetBrains-Youth-Coding-Club"
+      }
+    },
+    "others": {
+      "elend-talk": {
+        "name": "Chat with PDF",
+        "description": "Fluid conversation with Ollama and Deepseek about a user-provided PDF, with real-time chat history implementation and file upload, Astro and SvelteKit."
+      },
+      "thefluentspanishhouse": {
+        "name": "The Fluent Spanish House",
+        "description": "English Academy, with social media, blog, dynamic content, emails, private class subscription, and newsletter. Built with React Frontend and NodeJS Backend, both in TypeScript.",
+        "url": "https://thefluentspanishhouse.vercel.app"
+      },
+      "leetcode": {
+        "name": "Personal LeetCode",
+        "description": "Personal collection of solutions to LeetCode problems implemented in Rust, focused on clarity, efficiency, and idiomatic use of the language.",
+        "url": "https://github.com/karlosvas/leetcode"
+      },
+      "codeforces": {
+        "name": "Personal Codeforces",
+        "description": "Personal collection of Codeforces competitive programming exercises written in C++, focused on algorithm creation and prioritizing efficient solutions over idiomatic usage.",
+        "url": "https://github.com/karlosvas/codeforces"
+      },
+      "delverock": {
+        "name": "DelveRock landing page",
+        "description": "Rock band Delve, originally built on WordPress and transformed into a static page using Simply Static. The site aims to promote the band so that bars and other venues can easily hire their services and fans can get to know them.",
+        "url": "https://github.com/karlosvas/delverock"
+      },
+      "microsoft-learn": {
+        "name": "Microsoft Learn Courses",
+        "description": "Microsoft Learn courses of Carlos Raul Vásquez Sánchez",
+        "url": "https://github.com/karlosvas/microsoft-learn"
+      },
+      "problemsoie": {
+        "name": "Problems of the OIE",
+        "description": "Problems of the regional organizations of Castilla y León OIE competitive programming, from 2018 to the present.",
+        "url": "https://github.com/karlosvas/problems-OIE-competitions"
       }
     }
   },

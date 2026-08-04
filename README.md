@@ -1,19 +1,12 @@
 # Portfolio
 
-## Descripcion
-
-Comencé a programar proyectos personales a los dieciocho años. Actualmente estoy estudiando un Grado Superior de Desarrollo de Aplicaciones Multiplataforma, también estudié un curso de programación algorítmica online de la Universidad Complutense de Madrid, y hago servicios y proyectos autodidactas. Tengo veintiún años y soy de España (Castilla y León, Valladolid).
-
-Puedo adaptarme a cualquier lenguaje, creo en la importancia de documentación y las buenas prácticas de desarrollo.
-
 ## 📊 GitHub Stats
 
-![Carlos' GitHub stats](https://github-readme-stats.vercel.app/api?username=karlosvas&show_icons=true&theme=tokyonight)
 ![GitHub Streak](https://streak-stats.demolab.com?user=karlosvas&theme=tokyonight)
 
 ## 📂 Proyectos
 
-Puedes ver mis proyectos completos en mi web 🌐 👉 [carlos.dev](https://carlosvas.dev)
+You can see all my projects in 🌐 [carlos.dev](https://carlosvas.dev)
 
 ### Lenguajes y Frameworks
 
@@ -58,14 +51,16 @@ Puedes ver mis proyectos completos en mi web 🌐 👉 [carlos.dev](https://carl
 
 ## 📚 Filosofía de desarrollo
 
-- ✨ Código limpio y documentado
-- 🧩 Diseño modular y mantenible
-- ✅ Buenas prácticas de testing
-- 🚀 Aprendizaje constante y colaboración en comunidad
+- Clean, documented code
+- Modular, maintainable design
+- Testing best practices
+- Continuous learning and community collaboration
+- If it works, learn why
+- If it doesn't, learn why too
 
 ## 📫 Contacto
 
 - 💼 LinkedIn: [Carlos Vásquez Sánchez](https://www.linkedin.com/in/carlosvassan)
-- :information_source: **Nota:**
-  ¡Contáctame! Puedes encontrarme en LinkedIn para discutir colaboraciones, proyectos o simplemente charlar sobre programación, mi correo es [carlosvassan@gmail.com](mailto:carlosvassan@gmail.com)
-  ¡Gracias por visitar mi portfolio! 🚀
+- :information_source: **Note:**
+  Get in touch! You can find me on LinkedIn to discuss collaborations, projects, or simply chat about programming; my email is [carlosvassan@gmail.com](mailto:carlosvassan@gmail.com)
+  Thanks for visiting my portfolio! 🚀
