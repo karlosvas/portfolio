@@ -18,7 +18,8 @@
       },
       "olimpiadas-informaticas": {
         "name": "Olimpiada Informática Española",
-        "description": "Clases online de la UCM (Universidad Complutense de Madrid) de programación competitiva, con ejercicios de C++ y Java."
+        "description": "Clases online de la UCM (Universidad Complutense de Madrid) de programación competitiva, con ejercicios de C++ y Java.",
+        "url": "https://github.com/karlosvas/olimpiadas-informaticas"
       },
       "ferrum": {
         "name": "Ferrum - 3D Engine",
@@ -44,7 +45,8 @@
     "others": {
       "elend-talk": {
         "name": "Chat con PDF",
-        "description": "Conversación fluida con Ollama y Deepseek sobre un PDF pasado por el usuario, con implementación de chat con historial en tiempo real y subida de archivos, Astro y SvelteKit."
+        "description": "Conversación fluida con Ollama y Deepseek sobre un PDF pasado por el usuario, con implementación de chat con historial en tiempo real y subida de archivos, Astro y SvelteKit.",
+        "url": "https://github.com/karlosvas/elend-talk"
       },
       "thefluentspanishhouse": {
         "name": "The Fluent Spanish House",

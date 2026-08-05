@@ -25,7 +25,7 @@ export interface I18nTranslations {
       {
         name: string;
         description: string;
-        url?: string;
+        url: string;
       }
     >;
     others: Record<
@@ -75,7 +75,6 @@ export type ProjectKey =
   | "thefluentspanishhouse"
   | "olimpiadas-informaticas"
   | "elend-talk"
-  | "octa-rust"
   | "bytes-colaborativos";
 
 export type TypeFormEnum = {
