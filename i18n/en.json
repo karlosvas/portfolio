@@ -21,16 +21,6 @@
         "description": "Online classes from UCM (Complutense University of Madrid) on competitive programming, with C++ and Java exercises.",
         "url": "https://github.com/karlosvas/olimpiadas-informaticas"
       },
-      "elend-talk": {
-        "name": "Chat with PDF",
-        "description": "Fluid conversation with Ollama and Deepseek about a user-provided PDF, with real-time chat history implementation and file upload, Astro and SvelteKit.",
-        "url": "https://github.com/karlosvas/elend-talk"
-      },
-      "thefluentspanishhouse": {
-        "name": "The Fluent Spanish House",
-        "description": "English Academy, with social media, blog, dynamic content, emails, private class subscription and newsletter. Built with React Frontend and NodeJS Backend both in TypeScript.",
-        "url": "https://thefluentspanishhouse.vercel.app"
-      },
       "bytes-colaborativos": {
         "name": "BytesColaborativos",
         "description": "Java projects. With SpringBoot, Spring Security, JWT, documentation with Swagger and Javadoc, Kafka queues, etc., proposed by the BytesColaborativos community.",
@@ -73,20 +63,10 @@
         "description": "Personal collection of Codeforces competitive programming exercises written in C++, focused on algorithm creation and prioritizing efficient solutions over idiomatic usage.",
         "url": "https://github.com/karlosvas/codeforces"
       },
-      "delverock": {
-        "name": "DelveRock landing page",
-        "description": "Rock band Delve, originally built on WordPress and transformed into a static page using Simply Static. The site aims to promote the band so that bars and other venues can easily hire their services and fans can get to know them.",
-        "url": "https://github.com/karlosvas/delverock"
-      },
       "microsoft-learn": {
         "name": "Microsoft Learn Courses",
         "description": "Microsoft Learn courses of Carlos Raul Vásquez Sánchez",
         "url": "https://github.com/karlosvas/microsoft-learn"
-      },
-      "problemsoie": {
-        "name": "Problems of the OIE",
-        "description": "Problems of the regional organizations of Castilla y León OIE competitive programming, from 2018 to the present.",
-        "url": "https://github.com/karlosvas/problems-OIE-competitions"
       }
     }
   },

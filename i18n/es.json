@@ -63,20 +63,10 @@
         "description": "Coleción personal de ejercicios de programacion competitiva de codeforces escritos en C++, centrados en creación de algorimos y en priorizar soluciones eficientes por encima de un uso idiomatico.",
         "url": "https://github.com/karlosvas/codeforces"
       },
-      "delverock": {
-        "name": "DelveRock landing page",
-        "description": "Banda de rock Delve, realizada originalmente en WordPress y transformada en una página estática mediante Simply Static. El sitio tiene como objetivo promocionar a la banda para facilitar que los bares y otros locales contraten sus servicios y los aficionados puedan conocerlos.",
-        "url": "https://github.com/karlosvas/delverock"
-      },
       "microsoft-learn": {
         "name": "Cursos de Microsoft Learn",
         "description": "Microsoft Learn courses of Carlos Raul Vásquez Sánchez",
         "url": "https://github.com/karlosvas/microsoft-learn"
-      },
-      "problemsoie": {
-        "name": "Problems of the OIE",
-        "description": "Problems of the regional organizations of Castilla y León OIE competitive programming, from 2018 to the present.",
-        "url": "https://github.com/karlosvas/problems-OIE-competitions"
       }
     }
   },

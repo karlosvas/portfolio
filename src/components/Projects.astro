@@ -42,7 +42,6 @@ const data: I18nTranslations = Astro.props.data;
 
             <div class="project-overlay absolute inset-0 bg-gradient-to-br from-black/40 via-black/60 to-black/90" />
 
-            {/* Effect of floating particles */}
             <div class="particle particle-1" />
             <div class="particle particle-2" />
             <div class="particle particle-3" />
@@ -51,7 +50,6 @@ const data: I18nTranslations = Astro.props.data;
               class="pointer-events-none relative z-20 flex h-full w-full flex-col justify-between p-6 md:p-8"
               aria-label={`Ir a proyecto de ${name}`}
             >
-              {/* Icono de GitHub con efecto de órbita */}
               <div class="pointer-events-auto relative z-30 flex items-start justify-end">
                 <a
                   class="github-orbit"
@@ -66,7 +64,6 @@ const data: I18nTranslations = Astro.props.data;
                 </a>
               </div>
 
-              {/* Contenido */}
               <div class="project-content">
                 <h2 class="project-title text-2xl font-bold text-white md:text-3xl">{name}</h2>
                 <p class="project-description text-sm text-gray-200 md:text-base">{description}</p>
@@ -78,6 +75,7 @@ const data: I18nTranslations = Astro.props.data;
     }
   </div>
 
+  <h2 id="show-more" class="p-10 text-purple-400">Show More</h2>
   <section id="others" hidden>
     <h2 class="mt-32 text-3xl font-bold">Others</h2>
     <div class="grid w-full grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -112,7 +110,6 @@ const data: I18nTranslations = Astro.props.data;
 
               <div class="project-overlay absolute inset-0 bg-gradient-to-br from-black/40 via-black/60 to-black/90" />
 
-              {/* Effect of floating particles */}
               <div class="particle particle-1" />
               <div class="particle particle-2" />
               <div class="particle particle-3" />
@@ -121,7 +118,6 @@ const data: I18nTranslations = Astro.props.data;
                 class="pointer-events-none relative z-20 flex h-full w-full flex-col justify-between p-6 md:p-8"
                 aria-label={`Ir a proyecto de ${name}`}
               >
-                {/* Icono de GitHub con efecto de órbita */}
                 <div class="pointer-events-auto relative z-30 flex items-start justify-end">
                   <a
                     class="github-orbit"
@@ -136,7 +132,6 @@ const data: I18nTranslations = Astro.props.data;
                   </a>
                 </div>
 
-                {/* Contenido */}
                 <div class="project-content">
                   <h2 class="project-title text-2xl font-bold text-white md:text-3xl">{name}</h2>
                   <p class="project-description text-sm text-gray-200 md:text-base">{description}</p>
@@ -177,7 +172,6 @@ const data: I18nTranslations = Astro.props.data;
     -webkit-line-clamp: unset;
   }
 
-  /* Efecto de inclinación 3D en la tarjeta */
   .project-card {
     transform-style: preserve-3d;
     transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
@@ -187,7 +181,6 @@ const data: I18nTranslations = Astro.props.data;
     transform: perspective(1000px) rotateX(2deg) rotateY(-2deg);
   }
 
-  /* Efecto de profundidad en el fondo */
   .project-bg {
     transition: transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
     transform: translateZ(-20px);
@@ -197,7 +190,6 @@ const data: I18nTranslations = Astro.props.data;
     transform: translateZ(-10px) scale(1.02);
   }
 
-  /* Overlay con efecto de desvanecimiento */
   .project-overlay {
     transition: opacity 0.5s ease;
   }
@@ -206,7 +198,6 @@ const data: I18nTranslations = Astro.props.data;
     opacity: 0.85;
   }
 
-  /* Partículas flotantes */
   .particle {
     position: absolute;
     width: 4px;
@@ -265,7 +256,6 @@ const data: I18nTranslations = Astro.props.data;
     }
   }
 
-  /* Efecto de órbita en el icono de GitHub */
   .github-orbit {
     position: relative;
     width: 40px;
@@ -324,7 +314,6 @@ const data: I18nTranslations = Astro.props.data;
     transform: translateY(-5px);
   }
 
-  /* Título con efecto de máquina de escribir sutil */
   .project-title {
     position: relative;
     display: inline-block;
@@ -346,7 +335,6 @@ const data: I18nTranslations = Astro.props.data;
     width: 100%;
   }
 
-  /* Descripción con efecto de brillo */
   .project-description {
     transition: all 0.3s ease;
   }
@@ -355,7 +343,6 @@ const data: I18nTranslations = Astro.props.data;
     text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
   }
 
-  /* CTA con efecto de deslizamiento */
   .project-cta {
     display: flex;
     align-items: center;
@@ -385,7 +372,6 @@ const data: I18nTranslations = Astro.props.data;
     width: 20px;
   }
 
-  /* Efecto de resplandor en los bordes al hover */
   .project-card::after {
     content: "";
     position: absolute;
@@ -424,7 +410,6 @@ const data: I18nTranslations = Astro.props.data;
     }
   }
 
-  /* Responsive */
   @media (max-width: 768px) {
     .project-card:hover {
       transform: perspective(1000px) rotateX(1deg) rotateY(-1deg);

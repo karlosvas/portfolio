@@ -5,9 +5,8 @@ import { getEntry } from "astro:content";
 const { currentLocale } = Astro;
 
 // Translation data
-const data: I18nTranslations = Astro.props.data;
+const { data } = Astro.props;
 
-// Get CV from R2
 const R2_URL = import.meta.env.PUBLIC_R2_PUBLIC_URL;
 const cvId = currentLocale === "en" ? "current-en" : "current-es";
 const cv = await getEntry("cv", cvId);
@@ -19,7 +18,7 @@ if (!cv) throw new Error(`CV entry not found for locale: ${currentLocale}`);
     {data.history.title}
   </h1>
   {
-    data.history.jobs.map((job) => (
+    data.history.jobs.map((job: any) => (
       <div class="flex w-full max-w-xl transform flex-col rounded-xl bg-opacity-10 bg-contain bg-center bg-no-repeat py-5 text-blackPal dark:text-whitePal">
         <h2 class="text-2xl font-bold text-purplePal">{job.title}</h2>
         <h3 class="font-bold text-purplePal">{job.company}</h3>
