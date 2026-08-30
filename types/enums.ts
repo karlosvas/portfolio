@@ -18,3 +18,8 @@ export enum Lang {
   SPANISH = "es",
   ENGLISH = "en",
 }
+
+declare module "*.glsl?raw" {
+  const content: string;
+  export default content;
+}

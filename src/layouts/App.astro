@@ -4,11 +4,9 @@ import Header from "@/layouts/Header.astro";
 import Footer from "@/layouts/Footer.astro";
 import Main from "@/layouts/Main.astro";
 
-// Select locale using i18n
 import { getI18N } from "@i18n/index";
 let { currentLocale } = Astro;
 
-// Get translation data for the selected locale
 const data = getI18N({ currentLocale });
 ---
 

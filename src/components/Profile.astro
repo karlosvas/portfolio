@@ -1,6 +1,10 @@
 ---
 import type { Lang } from "@app-types/enums";
 import type { I18nTranslations } from "@app-types/types";
+import ImageShader from "@/components/ImageShader.astro";
+import { toCardinal as toCardinalEs } from "n2words/es-ES";
+import { toCardinal as toCardinalEn } from "n2words/en-US";
+
 const data: I18nTranslations = Astro.props.data;
 const currentLang = Astro.currentLocale as Lang;
 
@@ -11,56 +15,24 @@ const age =
   birthDate.getFullYear() -
   (today < new Date(today.getFullYear(), birthDate.getMonth(), birthDate.getDate()) ? 1 : 0);
 
-const ageWords: Record<Lang, Record<number, string>> = {
-  es: {
-    21: "veintiún",
-    22: "veintidós",
-    23: "veintitrés",
-    24: "veinticuatro",
-    25: "veinticinco",
-    26: "veintiséis",
-    27: "veintisiete",
-    28: "veintiocho",
-    29: "veintinueve",
-  },
-  en: {
-    21: "twenty-one",
-    22: "twenty-two",
-    23: "twenty-three",
-    24: "twenty-four",
-    25: "twenty-five",
-    26: "twenty-six",
-    27: "twenty-seven",
-    28: "twenty-eight",
-    29: "twenty-nine",
-  },
-};
-
-const ageLabel: string = ageWords[currentLang][age];
+const ageLabel: string = currentLang === "es" ? toCardinalEs(age) : toCardinalEn(age);
 ---
 
-<div
-  id="profile"
-  class="grid min-h-[90dvh] items-center justify-center gap-8 px-4 py-10 sm:grid-cols-2 md:w-3/4 lg:w-1/2"
->
+<div id="profile" class="grid min-h-[90dvh] items-center justify-center gap-8 px-4 py-10 md:w-3/4 lg:grid-cols-2">
   <!-- Img Profile -->
-  <img
-    class="m-auto w-full max-w-[260px] select-none rounded-lg object-cover sm:max-w-[320px] md:max-w-[360px] lg:my-0 lg:max-w-[380px] xl:max-w-[420px]"
-    src="/img/profile.webp"
-    alt="Imagen de perfil Carlos Vásquez Sánchez"
-  />
+  <ImageShader />
 
   <!-- Info Profile -->
   <section class="flex flex-col justify-center space-y-4">
     <!-- Name -->
-    <div class="space-y-2">
+    <div class="select-none space-y-2">
       <h1
         id="title"
-        class="bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 bg-clip-text text-4xl font-bold text-transparent lg:min-h-10"
+        class="bg-gradient-to-r from-blue-500 via-purple-600 to-pink-900 bg-clip-text text-4xl font-bold text-transparent lg:min-h-10"
       >
         {" "}
       </h1>
-      <p class="text-lg font-semibold text-purplePal/80 md:text-xl">{data.profile.subtitle}</p>
+      <p class="font-fraunces text-lg text-purplePal/80 md:text-xl">{data.profile.subtitle}</p>
     </div>
     <!-- Info -->
     <div class="space-y-4 text-base leading-relaxed md:text-base">
@@ -74,7 +46,6 @@ const ageLabel: string = ageWords[currentLang][age];
   </section>
 </div>
 <script is:inline define:vars={{ data }}>
-  // Update title with a typing effect
   async function updateTitle(name) {
     const title = document.getElementById("title");
 
@@ -82,11 +53,9 @@ const ageLabel: string = ageWords[currentLang][age];
       title.innerHTML = "";
       title.style.minHeight = "5rem";
 
-      // Create a container for the text
       const textSpan = document.createElement("span");
       textSpan.style.whiteSpace = "pre-line";
 
-      // Create the cursor span and assign the blinking-cursor class
       const cursorSpan = document.createElement("span");
       cursorSpan.innerText = "|";
       cursorSpan.classList.add("blinking-cursor");
@@ -96,7 +65,6 @@ const ageLabel: string = ageWords[currentLang][age];
       title.appendChild(textSpan);
       title.appendChild(cursorSpan);
 
-      // Iterate through each letter and simulate a typing effect
       let result = "";
       for (let i = 0; i < name.length; i++) {
         await new Promise((resolve) => setTimeout(resolve, 100));
@@ -105,7 +73,6 @@ const ageLabel: string = ageWords[currentLang][age];
         textSpan.textContent = result;
       }
 
-      // At the end, keep the cursor blinking and then remove it
       cursorSpan.style.animation = "blink 1s infinite";
       setTimeout(() => {
         cursorSpan.remove();

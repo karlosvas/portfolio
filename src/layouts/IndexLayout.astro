@@ -4,7 +4,6 @@ import { Toaster } from "solid-toast";
 
 const { title, language } = Astro.props;
 
-// SEO Meta Tags
 const description =
   language === "en"
     ? "Portfolio of Carlos Vásquez Sánchez, showcasing software development projects and skills in TypeScript, Rust, Java, React, and more."
@@ -94,10 +93,7 @@ const ogImage = `${siteUrl}/img/profile.webp`;
   </head>
 
   <body>
-    <!-- Slot para contenido de página -->
     <slot />
-
-    <!-- Toaster de Solid -->
     <Toaster client:load position="bottom-right" />
   </body>
 </html>

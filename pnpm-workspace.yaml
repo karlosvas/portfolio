@@ -4,3 +4,4 @@ allowBuilds:
   esbuild: true
   sharp: true
   vercel: true
+blockExoticSubdeps: false

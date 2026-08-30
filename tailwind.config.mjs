@@ -14,6 +14,10 @@ export default {
         purplePal: "#6366F1",
       },
       scale: ["hover"],
+      fontFamily: {
+        inter: ["Inter", "sans-serif"],
+        fraunces: ["Fraunces", "serif"],
+      },
     },
     transitionProperty: {
       color: "color",
@@ -26,7 +30,21 @@ export default {
     aspectRatio,
     function ({ addBase, config }) {
       addBase({
-        "*::selection": { backgroundColor: config("theme.colors.purple.500") },
+        "*::selection": { backgroundColor: config("theme.colors.purple.400") },
+        "@font-face": [
+          {
+            fontFamily: "Inter",
+            src: 'url("/fonts/InterVariable.woff2") format("woff2-variations")',
+            fontWeight: "100 900",
+            fontStyle: "normal",
+          },
+          {
+            fontFamily: "Fraunces",
+            src: 'url("/fonts/FrauncesVariable.ttf") format("truetype-variations")',
+            fontWeight: "100 900",
+            fontStyle: "normal",
+          },
+        ],
       });
     },
   ],
