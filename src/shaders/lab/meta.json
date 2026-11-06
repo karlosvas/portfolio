@@ -1,0 +1,18 @@
+{
+  "04-foco-color.glsl": {
+    "name": "Foco de color",
+    "desc": "La foto está en blanco y negro y el color aparece bajo el cursor, como un foco."
+  },
+  "09-modo-retrato.glsl": {
+    "name": "Modo retrato",
+    "desc": "Enfoque selectivo de cámara: el fondo se desenfoca con bokeh y la cara bajo el cursor queda nítida."
+  },
+  "15-duotono-marca.glsl": {
+    "name": "Duotono de marca",
+    "desc": "Un pincel de luz con el degradado de los colores de tu marca (acento, fondo y texto). Cambia solo en claro/oscuro."
+  },
+  "16-visor.glsl": {
+    "name": "Visor",
+    "desc": "Un visor de cámara con esquinas y retícula de puntos en el color de tu marca. Cero deformación."
+  }
+}

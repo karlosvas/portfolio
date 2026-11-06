@@ -69,6 +69,7 @@ const projectImages = readdirSync("public/img")
 
 <script>
   import { createImageShader, type ImageShaderHandle } from "@/services/imageShader";
+  import meta from "@/shaders/lab/meta.json";
 
   // Cada fichero de src/shaders/lab/*.glsl es una variante: añadir uno nuevo basta para verlo aquí
   const shaders = import.meta.glob<string>("/src/shaders/lab/*.glsl", {
@@ -119,8 +120,9 @@ const projectImages = readdirSync("public/img")
     for (const [path, body] of Object.entries(shaders).sort(([a], [b]) => a.localeCompare(b))) {
       const file = path.split("/").pop()!;
       const num = file.match(/^(\d+)/)?.[1] ?? "··";
-      const name = /\/\/\s*name:\s*(.+)/.exec(body)?.[1]?.trim() ?? file;
-      const desc = /\/\/\s*desc:\s*(.+)/.exec(body)?.[1]?.trim() ?? "";
+      const info = (meta as Record<string, { name: string; desc: string }>)[file];
+      const name = info?.name ?? file;
+      const desc = info?.desc ?? "";
 
       const card = document.createElement("figure");
       card.innerHTML = `

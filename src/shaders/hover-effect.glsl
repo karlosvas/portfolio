@@ -1,5 +1,5 @@
 // name: Duotono de marca
-// brush: 0.34
+const float BRUSH = 0.34;
 // desc: Un pincel de luz con el degradado de los colores de tu marca (acento, fondo y texto). Cambia solo en claro/oscuro.
 vec4 effect(vec2 uv) {
   vec4 c = sampleImage(uv);

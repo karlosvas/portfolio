@@ -176,7 +176,7 @@ export function createImageShader(options: ImageShaderOptions): ImageShaderHandl
 
   const usesTrail = /trailAt/.test(fragmentBody) || dim !== undefined;
   const animated = /u_time/.test(fragmentBody);
-  const brushRadius = Number(/\/\/\s*brush:\s*([\d.]+)/.exec(fragmentBody)?.[1] ?? 0.17);
+  const brushRadius = Number(/const\s+float\s+BRUSH\s*=\s*([\d.]+)/.exec(fragmentBody)?.[1] ?? 0.17);
 
   let program: WebGLProgram;
   let trailProgram: WebGLProgram | null = null;
