@@ -2,24 +2,43 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-.dark {
-  @apply bg-blackPal text-whitePal outline-whitePal;
-  transition:
-    background-color 0.3s ease-in-out,
-    color 0.3s ease-in-out;
-  .glow-shadow {
-    box-shadow: 0 0 5px 2px rgba(255, 255, 255, 0.8);
-  }
+/* ── Design tokens (RGB channels, used via Tailwind `rgb(var(--x) / alpha)`) ── */
+/* Light: crema + terracota, como el CV */
+:root,
+.light {
+  --bg: 246 242 237;
+  --surface: 255 254 252;
+  --fg: 28 25 23;
+  --muted: 96 88 80;
+  --line: 227 219 209;
+  --accent: 168 62 34;
+  --accent-fg: 255 255 255;
+  color-scheme: light;
 }
 
+/* Dark: azul-negro + coral (el terracota del claro, en versión luminosa) */
+.dark {
+  --bg: 5 8 17;
+  --surface: 12 17 30;
+  --fg: 241 245 249;
+  --muted: 148 163 184;
+  --line: 30 41 59;
+  --accent: 236 128 100;
+  --accent-fg: 24 10 6;
+  color-scheme: dark;
+}
+
+.dark,
 .light {
-  @apply bg-whitePal text-blackPal outline-blackPal;
+  @apply bg-bg text-fg;
   transition:
     background-color 0.3s ease-in-out,
     color 0.3s ease-in-out;
-  .glow-shadow {
-    box-shadow: 0 0 5px 2px rgba(0, 0, 0, 0.8);
-  }
+}
+
+/* Etiqueta mono pequeña en mayúsculas (como "01 PERFIL" del CV) */
+.eyebrow {
+  @apply font-mono text-xs font-medium uppercase tracking-[0.18em] text-accent;
 }
 
 body {
@@ -44,4 +63,41 @@ img[src*="unreal.svg"] {
 .dark img[src*="unity.svg"],
 .dark img[src*="unreal.svg"] {
   filter: brightness(0) saturate(100%) invert(0.95) opacity(1);
+}
+
+/* Contenido que aparece al hacer scroll: solo se oculta si hay JS (clase `js` en <html>) */
+.js .reveal-element {
+  opacity: 0;
+  transform: translateY(30px);
+  transition:
+    opacity 0.8s ease-out,
+    transform 0.8s ease-out;
+}
+
+.js .reveal-element.revealed {
+  opacity: 1;
+  transform: none;
+}
+
+/* Enlace "saltar al contenido" */
+.skip-link {
+  @apply sr-only;
+}
+.skip-link:focus {
+  @apply not-sr-only fixed left-4 top-4 z-[60] rounded-sm bg-accent px-4 py-2 text-sm text-accent-fg;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  .js .reveal-element {
+    opacity: 1;
+    transform: none;
+  }
 }

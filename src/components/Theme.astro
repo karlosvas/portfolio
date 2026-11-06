@@ -1,9 +1,15 @@
+---
+import type { I18nTranslations } from "@/../types/types";
+const data: I18nTranslations = Astro.props.data;
+---
+
 <button
   id="themeToggle"
   type="button"
-  class="transition-colors mx-2 inline-flex items-center justify-center rounded-md p-1 duration-200 hover:text-purplePal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purplePal focus-visible:ring-offset-2 md:mx-5"
-  aria-label="Cambiar tema"
-  aria-pressed="true"
+  class="transition-colors mx-2 inline-flex items-center justify-center rounded-md p-1 duration-200 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 md:mx-5"
+  aria-label={data.ui.aria.toLightTheme}
+  data-label-to-light={data.ui.aria.toLightTheme}
+  data-label-to-dark={data.ui.aria.toDarkTheme}
 >
   <svg
     id="themeIconDark"

@@ -16,19 +16,22 @@ function applyTheme(theme: ThemeMode) {
   lightIcon?.classList.toggle("hidden", isDark);
 
   if (toggle) {
-    toggle.setAttribute("aria-pressed", String(isDark));
-    toggle.setAttribute("aria-label", isDark ? "Cambiar a tema claro" : "Cambiar a tema oscuro");
+    const { labelToLight = "", labelToDark = "" } = toggle.dataset;
+    toggle.setAttribute("aria-label", isDark ? labelToLight : labelToDark);
   }
-
-  localStorage.setItem(THEME_STORAGE_KEY, theme);
 }
 
-function getInitialTheme(): ThemeMode {
-  const persisted = localStorage.getItem(THEME_STORAGE_KEY);
-  if (persisted === "dark" || persisted === "light") return persisted;
+function persistTheme(theme: ThemeMode) {
+  try {
+    localStorage.setItem(THEME_STORAGE_KEY, theme);
+  } catch {
+    // Almacenamiento no disponible (modo privado, etc.): el tema solo dura la sesión.
+  }
+}
 
-  if (document.documentElement.classList.contains("light")) return "light";
-  return "dark";
+// El script del <head> ya dejó en <html> el tema guardado o el del sistema.
+function getInitialTheme(): ThemeMode {
+  return document.documentElement.classList.contains("dark") ? "dark" : "light";
 }
 
 function initThemeToggle() {
@@ -40,6 +43,7 @@ function initThemeToggle() {
   toggle.addEventListener("click", () => {
     const nextTheme: ThemeMode = document.documentElement.classList.contains("dark") ? "light" : "dark";
     applyTheme(nextTheme);
+    persistTheme(nextTheme); // solo se guarda cuando el usuario elige
   });
 }
 

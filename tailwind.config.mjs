@@ -3,20 +3,26 @@ import forms from "@tailwindcss/forms";
 import typography from "@tailwindcss/typography";
 import aspectRatio from "@tailwindcss/aspect-ratio";
 
+const token = (name) => `rgb(var(--${name}) / <alpha-value>)`;
+
 export default {
   darkMode: "class",
-  content: ["./src/**/*.astro", "./src/**/*.html"],
+  content: ["./src/**/*.{astro,html,ts,tsx}"],
   theme: {
     extend: {
       colors: {
-        whitePal: "#f1f5f9",
-        blackPal: "#030712",
-        purplePal: "#6366F1",
+        bg: token("bg"),
+        surface: token("surface"),
+        fg: token("fg"),
+        muted: token("muted"),
+        line: token("line"),
+        accent: token("accent"),
+        "accent-fg": token("accent-fg"),
       },
       scale: ["hover"],
       fontFamily: {
         inter: ["Inter", "sans-serif"],
-        fraunces: ["Fraunces", "serif"],
+        mono: ['"IBM Plex Mono"', "ui-monospace", "SFMono-Regular", "monospace"],
       },
     },
     transitionProperty: {
@@ -28,21 +34,30 @@ export default {
     forms,
     typography,
     aspectRatio,
-    function ({ addBase, config }) {
+    function ({ addBase }) {
       addBase({
-        "*::selection": { backgroundColor: config("theme.colors.purple.400") },
+        "*::selection": { backgroundColor: "rgb(var(--accent) / 0.3)" },
         "@font-face": [
           {
             fontFamily: "Inter",
             src: 'url("/fonts/InterVariable.woff2") format("woff2-variations")',
             fontWeight: "100 900",
             fontStyle: "normal",
+            fontDisplay: "swap",
           },
           {
-            fontFamily: "Fraunces",
-            src: 'url("/fonts/FrauncesVariable.ttf") format("truetype-variations")',
-            fontWeight: "100 900",
+            fontFamily: '"IBM Plex Mono"',
+            src: 'url("/fonts/IBMPlexMono-400.woff2") format("woff2")',
+            fontWeight: "400",
             fontStyle: "normal",
+            fontDisplay: "swap",
+          },
+          {
+            fontFamily: '"IBM Plex Mono"',
+            src: 'url("/fonts/IBMPlexMono-500.woff2") format("woff2")',
+            fontWeight: "500",
+            fontStyle: "normal",
+            fontDisplay: "swap",
           },
         ],
       });
