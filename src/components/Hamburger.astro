@@ -1,14 +1,16 @@
 ---
 import type { I18nTranslations } from "@/../types/types";
+import { SECTIONS } from "@/data/links";
 const data: I18nTranslations = Astro.props.data;
+const links = SECTIONS.map(({ id, key }) => ({ id, label: data[key].title }));
 ---
 
-<div class="absolute left-10">
+<div class="absolute left-6 md:left-10">
   <button
     id="hamburgerBtn"
     type="button"
-    class="transition-colors inline-flex h-10 w-10 items-center justify-center rounded-md duration-200 hover:text-purplePal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purplePal focus-visible:ring-offset-2 sm:hidden"
-    aria-label="Abrir menu de navegacion"
+    class="transition-colors inline-flex h-10 w-10 items-center justify-center rounded-md duration-200 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 lg:hidden"
+    aria-label={data.ui.aria.openMenu}
     aria-controls="hamburgerModal"
     aria-expanded="false"
   >
@@ -26,42 +28,23 @@ const data: I18nTranslations = Astro.props.data;
 
   <dialog
     id="hamburgerModal"
-    class="fixed left-0 z-50 m-0 h-full w-80 border-none bg-whitePal p-0 text-blackPal backdrop:bg-blackPal backdrop:bg-opacity-50 dark:bg-blackPal dark:text-whitePal"
+    aria-label={data.ui.nav.label}
+    class="fixed left-0 z-50 m-0 h-full w-80 border-r border-none border-line bg-bg p-0 text-fg backdrop:bg-black/50"
   >
     <div class="h-full overflow-hidden">
       <ul class="mt-10 flex h-full flex-col items-center justify-start">
-        <li class="nav-item my-2 text-lg">
-          <a
-            href="#profile"
-            class="transition-colors block px-4 py-2 duration-200 hover:text-purplePal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purplePal focus-visible:ring-offset-2"
-          >
-            {data.profile.title}
-          </a>
-        </li>
-        <li class="nav-item my-2 text-lg">
-          <a
-            href="#projects"
-            class="transition-colors block px-4 py-2 duration-200 hover:text-purplePal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purplePal focus-visible:ring-offset-2"
-          >
-            {data.projects.title}
-          </a>
-        </li>
-        <li class="nav-item my-2 text-lg">
-          <a
-            href="#experiencie"
-            class="transition-colors block px-4 py-2 duration-200 hover:text-purplePal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purplePal focus-visible:ring-offset-2"
-          >
-            {data.experience.title}
-          </a>
-        </li>
-        <li class="nav-item my-2 text-lg">
-          <a
-            href="#contact"
-            class="transition-colors block px-4 py-2 duration-200 hover:text-purplePal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purplePal focus-visible:ring-offset-2"
-          >
-            {data.contact.title}
-          </a>
-        </li>
+        {
+          links.map(({ id, label }) => (
+            <li class="nav-item my-2 text-lg">
+              <a
+                href={`#${id}`}
+                class="transition-colors block px-4 py-2 duration-200 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+              >
+                {label}
+              </a>
+            </li>
+          ))
+        }
       </ul>
     </div>
   </dialog>
@@ -69,12 +52,12 @@ const data: I18nTranslations = Astro.props.data;
 
 <style>
   #hamburgerModal {
-    top: 10dvh;
+    top: 4rem;
     transition: top 0.3s;
   }
 
   #hamburgerModal.scrolled {
-    top: 8dvh;
+    top: 4rem;
   }
 
   @keyframes slideDown {

@@ -1,9 +1,14 @@
-<div class="relative flex justify-center align-middle sm:mr-10">
+---
+import type { I18nTranslations } from "@/../types/types";
+const data: I18nTranslations = Astro.props.data;
+---
+
+<div class="relative flex justify-center align-middle">
   <button
     id="langButton"
     type="button"
-    class="transition-colors inline-flex items-center justify-center rounded-md p-1 duration-200 hover:text-purplePal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-purplePal focus-visible:ring-offset-2"
-    aria-label="Cambiar idioma"
+    class="transition-colors inline-flex items-center justify-center rounded-md p-1 duration-200 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2"
+    aria-label={data.ui.aria.changeLanguage}
     aria-haspopup="menu"
     aria-expanded="false"
     aria-controls="modalLanguage"
@@ -34,9 +39,9 @@
     id="modalLanguage"
     role="menu"
     aria-labelledby="langButton"
-    class="absolute right-[-10] top-11 z-50 hidden h-auto w-28 select-none flex-col items-center justify-center rounded-md bg-blackPal py-2 outline outline-2 outline-whitePal transition-bg duration-200"
+    class="absolute right-[-10] top-11 z-50 hidden h-auto w-28 select-none flex-col items-center justify-center rounded-sm border border-line bg-surface py-2 text-fg shadow-lg transition-bg duration-200"
   >
-    <button class="lang-button m-1 rounded px-2 py-1" data-lang="es" role="menuitem">Spanish</button>
+    <button class="lang-button m-1 rounded px-2 py-1" data-lang="es" role="menuitem">Español</button>
     <button class="lang-button m-1 rounded px-2 py-1" data-lang="en" role="menuitem">English</button>
   </div>
 </div>
@@ -130,16 +135,16 @@
     transform: translateX(-50%);
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
-    border-bottom: 10px solid #fff;
+    border-bottom: 10px solid rgb(var(--line));
   }
 
   #modalLanguage button:hover {
-    color: var(--purplePal);
+    color: rgb(var(--accent));
     transition: color 0.2s;
   }
 
   #modalLanguage button:focus-visible {
-    outline: 2px solid var(--purplePal);
+    outline: 2px solid rgb(var(--accent));
     outline-offset: 2px;
   }
 

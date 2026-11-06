@@ -1,9 +1,15 @@
-<nav>
+---
+import { GITHUB_URL, LINKEDIN_URL } from "@/data/links";
+import type { I18nTranslations } from "@/../types/types";
+const data: I18nTranslations = Astro.props.data;
+---
+
+<div>
   <ul class="flex flex-row justify-center align-middle">
     <li>
-      <a href="https://github.com/karlosvas" target="_blank">
+      <a href={GITHUB_URL} target="_blank" rel="noopener noreferrer" aria-label={data.ui.social.github}>
         <svg
-          class="icon icon-tabler icons-tabler-outline icon-tabler-brand-github mx-1 transition-color duration-200 hover:text-purplePal"
+          class="icon icon-tabler icons-tabler-outline icon-tabler-brand-github mx-1 transition-color duration-200 hover:text-accent"
           xmlns="http://www.w3.org/2000/svg"
           width="24"
           height="24"
@@ -20,9 +26,9 @@
       </a>
     </li>
     <li>
-      <a href="https://www.linkedin.com/in/carlos-v%C3%A1squez-s%C3%A1nchez-a4b2b0286/" target="_blank">
+      <a href={LINKEDIN_URL} target="_blank" rel="noopener noreferrer" aria-label={data.ui.social.linkedin}>
         <svg
-          class="icon icon-tabler icons-tabler-outline icon-tabler-brand-linkedin mx-1 hover:text-purplePal md:mx-4"
+          class="icon icon-tabler icons-tabler-outline icon-tabler-brand-linkedin mx-1 hover:text-accent md:mx-4"
           xmlns="http://www.w3.org/2000/svg"
           width="24"
           height="24"
@@ -40,9 +46,9 @@
       </a>
     </li>
     <li>
-      <a href="mailto:carlosvassan@gmail.com" target="_blank">
+      <a href={`mailto:${data.contact.email}`} aria-label={data.ui.social.email}>
         <svg
-          class="icon icon-tabler icons-tabler-filled icon-tabler-mail mx-1 hover:text-purplePal"
+          class="icon icon-tabler icons-tabler-filled icon-tabler-mail mx-1 hover:text-accent"
           xmlns="http://www.w3.org/2000/svg"
           width="24"
           height="24"
@@ -57,4 +63,4 @@
       </a>
     </li>
   </ul>
-</nav>
+</div>

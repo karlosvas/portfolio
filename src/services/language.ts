@@ -1,12 +1,10 @@
-// Switch page language to Spanish
-export const getSpain = () => {
-  globalThis.location.href = "/";
+// Cambia de idioma conservando la sección (hash) en la que estaba el usuario.
+const goTo = (path: string) => {
+  globalThis.location.href = `${path}${globalThis.location.hash}`;
 };
 
-// Switch page language to English
-export const getEnglish = () => {
-  globalThis.location.href = "/en";
-};
+export const getSpain = () => goTo("/");
+export const getEnglish = () => goTo("/en");
 
 globalThis.getSpain = getSpain;
 globalThis.getEnglish = getEnglish;

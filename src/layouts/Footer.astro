@@ -3,9 +3,11 @@ import type { I18nTranslations } from "@app-types/types";
 const data: I18nTranslations = Astro.props.data;
 ---
 
-<footer class="flex h-20 w-full items-center justify-center bg-black text-xs text-slate-200">
-  <span class="ml-5 text-center md:mr-10">
-    © {new Date().getFullYear()} Carlos Vásquez Sánchez <br />
+<footer
+  class="flex w-full flex-col items-center justify-between gap-2 border-t border-line px-6 py-8 md:flex-row md:px-10"
+>
+  <span class="eyebrow !text-muted">© {new Date().getFullYear()} Carlos Vásquez Sánchez</span>
+  <a href={`mailto:${data.contact.email}`} class="eyebrow transition-colors !text-muted hover:!text-accent">
     {data.contact.email}
-  </span>
+  </a>
 </footer>

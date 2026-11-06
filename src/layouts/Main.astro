@@ -9,7 +9,7 @@ import type { I18nTranslations } from "@/../types/types";
 const data: I18nTranslations = Astro.props.data;
 ---
 
-<main class="text-black-50 light:bg-whitePal mt-10 flex h-auto w-full flex-col items-center justify-center p-10">
+<main id="main" class="mx-auto mt-16 flex h-auto w-full max-w-5xl flex-col items-center px-6 pb-10 md:px-10">
   <div class="reveal-element flex w-full justify-center">
     <Profile data={data} />
   </div>
@@ -27,25 +27,12 @@ const data: I18nTranslations = Astro.props.data;
   </div>
 </main>
 
-<style>
-  .reveal-element {
-    opacity: 0;
-    transform: translateY(30px);
-    transition:
-      opacity 0.8s ease-out,
-      transform 0.8s ease-out;
-  }
-
-  .reveal-element.revealed {
-    opacity: 1;
-    transform: translateY(0);
-  }
-</style>
-
 <script>
-  // Force scroll restoration to top on page load
-  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
-  globalThis.scrollTo(0, 0);
+  // Sin hash en la URL, arrancamos arriba; con hash (p. ej. /#contact) respetamos el ancla.
+  if (!location.hash) {
+    if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+    globalThis.scrollTo(0, 0);
+  }
 
   // Intersection Observer to reveal elements on scroll
   const observerOptions = {
@@ -62,9 +49,5 @@ const data: I18nTranslations = Astro.props.data;
     });
   }, observerOptions);
 
-  // Observe all reveal elements on DOMContentLoaded
-  document.addEventListener("DOMContentLoaded", () => {
-    const revealElements = document.querySelectorAll(".reveal-element");
-    revealElements.forEach((el) => observer.observe(el));
-  });
+  document.querySelectorAll(".reveal-element").forEach((el) => observer.observe(el));
 </script>
