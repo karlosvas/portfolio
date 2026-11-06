@@ -1,6 +1,6 @@
 ---
-import type { I18nTranslations } from "@/../types/types";
 import ButtonCustomized from "./ButtonCustomized.astro";
+import SectionHeading from "./SectionHeading.astro";
 import { getEntry } from "astro:content";
 const { currentLocale } = Astro;
 
@@ -13,22 +13,23 @@ const cv = await getEntry("cv", cvId);
 if (!cv) throw new Error(`CV entry not found for locale: ${currentLocale}`);
 ---
 
-<div class="text-black-50 light:bg-whitePal mb-40 flex h-auto w-full flex-col items-center justify-center">
-  <h1 class="mb-3 text-3xl font-bold text-blackPal dark:text-whitePal">
-    {data.history.title}
-  </h1>
-  {
-    data.history.jobs.map((job: any) => (
-      <div class="flex w-full max-w-xl transform flex-col rounded-xl bg-opacity-10 bg-contain bg-center bg-no-repeat py-5 text-blackPal dark:text-whitePal">
-        <h2 class="text-2xl font-bold text-purplePal">{job.title}</h2>
-        <h3 class="font-bold text-purplePal">{job.company}</h3>
-        <p class="text-pretty pt-3">{job.date}</p>
-        <p class="text-pretty pt-3">{job.description}</p>
-      </div>
-    ))
-  }
-  <br />
-  <a href={R2_URL + cv.data.pdfUrl}>
-    <ButtonCustomized customStyle="px-10">{data.history.viewFullResume}</ButtonCustomized>
-  </a>
+<div class="mb-32 flex h-auto w-full flex-col items-start">
+  <SectionHeading num="03" title={data.history.title} id="history" />
+  <div class="w-full space-y-10">
+    {
+      data.history.jobs.map((job: any) => (
+        <article class="grid gap-x-8 gap-y-2 md:grid-cols-[11rem_1fr]">
+          <p class="eyebrow !text-muted md:pt-1.5">{job.date}</p>
+          <div>
+            <h3 class="text-xl font-semibold text-fg">{job.title}</h3>
+            <p class="font-medium text-accent">{job.company}</p>
+            <p class="mt-3 max-w-2xl text-pretty text-fg/80">{job.description}</p>
+          </div>
+        </article>
+      ))
+    }
+  </div>
+  <ButtonCustomized href={R2_URL + cv.data.pdfUrl} target="_blank" customStyle="mt-12 self-center px-8">
+    {data.history.viewFullResume}
+  </ButtonCustomized>
 </div>

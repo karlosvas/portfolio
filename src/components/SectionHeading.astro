@@ -1,0 +1,11 @@
+---
+const { num, title, id } = Astro.props;
+---
+
+<div class="mb-10 flex w-full scroll-mt-24 items-center gap-4" id={id}>
+  <h2 class="eyebrow shrink-0 !text-xs">
+    <span class="text-muted">{num}</span>
+    <span class="ml-2">{title}</span>
+  </h2>
+  <span class="h-px flex-1 bg-line"></span>
+</div>

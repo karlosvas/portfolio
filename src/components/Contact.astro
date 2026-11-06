@@ -1,29 +1,25 @@
 ---
 import type { I18nTranslations } from "@/../types/types";
 import ButtonCustomized from "./ButtonCustomized.astro";
+import SectionHeading from "./SectionHeading.astro";
 
 const data: I18nTranslations = Astro.props.data;
 const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 ---
 
-<!-- Script de Turnstile -->
-<script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"></script>
+<!-- Script de Turnstile: solo se carga si hay clave configurada -->{
+  TURNSTILE_SITE_KEY && (
+    <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer />
+  )
+}
 
 <!-- Contacto -->
-<div class="mb-32 w-full max-w-2xl px-2 sm:px-4">
-  <h1 id="contact" class="text-darkPal mb-8 text-center text-3xl font-bold dark:text-whitePal md:text-4xl">
-    {data.contact.title}
-  </h1>
+<div class="mb-24 w-full">
+  <SectionHeading num="04" title={data.contact.title} id="contact" />
 
-  <form
-    class="flex w-full flex-col gap-6 rounded-2xl border border-purple-500/10 bg-gradient-to-br from-purple-500/5 to-blue-500/5 p-6 shadow-xl backdrop-blur-sm md:p-8"
-    id="formEmail"
-  >
+  <form class="mx-auto flex w-full max-w-2xl flex-col gap-6" id="formEmail">
     <div class="group flex flex-col gap-3">
-      <label
-        for="email"
-        class="transition-colors text-sm font-semibold duration-300 group-focus-within:text-purplePal md:text-base"
-      >
+      <label for="email" class="transition-colors eyebrow !text-muted duration-300 group-focus-within:!text-accent">
         {data.contact.formEmail}
       </label>
       <input
@@ -31,15 +27,12 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
         name="email"
         type="email"
         placeholder={data.contact.placeholders.email}
-        class="transition-all rounded-lg border-2 border-gray-700/40 bg-gray-900/80 p-3 text-white duration-300 placeholder:text-gray-400 focus:border-purplePal focus:outline-none focus:ring-2 focus:ring-purplePal/20 dark:border-gray-400/40 dark:bg-white/90 dark:text-black dark:placeholder:text-gray-500 md:p-4"
+        class="transition-all rounded-sm border border-line bg-surface p-3 text-fg duration-300 placeholder:text-muted/70 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20 md:p-4"
       />
     </div>
 
     <div class="group flex flex-col gap-3">
-      <label
-        for="mensaje"
-        class="transition-colors text-sm font-semibold duration-300 group-focus-within:text-purplePal md:text-base"
-      >
+      <label for="mensaje" class="transition-colors eyebrow !text-muted duration-300 group-focus-within:!text-accent">
         {data.contact.formMessage}
       </label>
       <textarea
@@ -47,14 +40,14 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
         name="mensaje"
         rows="5"
         placeholder={data.contact.placeholders.message}
-        class="transition-all resize-none rounded-lg border-2 border-gray-700/40 bg-gray-900/80 p-3 text-white duration-300 placeholder:text-gray-400 focus:border-purplePal focus:outline-none focus:ring-2 focus:ring-purplePal/20 dark:border-gray-400/40 dark:bg-white/90 dark:text-black dark:placeholder:text-gray-500 md:p-4"
+        class="transition-all resize-none rounded-sm border border-line bg-surface p-3 text-fg duration-300 placeholder:text-muted/70 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/20 md:p-4"
       ></textarea>
     </div>
 
     <!-- Cloudflare Turnstile Widget -->
     {TURNSTILE_SITE_KEY && <div class="cf-turnstile" data-sitekey={TURNSTILE_SITE_KEY} data-size="invisible" />}
 
-    <ButtonCustomized>
+    <ButtonCustomized customStyle="self-center px-10">
       {data.contact.formSubmit}
     </ButtonCustomized>
   </form>
@@ -77,21 +70,30 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
   let rejectToken: ((reason: unknown) => void) | null = null;
 
   // ─── Turnstile Init ───────────────────────────────────────────────────────
-  widgetId = globalThis.turnstile.render(".cf-turnstile", {
-    sitekey: turnstileKey,
-    size: "invisible",
-    execution: "execute",
-    callback: (token: string) => {
-      resolveToken?.(token);
-      resolveToken = null;
-      rejectToken = null;
-    },
-    "error-callback": () => {
-      rejectToken?.(new Error(formEnum.MESSAGE_ERROR));
-      resolveToken = null;
-      rejectToken = null;
-    },
-  });
+  // El script de Turnstile carga async: esperamos a que exista antes de pintar el widget.
+  function initTurnstile() {
+    if (!turnstileKey || !document.querySelector(".cf-turnstile")) return;
+    if (!globalThis.turnstile) {
+      setTimeout(initTurnstile, 100);
+      return;
+    }
+    widgetId = globalThis.turnstile.render(".cf-turnstile", {
+      sitekey: turnstileKey,
+      size: "invisible",
+      execution: "execute",
+      callback: (token: string) => {
+        resolveToken?.(token);
+        resolveToken = null;
+        rejectToken = null;
+      },
+      "error-callback": () => {
+        rejectToken?.(new Error(formEnum.MESSAGE_ERROR));
+        resolveToken = null;
+        rejectToken = null;
+      },
+    });
+  }
+  initTurnstile();
 
   // ─── Turnstile Token ──────────────────────────────────────────────────────
   function requestToken(): Promise<string> {
@@ -107,6 +109,11 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
         reject(reason);
       };
 
+      if (!widgetId) {
+        clearTimeout(timeout);
+        reject(new Error(formEnum.MESSAGE_ERROR));
+        return;
+      }
       globalThis.turnstile.execute(widgetId);
     });
   }

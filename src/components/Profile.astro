@@ -2,6 +2,7 @@
 import type { Lang } from "@app-types/enums";
 import type { I18nTranslations } from "@app-types/types";
 import ImageShader from "@/components/ImageShader.astro";
+import { GITHUB_LABEL, GITHUB_URL, LINKEDIN_LABEL, LINKEDIN_URL } from "@/data/links";
 import { toCardinal as toCardinalEs } from "n2words/es-ES";
 import { toCardinal as toCardinalEn } from "n2words/en-US";
 
@@ -15,74 +16,115 @@ const age =
   birthDate.getFullYear() -
   (today < new Date(today.getFullYear(), birthDate.getMonth(), birthDate.getDate()) ? 1 : 0);
 
-const ageLabel: string = currentLang === "es" ? toCardinalEs(age) : toCardinalEn(age);
+const { facts: factLabels } = data.ui;
+const facts: [string, string, string?][] = [
+  [factLabels.github, GITHUB_LABEL, GITHUB_URL],
+  [factLabels.linkedin, LINKEDIN_LABEL, LINKEDIN_URL],
+  [factLabels.email, data.contact.email, `mailto:${data.contact.email}`],
+  [factLabels.location, factLabels.locationValue],
+];
+
+const ageLabel: string = currentLang === "en" ? toCardinalEn(age) : toCardinalEs(age);
+
+// Salto de línea tras el segundo nombre: "Carlos Raúl" / "Vásquez Sánchez"
+const words = data.profile.name.split(" ");
+const displayName = `${words.slice(0, 2).join(" ")}\n${words.slice(2).join(" ")}`.trim();
 ---
 
-<div id="profile" class="grid min-h-[90dvh] items-center justify-center gap-8 px-4 py-10 md:w-3/4 lg:grid-cols-2">
+<div id="profile" class="grid min-h-[85dvh] w-full items-center gap-12 py-16 md:grid-cols-[auto_1fr] md:gap-16">
   <!-- Img Profile -->
   <ImageShader />
 
   <!-- Info Profile -->
-  <section class="flex flex-col justify-center space-y-4">
+  <section class="flex flex-col justify-center">
     <!-- Name -->
-    <div class="select-none space-y-2">
+    <div class="select-none">
+      <!-- El nombre está completo en el HTML (SEO, lectores de pantalla, sin JS); el script solo anima -->
       <h1
         id="title"
-        class="bg-gradient-to-r from-blue-500 via-purple-600 to-pink-900 bg-clip-text text-4xl font-bold text-transparent lg:min-h-10"
+        data-name={displayName}
+        class="min-h-[7.5rem] whitespace-pre-line text-5xl font-bold leading-[1.05] tracking-tight text-fg md:text-6xl"
       >
-        {" "}
+        {displayName}
       </h1>
-      <p class="font-fraunces text-lg text-purplePal/80 md:text-xl">{data.profile.subtitle}</p>
+      <p class="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1">
+        <span class="text-lg font-medium text-accent md:text-xl">{data.profile.subtitle}</span>
+        <span class="hidden h-4 w-px bg-line sm:block"></span>
+        <span class="eyebrow !normal-case !tracking-wider !text-muted">{data.ui.tagline}</span>
+      </p>
     </div>
+
+    <span class="my-8 h-px w-full bg-line"></span>
+
     <!-- Info -->
-    <div class="space-y-4 text-base leading-relaxed md:text-base">
-      <p class="transition-opacity text-pretty opacity-90 duration-300 hover:opacity-100">
+    <div class="max-w-2xl space-y-4 text-base leading-relaxed text-fg/85">
+      <p class="text-pretty">
         {data.profile.presentation.v1.replace("{age}", ageLabel)}
       </p>
-      <p class="transition-opacity text-pretty opacity-90 duration-300 hover:opacity-100">
+      <p class="text-pretty">
         {data.profile.presentation.v2}
       </p>
     </div>
+
+    <!-- Contact facts -->
+    <dl class="mt-8 grid max-w-2xl grid-cols-[auto_1fr] gap-x-6 gap-y-2 text-sm">
+      {
+        facts.map(([label, value, href]) => (
+          <>
+            <dt class="eyebrow !text-muted">{label}</dt>
+            <dd>
+              {href ? (
+                <a href={href} target="_blank" rel="noopener noreferrer" class="transition-colors hover:text-accent">
+                  {value}
+                </a>
+              ) : (
+                value
+              )}
+            </dd>
+          </>
+        ))
+      }
+    </dl>
   </section>
 </div>
-<script is:inline define:vars={{ data }}>
-  async function updateTitle(name) {
-    const title = document.getElementById("title");
 
-    if (title) {
-      title.innerHTML = "";
-      title.style.minHeight = "5rem";
+<script>
+  // Efecto de tecleo: mejora progresiva. Sin JS o con "reducir movimiento" se queda el texto tal cual.
+  const title = document.getElementById("title");
+  const name = title?.dataset.name;
+  const reduceMotion = globalThis.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-      const textSpan = document.createElement("span");
-      textSpan.style.whiteSpace = "pre-line";
+  if (title && name && !reduceMotion) {
+    // Lectores de pantalla: nombre completo oculto visualmente; lo que se teclea se ignora.
+    const srText = document.createElement("span");
+    srText.className = "sr-only";
+    srText.textContent = name.replace("\n", " ");
 
-      const cursorSpan = document.createElement("span");
-      cursorSpan.innerText = "|";
-      cursorSpan.classList.add("blinking-cursor");
-      cursorSpan.style.display = "inline-block";
-      cursorSpan.style.width = "0.5em";
+    const textSpan = document.createElement("span");
+    textSpan.setAttribute("aria-hidden", "true");
 
-      title.appendChild(textSpan);
-      title.appendChild(cursorSpan);
+    const cursor = document.createElement("span");
+    cursor.setAttribute("aria-hidden", "true");
+    cursor.className = "blinking-cursor";
+    cursor.textContent = "|";
 
-      let result = "";
-      for (let i = 0; i < name.length; i++) {
-        await new Promise((resolve) => setTimeout(resolve, 100));
-        result += name[i];
-        if (result === "Carlos Raúl") result += "\n";
-        textSpan.textContent = result;
-      }
+    title.replaceChildren(srText, textSpan, cursor);
 
-      cursorSpan.style.animation = "blink 1s infinite";
-      setTimeout(() => {
-        cursorSpan.remove();
-      }, 3000);
-    }
+    const type = (i: number) => {
+      textSpan.textContent = name.slice(0, i);
+      if (i < name.length) setTimeout(() => type(i + 1), 90);
+      else setTimeout(() => cursor.remove(), 2500);
+    };
+    type(1);
   }
-
-  globalThis.addEventListener("DOMContentLoaded", () => updateTitle(data.profile.name));
 </script>
-<style>
+
+<style is:global>
+  .blinking-cursor {
+    display: inline-block;
+    width: 0.5em;
+    animation: blink 1s infinite;
+  }
   @keyframes blink {
     0%,
     100% {

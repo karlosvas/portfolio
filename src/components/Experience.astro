@@ -1,14 +1,13 @@
 ---
 import type { I18nTranslations } from "@/../types/types";
+import SectionHeading from "./SectionHeading.astro";
 const data: I18nTranslations = Astro.props.data;
 ---
 
-<div id="experiencie" class="mb-40 flex w-11/12 flex-col items-center justify-center px-4 md:w-3/4 xl:px-20 2xl:w-2/3">
-  <h1 class="mb-6 text-3xl font-bold text-blackPal dark:text-whitePal md:text-3xl">
-    {data.experience.title}
-  </h1>
+<div class="mb-32 flex w-full flex-col items-start">
+  <SectionHeading num="02" title={data.experience.title} id="experience" />
   <p
-    class="mb-12 text-pretty text-start leading-relaxed opacity-90 md:px-20"
+    class="mb-8 max-w-3xl text-pretty text-start leading-relaxed text-fg/85"
     style="white-space: pre-line;"
     set:html={data.experience.description}
   />
@@ -52,11 +51,11 @@ const data: I18nTranslations = Astro.props.data;
       <span class="tech-card-label">Tailwind</span>
     </div>
     <div class="tech-card group">
-      <img src="/svg/languajes/flutter-icon.svg" class="tech-card-icon h-12 w-12" alt="Python" />
+      <img src="/svg/languajes/flutter-icon.svg" class="tech-card-icon h-12 w-12" alt="Flutter" />
       <span class="tech-card-label">Flutter</span>
     </div>
     <div class="tech-card group">
-      <img src="/svg/languajes/dart.svg" class="tech-card-icon h-12 w-12" alt="Python" />
+      <img src="/svg/languajes/dart.svg" class="tech-card-icon h-12 w-12" alt="Dart" />
       <span class="tech-card-label">Dart</span>
     </div>
     <div class="tech-card group">
@@ -70,7 +69,7 @@ const data: I18nTranslations = Astro.props.data;
   </div>
 
   <p
-    class="mb-12 text-pretty text-start leading-relaxed opacity-90 md:px-20"
+    class="mb-8 max-w-3xl text-pretty text-start leading-relaxed text-fg/85"
     style="white-space: pre-line;"
     set:html={data.experience.technologies}
   />
@@ -122,8 +121,8 @@ const data: I18nTranslations = Astro.props.data;
 
 <style is:global>
   .strong {
-    color: var(--purplePal);
-    font-weight: bold;
+    color: rgb(var(--accent));
+    font-weight: 600;
   }
 
   .tech-card {
@@ -134,7 +133,7 @@ const data: I18nTranslations = Astro.props.data;
     gap: 0.75rem;
     padding: 1.5rem 1rem;
     background: transparent;
-    border: 1px solid rgba(108, 92, 231, 0.2);
+    border: 1px solid rgb(var(--accent) / 0.2);
     border-radius: 0.75rem;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: pointer;
@@ -149,7 +148,7 @@ const data: I18nTranslations = Astro.props.data;
     left: 0;
     right: 0;
     height: 2px;
-    background: linear-gradient(90deg, transparent, var(--purplePal), transparent);
+    background: linear-gradient(90deg, transparent, rgb(var(--accent)), transparent);
     transform: translateX(-100%);
     transition: transform 0.6s ease;
   }
@@ -159,8 +158,8 @@ const data: I18nTranslations = Astro.props.data;
   }
 
   .tech-card:hover {
-    border-color: var(--purplePal);
-    background: rgba(108, 92, 231, 0.05);
+    border-color: rgb(var(--accent));
+    background: rgb(var(--accent) / 0.05);
     transform: translateY(-2px);
   }
 
@@ -176,25 +175,22 @@ const data: I18nTranslations = Astro.props.data;
   }
 
   .tech-card-label {
-    font-size: 0.875rem;
-    font-weight: 500;
-    opacity: 0.7;
-    transition: all 0.3s ease;
+    font-family: "IBM Plex Mono", ui-monospace, monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgb(var(--muted));
     text-align: center;
+    transition: all 0.3s ease;
   }
 
   .tech-card:hover .tech-card-label {
-    opacity: 1;
-    color: var(--purplePal);
+    color: rgb(var(--accent));
   }
 
   @media (max-width: 768px) {
     .tech-card {
       padding: 1rem 0.75rem;
-    }
-
-    .tech-card-label {
-      font-size: 0.75rem;
     }
   }
 </style>

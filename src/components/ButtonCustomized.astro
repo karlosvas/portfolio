@@ -1,11 +1,23 @@
 ---
-const { customStyle } = Astro.props;
+interface Props {
+  customStyle?: string;
+  /** Si se pasa, se renderiza como enlace (`<a>`) en vez de como botón de envío. */
+  href?: string;
+  target?: string;
+}
+
+const { customStyle, href, target } = Astro.props;
+const classes = `inline-block rounded-sm border border-accent bg-accent px-5 py-2.5 text-center font-mono text-xs font-medium uppercase tracking-[0.15em] text-accent-fg transition-colors duration-200 hover:bg-transparent hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 disabled:opacity-60 ${customStyle ?? ""}`;
 ---
 
-<!-- Botón reutilizable -->
-<button
-  type="submit"
-  class={`bg-purplePal text-white py-2 px-4 rounded-md hover:bg-opacity-95 transition-all duration-200 mb-20 shadow-[0_5px_0_rgb(83,70,175)] hover:shadow-[0_3px_0_rgb(83,70,175)] hover:translate-y-[2px] active:shadow-[0_0px_0_rgb(83,70,175)] active:translate-y-[5px] font-bold tracking-wide ${customStyle}`}
->
-  <slot />
-</button>
+{
+  href ? (
+    <a href={href} target={target} rel={target === "_blank" ? "noopener noreferrer" : undefined} class={classes}>
+      <slot />
+    </a>
+  ) : (
+    <button type="submit" class={classes}>
+      <slot />
+    </button>
+  )
+}

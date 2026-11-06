@@ -1,119 +1,32 @@
 ---
-
+// Marco vertical 4:5: respeta la foto (que es vertical) y no la recorta por los lados.
 ---
 
-<div class="relative m-auto h-full w-full max-w-[320px] lg:max-w-[380px] xl:max-w-[420px]">
-  <canvas class="h-full w-full select-none rounded-lg" data-image-shader></canvas>
+<div class="relative mx-auto aspect-[4/5] w-64 md:w-72 lg:w-80">
+  <span class="absolute inset-0 translate-x-3 translate-y-3 rounded-sm border border-accent/50"></span>
+  <!-- Imagen estática: es lo que se ve sin WebGL2 / sin JS y mientras carga el lienzo -->
+  <img
+    src="/img/profile.webp"
+    alt=""
+    width="320"
+    height="400"
+    fetchpriority="high"
+    class="absolute inset-0 h-full w-full select-none rounded-sm border-2 border-accent bg-surface object-cover object-[50%_15%]"
+    data-image-fallback
+  />
+  <canvas
+    class="absolute inset-0 hidden h-full w-full select-none rounded-sm border-2 border-accent bg-surface"
+    data-image-shader
+    aria-hidden="true"></canvas>
 </div>
+
 <script>
-  import vertexSource from "@/shaders/vertex_img.glsl?raw";
-  import fragmentSource from "@/shaders/fragment_img.glsl?raw";
+  import { attachHoverEffect } from "@/services/hoverEffect";
 
   const canvas = document.querySelector<HTMLCanvasElement>("[data-image-shader]");
-  const gl = canvas?.getContext("webgl2");
-  if (!canvas || !gl) throw new Error("WebGL2 no soportado");
-
-  function compileShader(type: number, source: string) {
-    const shader = gl!.createShader(type)!;
-    gl!.shaderSource(shader, source);
-    gl!.compileShader(shader);
-    if (!gl!.getShaderParameter(shader, gl!.COMPILE_STATUS)) {
-      console.error(gl!.getShaderInfoLog(shader));
-      gl!.deleteShader(shader);
-      return null;
-    }
-    return shader;
-  }
-
-  const vertexShader = compileShader(gl.VERTEX_SHADER, vertexSource)!;
-  const fragmentShader = compileShader(gl.FRAGMENT_SHADER, fragmentSource)!;
-
-  const program = gl.createProgram()!;
-  gl.attachShader(program, vertexShader);
-  gl.attachShader(program, fragmentShader);
-  gl.linkProgram(program);
-  gl.useProgram(program);
-
-  const positions = new Float32Array([-1, -1, 1, -1, -1, 1, -1, 1, 1, -1, 1, 1]);
-  const positionBuffer = gl.createBuffer();
-  gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
-  gl.bufferData(gl.ARRAY_BUFFER, positions, gl.STATIC_DRAW);
-  const positionLoc = gl.getAttribLocation(program, "a_position");
-  gl.enableVertexAttribArray(positionLoc);
-  gl.vertexAttribPointer(positionLoc, 2, gl.FLOAT, false, 0, 0);
-
-  const texCoords = new Float32Array([0, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0]);
-  const texCoordBuffer = gl.createBuffer();
-  gl.bindBuffer(gl.ARRAY_BUFFER, texCoordBuffer);
-  gl.bufferData(gl.ARRAY_BUFFER, texCoords, gl.STATIC_DRAW);
-  const texCoordLoc = gl.getAttribLocation(program, "a_texCoord");
-  gl.enableVertexAttribArray(texCoordLoc);
-  gl.vertexAttribPointer(texCoordLoc, 2, gl.FLOAT, false, 0, 0);
-
-  const mouseLoc = gl.getUniformLocation(program, "u_mouse");
-  const hoverLoc = gl.getUniformLocation(program, "u_hover");
-  const imageLoc = gl.getUniformLocation(program, "u_image");
-  const imageAspectLoc = gl.getUniformLocation(program, "u_imageAspect");
-  const canvasAspectLoc = gl.getUniformLocation(program, "u_canvasAspect");
-
-  let targetHover = 0;
-  let currentHover = 0;
-  let mouseX = 0.5;
-  let mouseY = 0.5;
-  let imageAspect = 1;
-
-  canvas.addEventListener("mousemove", (e) => {
-    const rect = canvas.getBoundingClientRect();
-    mouseX = (e.clientX - rect.left) / rect.width;
-    mouseY = 1 - (e.clientY - rect.top) / rect.height;
-    targetHover = 1;
-  });
-  canvas.addEventListener("mouseleave", () => {
-    targetHover = 0;
-  });
-
-  function resize() {
-    const dpr = window.devicePixelRatio || 1;
-    const displayWidth = canvas!.clientWidth * dpr;
-    const displayHeight = canvas!.clientHeight * dpr;
-    if (canvas!.width !== displayWidth || canvas!.height !== displayHeight) {
-      canvas!.width = displayWidth;
-      canvas!.height = displayHeight;
-    }
-  }
-
-  const texture = gl.createTexture();
-  const image = new Image();
-  image.src = "/img/profile.webp";
-  image.onload = () => {
-    imageAspect = image.naturalWidth / image.naturalHeight;
-    gl.bindTexture(gl.TEXTURE_2D, texture);
-    gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
-    requestAnimationFrame(loop);
-  };
-
-  function loop() {
-    resize();
-    gl!.viewport(0, 0, canvas!.width, canvas!.height);
-    gl!.clearColor(0, 0, 0, 0);
-    gl!.clear(gl!.COLOR_BUFFER_BIT);
-
-    currentHover += (targetHover - currentHover) * 0.1;
-
-    const canvasAspect = canvas!.width / canvas!.height;
-
-    gl!.uniform1f(hoverLoc, currentHover);
-    gl!.uniform2f(mouseLoc, mouseX, mouseY);
-    gl!.uniform1f(imageAspectLoc, imageAspect);
-    gl!.uniform1f(canvasAspectLoc, canvasAspect);
-    gl!.activeTexture(gl!.TEXTURE0);
-    gl!.bindTexture(gl!.TEXTURE_2D, texture);
-    gl!.uniform1i(imageLoc, 0);
-
-    gl!.drawArrays(gl!.TRIANGLES, 0, 6);
-    requestAnimationFrame(loop);
+  const image = document.querySelector<HTMLImageElement>("[data-image-fallback]");
+  if (canvas && image && canvas.parentElement) {
+    // focus igual que object-[50%_15%] de la <img>
+    attachHoverEffect({ container: canvas.parentElement, canvas, image, focus: [0.5, 0.15] });
   }
 </script>
