@@ -20,8 +20,6 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
 
-      # El proyecto usa pnpm: con `npm install` se ignora el lockfile y se instalan versiones
-      # distintas a las locales (p. ej. otro Prettier que formatea distinto).
       - name: Set up pnpm
         uses: pnpm/action-setup@v4
         with:

@@ -3,12 +3,9 @@ import { Resend } from "resend";
 import { getSecret } from "astro:env/server";
 import { validateEmail } from "@/utils/emailValidator";
 
-// Secrets loaded from Astro env schema (server-only).
-// Configured in astro.config.mjs and .env file, but not exposed to client-side code.
 const RESEND_API_KEY = getSecret("RESEND_API_KEY");
 const TURNSTILE_SECRET_KEY = getSecret("TURNSTILE_SECRET_KEY");
 
-// Validates Cloudflare Turnstile token server-side to prevent bot submissions.
 async function validateTurnstile(token: string): Promise<boolean> {
   if (!TURNSTILE_SECRET_KEY) throw new Error("TURNSTILE_SECRET_KEY is not defined");
 
@@ -26,7 +23,7 @@ async function validateTurnstile(token: string): Promise<boolean> {
   return data.success;
 }
 
-export const POST: APIRoute = async ({ request }) => {
+export const POST: APIRoute = async ({ request }): Promise<Response> => {
   try {
     const resend = new Resend(RESEND_API_KEY);
     const { email, message, turnstileToken } = await request.json();
@@ -42,7 +39,6 @@ export const POST: APIRoute = async ({ request }) => {
 
     const isTurnstileValid = await validateTurnstile(turnstileToken);
 
-    // 403 is intentional: request is understood, but blocked by failed anti-bot verification.
     if (!isTurnstileValid) {
       return new Response(JSON.stringify({ error: "Invalid Turnstile token" }), {
         status: 403,

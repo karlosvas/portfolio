@@ -1,10 +1,4 @@
 ---
-// SOLO DESARROLLO. Se carga únicamente con `import.meta.env.DEV` y `?debug=lab` (ver App.astro),
-// así que no entra en la build de producción. Es una herramienta fija para probar efectos:
-//
-//   · Cada fichero de src/shaders/lab/*.glsl es una variante (el prefijo numérico es su número).
-//   · El efecto que usa la web es src/shaders/hover-effect.glsl (copia de una variante).
-//   · Las imágenes de prueba están en src/components/lab/images/ (no viajan a producción).
 import { readdirSync } from "node:fs";
 
 const exitHref = Astro.url.pathname;
@@ -71,13 +65,11 @@ const projectImages = readdirSync("public/img")
   import { createImageShader, type ImageShaderHandle } from "@/services/imageShader";
   import meta from "@/shaders/lab/meta.json";
 
-  // Cada fichero de src/shaders/lab/*.glsl es una variante: añadir uno nuevo basta para verlo aquí
   const shaders = import.meta.glob<string>("/src/shaders/lab/*.glsl", {
     query: "?raw",
     import: "default",
     eager: true,
   });
-  // Imágenes de prueba (lorem ipsum): solo existen en desarrollo
   const loremImages = import.meta.glob<string>("/src/components/lab/images/*", {
     query: "?url",
     import: "default",
@@ -91,7 +83,6 @@ const projectImages = readdirSync("public/img")
   const projects: string[] = JSON.parse(root.dataset.projects ?? "[]");
   const prettify = (s: string) => s.replace(/\.[a-z]+$/i, "").replace(/[-_]/g, " ");
 
-  // ---- Selector de imagen
   const group = (label: string, options: [string, string][]) =>
     `<optgroup label="${label}">${options.map(([v, t]) => `<option value="${v}">${t}</option>`).join("")}</optgroup>`;
   select.innerHTML =
@@ -105,7 +96,6 @@ const projectImages = readdirSync("public/img")
       projects.map((k) => [`/img/${k}.webp`, k] as [string, string]),
     );
 
-  // ---- Tarjetas
   let handles: ImageShaderHandle[] = [];
 
   function render() {
@@ -154,7 +144,6 @@ const projectImages = readdirSync("public/img")
     }
   }
 
-  // ---- Controles
   select.addEventListener("change", render);
   dimCheckbox.addEventListener("change", render);
 
@@ -163,7 +152,6 @@ const projectImages = readdirSync("public/img")
     btn.addEventListener("click", () => {
       root.dataset.format = btn.dataset.formatBtn;
       buttons.forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
-      // Los lienzos se adaptan solos al nuevo tamaño (ResizeObserver del motor)
     }),
   );
 

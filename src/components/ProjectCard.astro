@@ -33,7 +33,6 @@ const repoUrl = `${GITHUB_URL}/${projectKey}`;
     decoding="async"
     class="project-bg absolute inset-0 h-full w-full object-cover"
   />
-  <!-- Lienzo del efecto: aparece cuando el WebGL está listo; la <img> de arriba es el respaldo -->
   <canvas class="project-bg absolute inset-0 hidden h-full w-full" data-hover-canvas aria-hidden="true"></canvas>
 
   <div class="project-overlay absolute inset-0 bg-gradient-to-br from-stone-950/60 via-stone-950/80 to-stone-950/95">
@@ -70,7 +69,6 @@ const repoUrl = `${GITHUB_URL}/${projectKey}`;
 <script>
   import { attachHoverEffect } from "@/services/hoverEffect";
 
-  // Para quitar el efecto de las tarjetas y dejarlo solo en la foto de perfil: borrar este bloque <script>.
   document.querySelectorAll<HTMLElement>("[data-hover-card]").forEach((card) => {
     const canvas = card.querySelector<HTMLCanvasElement>("[data-hover-canvas]");
     const image = card.querySelector<HTMLImageElement>("img");
@@ -81,8 +79,8 @@ const repoUrl = `${GITHUB_URL}/${projectKey}`;
       canvas,
       image,
       focus: [0.5, 0.5],
-      dim: [0.6, 0.95], // el mismo velo que el degradado CSS (from-stone-950/60 … /95), ahora dentro del shader
-      onShow: () => veil?.classList.add("hidden"), // sin esto se oscurecería dos veces
+      dim: [0.6, 0.95],
+      onShow: () => veil?.classList.add("hidden"),
     });
   });
 </script>
@@ -220,7 +218,6 @@ const repoUrl = `${GITHUB_URL}/${projectKey}`;
     filter: drop-shadow(0 0 8px rgb(var(--accent) / 0.5));
   }
 
-  /* Efecto de revelación del contenido */
   .project-content {
     transform: translateY(0);
     transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);

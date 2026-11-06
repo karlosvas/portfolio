@@ -13,17 +13,11 @@ const REMOTE_TIMEOUT_MS = 2000;
 const getLocal = (locale: string): I18nTranslations =>
   (locale === Languages.ENGLISH ? english : spanish) as I18nTranslations;
 
-/**
- * Mezcla `remote` sobre `local`: solo se aceptan valores del mismo tipo que el local.
- * Así un JSON subido con claves de menos, de más o con tipos erróneos nunca rompe la web:
- * lo que no sea válido se ignora y se queda el texto empaquetado.
- */
 const mergeContent = <T>(local: T, remote: unknown): T => {
   if (remote === undefined || remote === null) return local;
 
   if (Array.isArray(local)) {
     if (!Array.isArray(remote)) return local;
-    // Las listas (p. ej. trabajos) se reemplazan completas si el elemento tiene la misma forma.
     const template = local[0];
     return remote.map((item) => mergeContent(template, item)) as T;
   }
@@ -35,7 +29,6 @@ const mergeContent = <T>(local: T, remote: unknown): T => {
     for (const [key, localValue] of Object.entries(local)) {
       result[key] = mergeContent(localValue, remoteObj[key]);
     }
-    // Claves nuevas en un Record dinámico (p. ej. proyectos añadidos desde el JSON).
     if (isDynamicRecord(local)) {
       const template = Object.values(local)[0];
       for (const [key, value] of Object.entries(remoteObj)) {
@@ -48,7 +41,6 @@ const mergeContent = <T>(local: T, remote: unknown): T => {
   return (typeof remote === typeof local ? remote : local) as T;
 };
 
-/** Un Record de proyectos: todos sus valores son objetos con las mismas claves. */
 const isDynamicRecord = (obj: object) => {
   const values = Object.values(obj);
   if (values.length < 2 || values.some((v) => typeof v !== "object" || v === null)) return false;

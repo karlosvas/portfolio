@@ -7,7 +7,6 @@ declare global {
   var getEnglish: (event: Event) => void;
 }
 
-// TypeScript types
 export interface I18nTranslations {
   profile: {
     title: string;

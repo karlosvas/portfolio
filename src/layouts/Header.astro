@@ -15,7 +15,6 @@ const links = SECTIONS.map(({ id, key }) => ({ id, label: data[key].title }));
 >
   <Hamburger data={data} />
 
-  <!-- Navegación de escritorio -->
   <nav aria-label={data.ui.nav.label} class="mr-auto hidden lg:block">
     <ul class="flex items-center gap-6 lg:gap-8">
       {
@@ -47,13 +46,11 @@ const links = SECTIONS.map(({ id, key }) => ({ id, label: data[key].title }));
     header?.classList.toggle("shadow-sm", globalThis.scrollY > 0);
   });
 
-  // Resalta en la navegación la sección que está en pantalla
   const links = document.querySelectorAll<HTMLAnchorElement>("[data-section-link]");
   const byId = new Map(Array.from(links).map((a) => [a.dataset.sectionLink!, a]));
   const visible = new Set<string>();
 
   const setCurrent = () => {
-    // La sección activa es la primera (en orden de página) de las visibles
     const current = Array.from(byId.keys()).find((id) => visible.has(id));
     byId.forEach((a, id) => a.setAttribute("aria-current", String(id === current)));
   };
@@ -73,7 +70,6 @@ const links = SECTIONS.map(({ id, key }) => ({ id, label: data[key].title }));
   byId.forEach((_, id) => {
     const el = document.getElementById(id);
     if (!el) return;
-    // Observamos el bloque completo de la sección (el contenedor `.reveal-element`) si existe
     const block = (el.closest(".reveal-element") as HTMLElement | null) ?? el;
     block.dataset.navTarget = id;
     observer.observe(block);

@@ -115,13 +115,9 @@ const links = SECTIONS.map(({ id, key }) => ({ id, label: data[key].title }));
 
 <script>
   function disableScroll() {
-    // Save current scroll position
     const scrollY = globalThis.scrollY;
-    // Calculate scrollbar width before locking
     const scrollbarWidth = globalThis.innerWidth - document.documentElement.clientWidth;
-    // Store the position in a body data attribute
     document.body.dataset.scrollPosition = scrollY.toString();
-    // Apply right padding equal to scrollbar width to avoid layout shift
     document.body.style.paddingRight = `${scrollbarWidth}px`;
     document.body.style.position = "fixed";
     document.body.style.top = `-${scrollY}px`;
@@ -129,15 +125,13 @@ const links = SECTIONS.map(({ id, key }) => ({ id, label: data[key].title }));
     document.body.style.overflow = "hidden";
   }
 
-  // Restore page scroll
   function enableScroll() {
     const scrollY = document.body.style.top;
     document.body.style.position = "";
     document.body.style.top = "";
     document.body.style.width = "";
-    document.body.style.paddingRight = ""; // Remove padding
+    document.body.style.paddingRight = "";
     document.body.style.overflow = "";
-    // Read saved position and restore it
     const savedPosition = parseInt(scrollY || "0") * -1;
     globalThis.scrollTo({
       top: savedPosition,
@@ -145,46 +139,37 @@ const links = SECTIONS.map(({ id, key }) => ({ id, label: data[key].title }));
     });
   }
 
-  // EVENTS
   const hamburgerBtn = document.getElementById("hamburgerBtn") as HTMLButtonElement | null;
   const hamburgerModal = document.getElementById("hamburgerModal") as HTMLDialogElement | null;
   let lastFocusedElement: HTMLElement | null = null;
 
   function closeModalWithAnimation() {
     if (hamburgerModal) {
-      // Re-enable scrolling so section navigation works
       enableScroll();
 
-      // Add class for close animation
       hamburgerModal.classList.add("closing");
 
-      // Wait for animation to finish before closing modal
       setTimeout(() => {
         hamburgerModal.close();
         hamburgerModal.classList.remove("closing");
         hamburgerBtn?.setAttribute("aria-expanded", "false");
         (lastFocusedElement ?? hamburgerBtn)?.focus();
-        // Body scroll is already restored
-      }, 300); // Same duration as the animation (0.3s)
+      }, 300);
     }
   }
 
-  // Open modal on hamburger button click
   hamburgerBtn?.addEventListener("click", () => {
     if (hamburgerModal) {
       lastFocusedElement = document.activeElement as HTMLElement;
       hamburgerModal.showModal();
       hamburgerBtn.setAttribute("aria-expanded", "true");
-      // Prevent body scroll while modal is open
       disableScroll();
 
-      // Move focus inside the menu for keyboard users
       const firstLink = hamburgerModal.querySelector<HTMLAnchorElement>(".nav-item a");
       firstLink?.focus();
     }
   });
 
-  // Close modal with Escape key
   hamburgerModal?.addEventListener("keydown", (event) => {
     if (event.key === "Escape") {
       event.preventDefault();
@@ -192,21 +177,16 @@ const links = SECTIONS.map(({ id, key }) => ({ id, label: data[key].title }));
     }
   });
 
-  // Close modal when clicking outside
   hamburgerModal?.addEventListener("click", (event) => {
-    // Close only when clicking outside modal content
     const rect = hamburgerModal.getBoundingClientRect();
-    // Check whether click is inside dialog bounds
     const isInDialog =
       rect.top <= event.clientY &&
       event.clientY <= rect.top + rect.height &&
       rect.left <= event.clientX &&
       event.clientX <= rect.left + rect.width;
-    // If click is outside, close modal
     if (!isInDialog) closeModalWithAnimation();
   });
 
-  // Close modal when clicking a link inside it
   document.querySelectorAll(".nav-item a").forEach((item) => {
     item.addEventListener("click", (event) => {
       const targetId = item.getAttribute("href");
@@ -215,7 +195,6 @@ const links = SECTIONS.map(({ id, key }) => ({ id, label: data[key].title }));
 
       closeModalWithAnimation();
 
-      // Smoothly scroll to the target section
       const targetElement = document.querySelector(targetId);
       if (targetElement) {
         event.preventDefault();

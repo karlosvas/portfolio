@@ -7,13 +7,12 @@ const data: I18nTranslations = Astro.props.data;
 const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 ---
 
-<!-- Script de Turnstile: solo se carga si hay clave configurada -->{
+{
   TURNSTILE_SITE_KEY && (
     <script is:inline src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit" async defer />
   )
 }
 
-<!-- Contacto -->
 <div class="mb-24 w-full">
   <SectionHeading num="04" title={data.contact.title} id="contact" />
 
@@ -44,7 +43,6 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
       ></textarea>
     </div>
 
-    <!-- Cloudflare Turnstile Widget -->
     {TURNSTILE_SITE_KEY && <div class="cf-turnstile" data-sitekey={TURNSTILE_SITE_KEY} data-size="invisible" />}
 
     <ButtonCustomized customStyle="self-center px-10">
@@ -57,20 +55,16 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
   import toast from "solid-toast";
   import { FormEnum, FormEnumEnglish } from "@app-types/enums";
 
-  // ─── Constants ────────────────────────────────────────────────────────────
   const TURNSTILE_TIMEOUT_MS = 10_000;
   const form = document.getElementById("formEmail") as HTMLFormElement;
   const submitButton = form?.querySelector('button[type="submit"]') as HTMLButtonElement | null;
   const formEnum = document.documentElement.lang === "es" ? FormEnum : FormEnumEnglish;
   const turnstileKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
 
-  // ─── Turnstile State ──────────────────────────────────────────────────────
   let widgetId: string | null = null;
   let resolveToken: ((token: string) => void) | null = null;
   let rejectToken: ((reason: unknown) => void) | null = null;
 
-  // ─── Turnstile Init ───────────────────────────────────────────────────────
-  // El script de Turnstile carga async: esperamos a que exista antes de pintar el widget.
   function initTurnstile() {
     if (!turnstileKey || !document.querySelector(".cf-turnstile")) return;
     if (!globalThis.turnstile) {
@@ -95,7 +89,6 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
   }
   initTurnstile();
 
-  // ─── Turnstile Token ──────────────────────────────────────────────────────
   function requestToken(): Promise<string> {
     return new Promise<string>((resolve, reject) => {
       const timeout = window.setTimeout(() => reject(new Error(formEnum.MESSAGE_ERROR)), TURNSTILE_TIMEOUT_MS);
@@ -118,13 +111,11 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
     });
   }
 
-  // ─── Form Validation ──────────────────────────────────────────────────────
   function validateForm(): void {
     if (!form.email.value) throw new Error(formEnum.EMPTY_EMAIL);
     if (!form.mensaje.value) throw new Error(formEnum.EMPTY_MESSAGE);
   }
 
-  // ─── API ──────────────────────────────────────────────────────────────────
   async function sendEmail(turnstileToken: string): Promise<void> {
     const response = await fetch("/api/resend", {
       method: "POST",
@@ -139,7 +130,6 @@ const TURNSTILE_SITE_KEY = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY;
     if (!response.ok) throw new Error(formEnum.MESSAGE_ERROR);
   }
 
-  // ─── Submit Handler ───────────────────────────────────────────────────────
   async function handleSubmit(e: Event): Promise<void> {
     e.preventDefault();
     if (submitButton) submitButton.disabled = true;

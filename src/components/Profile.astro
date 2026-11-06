@@ -26,20 +26,15 @@ const facts: [string, string, string?][] = [
 
 const ageLabel: string = currentLang === "en" ? toCardinalEn(age) : toCardinalEs(age);
 
-// Salto de línea tras el segundo nombre: "Carlos Raúl" / "Vásquez Sánchez"
 const words = data.profile.name.split(" ");
 const displayName = `${words.slice(0, 2).join(" ")}\n${words.slice(2).join(" ")}`.trim();
 ---
 
 <div id="profile" class="grid min-h-[85dvh] w-full items-center gap-12 py-16 md:grid-cols-[auto_1fr] md:gap-16">
-  <!-- Img Profile -->
   <ImageShader />
 
-  <!-- Info Profile -->
   <section class="flex flex-col justify-center">
-    <!-- Name -->
     <div class="select-none">
-      <!-- El nombre está completo en el HTML (SEO, lectores de pantalla, sin JS); el script solo anima -->
       <h1
         id="title"
         data-name={displayName}
@@ -56,7 +51,6 @@ const displayName = `${words.slice(0, 2).join(" ")}\n${words.slice(2).join(" ")}
 
     <span class="my-8 h-px w-full bg-line"></span>
 
-    <!-- Info -->
     <div class="max-w-2xl space-y-4 text-base leading-relaxed text-fg/85">
       <p class="text-pretty">
         {data.profile.presentation.v1.replace("{age}", ageLabel)}
@@ -66,7 +60,6 @@ const displayName = `${words.slice(0, 2).join(" ")}\n${words.slice(2).join(" ")}
       </p>
     </div>
 
-    <!-- Contact facts -->
     <dl class="mt-8 grid max-w-2xl grid-cols-[auto_1fr] gap-x-6 gap-y-2 text-sm">
       {
         facts.map(([label, value, href]) => (
@@ -89,13 +82,11 @@ const displayName = `${words.slice(0, 2).join(" ")}\n${words.slice(2).join(" ")}
 </div>
 
 <script>
-  // Efecto de tecleo: mejora progresiva. Sin JS o con "reducir movimiento" se queda el texto tal cual.
   const title = document.getElementById("title");
   const name = title?.dataset.name;
   const reduceMotion = globalThis.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
   if (title && name && !reduceMotion) {
-    // Lectores de pantalla: nombre completo oculto visualmente; lo que se teclea se ignora.
     const srText = document.createElement("span");
     srText.className = "sr-only";
     srText.textContent = name.replace("\n", " ");

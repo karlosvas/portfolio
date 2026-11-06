@@ -71,7 +71,6 @@ const data: I18nTranslations = Astro.props.data;
     return modal?.classList.contains("flex") ?? false;
   }
 
-  // Toggle modal
   langButton?.addEventListener("click", (e) => {
     e.stopPropagation();
     if (isMenuOpen()) closeMenu();
@@ -86,7 +85,6 @@ const data: I18nTranslations = Astro.props.data;
     }
   });
 
-  // Change language
   modal?.addEventListener("click", (e) => {
     const target = e.target as HTMLElement;
     const lang = target.dataset.lang;
@@ -118,7 +116,6 @@ const data: I18nTranslations = Astro.props.data;
     }
   });
 
-  // Close when clicking outside
   document.addEventListener("click", (e) => {
     const target = e.target as Node;
     if (!langButton?.contains(target) && !modal?.contains(target)) {

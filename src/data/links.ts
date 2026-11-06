@@ -4,7 +4,6 @@ export const LINKEDIN_URL = "https://www.linkedin.com/in/carlos-v%C3%A1squez-s%C
 export const LINKEDIN_LABEL = "in/carlos-vásquez-sánchez";
 export const SITE_URL = "https://carlosvassan.dev";
 
-/** Secciones de la página, en orden. `key` indica de dónde sale el título en el JSON. */
 export const SECTIONS = [
   { id: "profile", key: "profile" },
   { id: "projects", key: "projects" },

@@ -9,7 +9,6 @@ const { showMore, showLess, others, goToProject, goToRepo } = data.ui.projects;
 const toCards = (list: I18nTranslations["projects"]["list"]) =>
   Object.entries(list).map(([key, project]) => ({ key, ...project }));
 const grid = "grid w-full grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3";
-// Tamaños variables de las tarjetas (patrón de 5), como en el diseño original
 const sizes = [
   "md:col-span-1 lg:col-span-2",
   "md:col-span-1 lg:col-span-1",
@@ -104,11 +103,9 @@ const sizes = [
 
     others.dataset.open = String(open);
     others.toggleAttribute("inert", !open);
-    // Mientras se anima hay que recortar; al terminar de abrir se libera (sombras, inclinación 3D)
     if (!open) delete others.dataset.settled;
 
     if (open) {
-      // Si el contenido nuevo queda fuera de pantalla, acerca la vista para que se vea la animación
       const heading = others.querySelector("h3");
       const top = heading?.getBoundingClientRect().top ?? 0;
       if (top > globalThis.innerHeight * 0.6) {
@@ -126,7 +123,6 @@ const sizes = [
 </script>
 
 <style is:global>
-  /* Despliegue: la altura anima de 0fr a 1fr (sin medir alturas con JS) */
   .others {
     display: grid;
     grid-template-rows: 0fr;
@@ -150,7 +146,6 @@ const sizes = [
     overflow: visible;
   }
 
-  /* Las tarjetas entran escalonadas. `backwards`: al acabar se libera el transform (hover 3D) */
   .others[data-open="true"] article {
     animation: others-card-in 0.7s cubic-bezier(0.23, 1, 0.32, 1) backwards;
   }

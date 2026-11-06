@@ -1,26 +1,6 @@
 import vertexSource from "@/shaders/vertex_img.glsl?raw";
 
-/**
- * Motor del efecto de la foto. Solo se encarga del WebGL (contexto, textura, ratón, estela, bucle);
- * el efecto en sí es un fragmento GLSL que define `vec4 effect(vec2 uv)`.
- *
- * Dentro de `effect` hay disponibles:
- *   uv                  coordenadas del lienzo, (0,0) arriba-izquierda, (1,1) abajo-derecha
- *   sampleImage(uv)     color de la foto en ese punto (ya recortada para llenar el marco)
- *   sampleImageLod(uv, l) igual pero desenfocada (l = nivel de mipmap; 0 nítida, 3 muy suave)
- *   luma(rgb)           luminosidad de un color
- *   u_mouse             posición del cursor en las mismas coordenadas que uv
- *   u_hover             0..1, entra y sale con suavidad al pasar el ratón
- *   trailAt(uv)         0..1, estela del cursor: 1 donde está ahora, se apaga sola con el tiempo.
- *                       El tamaño del pincel se fija con `// brush: 0.17` en el .glsl (por defecto 0.17)
- *   u_time              segundos desde que arrancó
- *   u_resolution        tamaño del lienzo en píxeles
- *   u_canvasAspect      ancho / alto del marco
- *   toAspect(d)         corrige una diferencia de uv para medir distancias sin deformar
- *   cursorFalloff(r)    1 bajo el cursor → 0 a distancia r (ya multiplicado por u_hover)
- *   u_accent/u_bg/u_fg  colores del tema (acento, fondo, texto), cambian solos claro/oscuro
- */
-const PRELUDE = /* glsl */ `#version 300 es
+const PRELUDE = `#version 300 es
 precision highp float;
 
 in vec2 v_texCoord;
@@ -40,7 +20,6 @@ uniform vec3 u_bg;
 uniform vec3 u_fg;
 uniform vec2 u_dim;
 
-// "cover": la foto llena el marco; u_focus decide qué parte sobrante se recorta
 vec2 coverUV(vec2 uv) {
   float rx = min(u_canvasAspect / u_imageAspect, 1.0);
   float ry = min(u_imageAspect / u_canvasAspect, 1.0);
@@ -54,13 +33,10 @@ vec2 toAspect(vec2 d) { return vec2(d.x * u_canvasAspect, d.y); }
 float cursorFalloff(float radius) {
   return smoothstep(radius, 0.0, length(toAspect(v_texCoord - u_mouse))) * u_hover;
 }
-// La máscara se dibuja con y hacia arriba (convención de texturas): se voltea al leerla
 float trailAt(vec2 uv) { return texture(u_trail, vec2(uv.x, 1.0 - uv.y)).r; }
 `;
 
-// Paso que mantiene la estela: lee el fotograma anterior, lo apaga un poco y pinta el trazo
-// entre la posición anterior y la actual del cursor (así no quedan puntos sueltos si va rápido).
-const TRAIL_FRAGMENT = /* glsl */ `#version 300 es
+const TRAIL_FRAGMENT = `#version 300 es
 precision highp float;
 in vec2 v_texCoord;
 out vec4 outColor;
@@ -72,7 +48,6 @@ uniform float u_active;
 uniform float u_radius;
 void main() {
   float prev = texture(u_prev, vec2(v_texCoord.x, 1.0 - v_texCoord.y)).r;
-  // Resta fija además de la multiplicación: en 8 bits, solo multiplicar se quedaría clavado en valores bajos
   float m = max(prev * 0.955 - 0.0045, 0.0);
   vec2 p = v_texCoord * vec2(u_aspect, 1.0);
   vec2 a = u_prevMouse * vec2(u_aspect, 1.0);
@@ -84,9 +59,7 @@ void main() {
 }
 `;
 
-// Velo oscuro opcional (u_dim = opacidad arriba-izquierda, abajo-derecha) para fotos con texto encima.
-// La bola de luz de la estela lo aclara, así el efecto se ve aunque la foto esté oscurecida.
-const buildFragment = (body: string) => `${PRELUDE}
+const buildFragment = (body: string): string => `${PRELUDE}
 ${body}
 void main() {
   vec4 e = effect(v_texCoord);
@@ -101,14 +74,10 @@ void main() {
 
 export interface ImageShaderOptions {
   canvas: HTMLCanvasElement;
-  /** Código GLSL que define `vec4 effect(vec2 uv)` */
   fragmentBody: string;
   imageSrc: string;
-  /** Punto de enfoque del recorte: 0 = arriba/izquierda, 1 = abajo/derecha. Igual que `object-position`. */
   focus?: [number, number];
-  /** Velo oscuro fijo [arriba-izquierda, abajo-derecha], de 0 a 1. Sin él, la foto se ve tal cual. */
   dim?: [number, number];
-  /** Elemento que recibe el ratón (por defecto el lienzo). Útil si hay algo encima, como un enlace. */
   pointerTarget?: HTMLElement;
   onReady?: () => void;
   onError?: (message: string) => void;
@@ -133,7 +102,6 @@ const compile = (gl: WebGL2RenderingContext, type: number, source: string) => {
   return shader;
 };
 
-// Los atributos van siempre en las posiciones 0 y 1, así un único buffer sirve para todos los programas
 const link = (gl: WebGL2RenderingContext, fragmentSource: string) => {
   const program = gl.createProgram()!;
   gl.attachShader(program, compile(gl, gl.VERTEX_SHADER, vertexSource));
@@ -145,7 +113,6 @@ const link = (gl: WebGL2RenderingContext, fragmentSource: string) => {
   return program;
 };
 
-/** Lee un color del tema (`--accent: 168 62 34`) y lo pasa a 0..1 */
 const readThemeColor = (name: string, fallback: Rgb): Rgb => {
   const parts = getComputedStyle(document.documentElement).getPropertyValue(name).trim().split(/\s+/).map(Number);
   return parts.length === 3 && parts.every(Number.isFinite)
@@ -153,7 +120,6 @@ const readThemeColor = (name: string, fallback: Rgb): Rgb => {
     : fallback;
 };
 
-/** Devuelve `null` (y llama a `onError`) si no hay WebGL2 o el shader no compila: queda la imagen estática. */
 export function createImageShader(options: ImageShaderOptions): ImageShaderHandle | null {
   const {
     canvas,
@@ -187,7 +153,6 @@ export function createImageShader(options: ImageShaderOptions): ImageShaderHandl
     return fail(String(error instanceof Error ? error.message : error).trim());
   }
 
-  // Un cuadrado que ocupa todo el lienzo (dos triángulos) y sus coordenadas de textura (y hacia abajo)
   const bind = (location: number, data: number[]) => {
     gl.bindBuffer(gl.ARRAY_BUFFER, gl.createBuffer());
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(data), gl.STATIC_DRAW);
@@ -222,7 +187,6 @@ export function createImageShader(options: ImageShaderOptions): ImageShaderHandl
     radius: locate(trailProgram, "u_radius"),
   };
 
-  // Estela: dos texturas pequeñas que se turnan (leer una, escribir en la otra)
   const trailTex: WebGLTexture[] = [];
   const trailFbo: WebGLFramebuffer[] = [];
   let trailRead = 0;
@@ -244,7 +208,6 @@ export function createImageShader(options: ImageShaderOptions): ImageShaderHandl
     gl.bindFramebuffer(gl.FRAMEBUFFER, null);
   }
 
-  // Colores del tema: se releen cuando cambia la clase de <html> (claro/oscuro)
   let accent: Rgb = [0.66, 0.24, 0.13];
   let bg: Rgb = [0.96, 0.95, 0.93];
   let fg: Rgb = [0.11, 0.1, 0.09];
@@ -270,16 +233,15 @@ export function createImageShader(options: ImageShaderOptions): ImageShaderHandl
   let ready = false;
   let visible = true;
   let destroyed = false;
-  let quiet = 0; // fotogramas que quedan por repintar tras la última actividad (para que la estela se apague)
+  let quiet = 0;
   let raf = 0;
   const t0 = performance.now();
 
   const onPointerMove = (e: PointerEvent) => {
     const rect = canvas.getBoundingClientRect();
     mouseX = (e.clientX - rect.left) / rect.width;
-    mouseY = (e.clientY - rect.top) / rect.height; // y=0 arriba, igual que v_texCoord
+    mouseY = (e.clientY - rect.top) / rect.height;
     if (targetHover === 0) {
-      // Entra por un sitio nuevo: sin esto el trazo uniría con la última posición vieja
       prevMouseX = mouseX;
       prevMouseY = mouseY;
     }
@@ -367,8 +329,6 @@ export function createImageShader(options: ImageShaderOptions): ImageShaderHandl
     gl!.drawArrays(gl!.TRIANGLES, 0, 6);
   }
 
-  // Solo se dibuja con el lienzo en pantalla y la pestaña visible. Con el efecto ya apagado
-  // (y la estela desvanecida) se detiene el bucle, salvo que el efecto use u_time (animado).
   function frame(now: number) {
     raf = 0;
     if (destroyed) return;
@@ -392,7 +352,6 @@ export function createImageShader(options: ImageShaderOptions): ImageShaderHandl
   observer.observe(canvas);
   document.addEventListener("visibilitychange", start);
 
-  // Al cambiar el tamaño el lienzo se vacía: repintar aunque el bucle esté en reposo
   const resizeObserver = new ResizeObserver(() => {
     if (ready && !destroyed) draw(performance.now());
   });
@@ -406,13 +365,13 @@ export function createImageShader(options: ImageShaderOptions): ImageShaderHandl
     gl.activeTexture(gl.TEXTURE0);
     gl.bindTexture(gl.TEXTURE_2D, texture);
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, image);
-    gl.generateMipmap(gl.TEXTURE_2D); // sin mipmaps, reducir una foto grande a un marco pequeño se ve áspero
+    gl.generateMipmap(gl.TEXTURE_2D);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR_MIPMAP_LINEAR);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MAG_FILTER, gl.LINEAR);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE);
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.CLAMP_TO_EDGE);
     ready = true;
-    draw(performance.now()); // primer fotograma antes de enseñar el lienzo (evita un parpadeo)
+    draw(performance.now());
     onReady?.();
     start();
   };

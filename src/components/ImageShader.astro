@@ -1,10 +1,9 @@
 ---
-// Marco vertical 4:5: respeta la foto (que es vertical) y no la recorta por los lados.
+
 ---
 
 <div class="relative mx-auto aspect-[4/5] w-64 md:w-72 lg:w-80">
   <span class="absolute inset-0 translate-x-3 translate-y-3 rounded-sm border border-accent/50"></span>
-  <!-- Imagen estática: es lo que se ve sin WebGL2 / sin JS y mientras carga el lienzo -->
   <img
     src="/img/profile.webp"
     alt=""
@@ -25,8 +24,6 @@
 
   const canvas = document.querySelector<HTMLCanvasElement>("[data-image-shader]");
   const image = document.querySelector<HTMLImageElement>("[data-image-fallback]");
-  if (canvas && image && canvas.parentElement) {
-    // focus igual que object-[50%_15%] de la <img>
+  if (canvas && image && canvas.parentElement)
     attachHoverEffect({ container: canvas.parentElement, canvas, image, focus: [0.5, 0.15] });
-  }
 </script>

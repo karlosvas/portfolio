@@ -2,8 +2,6 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
-/* ── Design tokens (RGB channels, used via Tailwind `rgb(var(--x) / alpha)`) ── */
-/* Light: crema + terracota, como el CV */
 :root,
 .light {
   --bg: 246 242 237;
@@ -16,7 +14,6 @@
   color-scheme: light;
 }
 
-/* Dark: azul-negro + coral (el terracota del claro, en versión luminosa) */
 .dark {
   --bg: 5 8 17;
   --surface: 12 17 30;
@@ -36,7 +33,6 @@
     color 0.3s ease-in-out;
 }
 
-/* Etiqueta mono pequeña en mayúsculas (como "01 PERFIL" del CV) */
 .eyebrow {
   @apply font-mono text-xs font-medium uppercase tracking-[0.18em] text-accent;
 }
@@ -65,7 +61,6 @@ img[src*="unreal.svg"] {
   filter: brightness(0) saturate(100%) invert(0.95) opacity(1);
 }
 
-/* Contenido que aparece al hacer scroll: solo se oculta si hay JS (clase `js` en <html>) */
 .js .reveal-element {
   opacity: 0;
   transform: translateY(30px);
@@ -79,7 +74,6 @@ img[src*="unreal.svg"] {
   transform: none;
 }
 
-/* Enlace "saltar al contenido" */
 .skip-link {
   @apply sr-only;
 }

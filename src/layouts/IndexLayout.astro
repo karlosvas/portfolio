@@ -20,7 +20,6 @@ const ogImage = `${siteUrl}/img/profile.webp`;
     <meta name="author" content="Carlos Vásquez Sánchez" />
     <meta name="generator" content={Astro.generator} />
 
-    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content={pageUrl} />
     <meta property="og:site_name" content="Carlos Vásquez Sánchez" />
@@ -30,21 +29,18 @@ const ogImage = `${siteUrl}/img/profile.webp`;
     <meta property="og:image:alt" content={title} />
     <meta property="og:locale" content={language === "en" ? "en_US" : "es_ES"} />
 
-    <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content={pageUrl} />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
 
-    <!-- Favicons -->
     <link rel="shortcut icon" href="/favicon.svg" type="image/svg+xml" />
     <link rel="canonical" href={pageUrl} />
     <link rel="alternate" hreflang="es" href={siteUrl} />
     <link rel="alternate" hreflang="en" href={`${siteUrl}/en`} />
     <link rel="alternate" hreflang="x-default" href={siteUrl} />
 
-    <!-- Content Security Policy -->
     <meta
       http-equiv="Content-Security-Policy"
       content="default-src 'self' https:; 
@@ -64,11 +60,9 @@ const ogImage = `${siteUrl}/img/profile.webp`;
 
     <title>{title}</title>
 
-    <!-- Fuentes self-hosted (definidas en tailwind.config.mjs) -->
     <link rel="preload" href="/fonts/InterVariable.woff2" as="font" type="font/woff2" crossorigin />
     <link rel="preload" href="/fonts/IBMPlexMono-500.woff2" as="font" type="font/woff2" crossorigin />
 
-    <!-- Antes del primer pintado: marca que hay JS y aplica el tema (guardado, o el del sistema) -->
     <script is:inline>
       document.documentElement.classList.add("js");
       try {

@@ -1,10 +1,9 @@
-// Cambia de idioma conservando la sección (hash) en la que estaba el usuario.
-const goTo = (path: string) => {
+const goTo = (path: string): void => {
   globalThis.location.href = `${path}${globalThis.location.hash}`;
 };
 
-export const getSpain = () => goTo("/");
-export const getEnglish = () => goTo("/en");
+export const getSpain = (): void => goTo("/");
+export const getEnglish = (): void => goTo("/en");
 
 globalThis.getSpain = getSpain;
 globalThis.getEnglish = getEnglish;

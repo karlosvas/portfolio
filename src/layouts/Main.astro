@@ -28,13 +28,11 @@ const data: I18nTranslations = Astro.props.data;
 </main>
 
 <script>
-  // Sin hash en la URL, arrancamos arriba; con hash (p. ej. /#contact) respetamos el ancla.
   if (!location.hash) {
     if ("scrollRestoration" in history) history.scrollRestoration = "manual";
     globalThis.scrollTo(0, 0);
   }
 
-  // Intersection Observer to reveal elements on scroll
   const observerOptions = {
     threshold: 0.1,
     rootMargin: "0px 0px -50px 0px",
