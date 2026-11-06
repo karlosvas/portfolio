@@ -114,5 +114,42 @@
       "email": "Type your email here..",
       "message": "Type your message here.."
     }
+  },
+  "ui": {
+    "tagline": "High-performance systems",
+    "skipToContent": "Skip to content",
+    "nav": {
+      "label": "Main navigation"
+    },
+    "facts": {
+      "github": "GitHub",
+      "linkedin": "LinkedIn",
+      "email": "Email",
+      "location": "Location",
+      "locationValue": "Valladolid, Spain"
+    },
+    "projects": {
+      "showMore": "Show more",
+      "showLess": "Show less",
+      "others": "Others",
+      "goToProject": "Go to project {name}",
+      "goToRepo": "Go to the GitHub repository of {name}"
+    },
+    "aria": {
+      "openMenu": "Open navigation menu",
+      "closeMenu": "Close navigation menu",
+      "changeLanguage": "Change language",
+      "toLightTheme": "Switch to light theme",
+      "toDarkTheme": "Switch to dark theme"
+    },
+    "social": {
+      "github": "GitHub profile",
+      "linkedin": "LinkedIn profile",
+      "email": "Send an email"
+    },
+    "seo": {
+      "title": "Carlos Vásquez Sánchez · Software developer",
+      "description": "Portfolio of Carlos Vásquez Sánchez: projects and experience in software development with Rust, C++, TypeScript, Java and more."
+    }
   }
 }

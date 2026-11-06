@@ -68,6 +68,22 @@ export interface I18nTranslations {
       message: string;
     };
   };
+  ui: {
+    tagline: string;
+    skipToContent: string;
+    nav: { label: string };
+    facts: { github: string; linkedin: string; email: string; location: string; locationValue: string };
+    projects: { showMore: string; showLess: string; others: string; goToProject: string; goToRepo: string };
+    aria: {
+      openMenu: string;
+      closeMenu: string;
+      changeLanguage: string;
+      toLightTheme: string;
+      toDarkTheme: string;
+    };
+    social: { github: string; linkedin: string; email: string };
+    seo: { title: string; description: string };
+  };
 }
 
 export type ProjectKey =

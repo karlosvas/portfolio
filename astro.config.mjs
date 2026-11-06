@@ -21,6 +21,11 @@ export default defineConfig({
         context: "server",
         access: "secret",
       }),
+      PUBLIC_R2_PUBLIC_URL: envField.string({
+        context: "client",
+        access: "public",
+        optional: true,
+      }),
     },
   },
   publicDir: "public",
@@ -58,8 +63,5 @@ export default defineConfig({
         "@app-types": new URL("./types", import.meta.url),
       },
     },
-  },
-  pages: {
-    extensions: ["astro", "md", "ts", "tsx", "json"],
   },
 });

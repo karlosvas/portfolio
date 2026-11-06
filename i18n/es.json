@@ -5,7 +5,7 @@
     "name": "Carlos Raúl Vásquez Sánchez",
     "presentation": {
       "v1": "Comencé a programar proyectos personales a los dieciocho años. Cursé un Grado Superior de Desarrollo de Aplicaciones Multiplataforma, actualmente estoy haciendo una Ingeniería Informática en la UNIR, también hice un curso online de programación algorítmica online de la Universidad Complutense de Madrid, y hago servicios y proyectos autodidactas. Tengo {age} años y soy de España (Castilla y León, Valladolid).",
-      "v2": "Puedo adaptarme a cualquier lenguaje, creo en la importancia de  documentación y las buenas prácticas de desarrollo."
+      "v2": "Puedo adaptarme a cualquier lenguaje, creo en la importancia de la documentación y las buenas prácticas de desarrollo."
     }
   },
   "projects": {
@@ -13,7 +13,7 @@
     "list": {
       "amanahacademia": {
         "name": "Amanah Academia",
-        "description": "Academia de Español, con socialmedia, dasboard, newsletter, emails, pagos, y reservas. Backend en Rust (Axum), Frontend en Astro (Typescript).",
+        "description": "Academia de Español, con socialmedia, dashboard, newsletter, emails, pagos, y reservas. Backend en Rust (Axum), Frontend en Astro (Typescript).",
         "url": "https://amanahacademia.com"
       },
       "olimpiadas-informaticas": {
@@ -28,7 +28,7 @@
       },
       "tsl2591-rs": {
         "name": "tsl-2591-rs",
-        "description": "Platform-agnostic Rust driver for the TSL2591 high dynamic range digital light sensor.",
+        "description": "Driver en Rust, independiente de la plataforma, para el sensor digital de luz de alto rango dinámico TSL2591.",
         "url": "https://github.com/karlosvas/tsl2591-rs"
       },
       "bytes-colaborativos": {
@@ -60,12 +60,12 @@
       },
       "codeforces": {
         "name": "Personal Codeforces",
-        "description": "Coleción personal de ejercicios de programacion competitiva de codeforces escritos en C++, centrados en creación de algorimos y en priorizar soluciones eficientes por encima de un uso idiomatico.",
+        "description": "Colección personal de ejercicios de programación competitiva de codeforces escritos en C++, centrados en creación de algoritmos y en priorizar soluciones eficientes por encima de un uso idiomático.",
         "url": "https://github.com/karlosvas/codeforces"
       },
       "microsoft-learn": {
         "name": "Cursos de Microsoft Learn",
-        "description": "Microsoft Learn courses of Carlos Raul Vásquez Sánchez",
+        "description": "Cursos de Microsoft Learn completados por Carlos Raúl Vásquez Sánchez.",
         "url": "https://github.com/karlosvas/microsoft-learn"
       }
     }
@@ -83,7 +83,7 @@
         "title": "Desarrollador Unreal Engine 5",
         "company": "Rapture Games",
         "date": "03/2025 - Actualidad",
-        "description": "Desarrollo del videojuego Pipal en Unreal Engine con C++. He migrado lógica de Blueprints a C++ nativo, implementado mecánicas como, menús, opciones, pausa, guardar el esatdo de la partida. Integrado autenticación JWT mediante GameInstance, y desarrollado un sistema de movimiento de personajes dirigido por LLM a través de microservicios HTTP. También he trabajado en efectos visuales post-process y sistemas de guardado/carga."
+        "description": "Desarrollo del videojuego Pipal en Unreal Engine con C++. He migrado lógica de Blueprints a C++ nativo, implementado mecánicas como, menús, opciones, pausa, guardar el estado de la partida. Integrado autenticación JWT mediante GameInstance, y desarrollado un sistema de movimiento de personajes dirigido por LLM a través de microservicios HTTP. También he trabajado en efectos visuales post-process y sistemas de guardado/carga."
       },
       {
         "title": "Prácticas, Desarrollador Unreal Engine 5",
@@ -95,7 +95,7 @@
         "title": "Prácticas, Soporte Técnico Nuevas Tecnologías",
         "company": "Diputación de Valladolid",
         "date": "03/2024 - 06/2024",
-        "description": "Restauración completa de inventario de equipos tecnológicos. Desarollo de scripts en VBA para identificar y reguistrar equipos para la optimizacion del proceso de recopilacion y organización de datos. Colaboración con el equipo en tareas adminsitrativas y de soporte técnico relacionadas con la gestión de activos tecnológicos. Iniciativa propia para implementar soluciones eficientes, mejorando los tiempos y la precisión del inventario."
+        "description": "Restauración completa de inventario de equipos tecnológicos. Desarrollo de scripts en VBA para identificar y registrar equipos para la optimización del proceso de recopilación y organización de datos. Colaboración con el equipo en tareas administrativas y de soporte técnico relacionadas con la gestión de activos tecnológicos. Iniciativa propia para implementar soluciones eficientes, mejorando los tiempos y la precisión del inventario."
       }
     ]
   },
@@ -113,6 +113,43 @@
     "placeholders": {
       "email": "Escribe tu email aquí..",
       "message": "Escribe tu mensaje aquí.."
+    }
+  },
+  "ui": {
+    "tagline": "Sistemas de alto rendimiento",
+    "skipToContent": "Saltar al contenido",
+    "nav": {
+      "label": "Navegación principal"
+    },
+    "facts": {
+      "github": "GitHub",
+      "linkedin": "LinkedIn",
+      "email": "Email",
+      "location": "Ubicación",
+      "locationValue": "Valladolid, España"
+    },
+    "projects": {
+      "showMore": "Ver más",
+      "showLess": "Ver menos",
+      "others": "Otros",
+      "goToProject": "Ir al proyecto {name}",
+      "goToRepo": "Ir al repositorio de GitHub de {name}"
+    },
+    "aria": {
+      "openMenu": "Abrir menú de navegación",
+      "closeMenu": "Cerrar menú de navegación",
+      "changeLanguage": "Cambiar idioma",
+      "toLightTheme": "Cambiar a tema claro",
+      "toDarkTheme": "Cambiar a tema oscuro"
+    },
+    "social": {
+      "github": "Perfil de GitHub",
+      "linkedin": "Perfil de LinkedIn",
+      "email": "Enviar un email"
+    },
+    "seo": {
+      "title": "Carlos Vásquez Sánchez · Desarrollador de software",
+      "description": "Portafolio de Carlos Vásquez Sánchez: proyectos y experiencia en desarrollo de software con Rust, C++, TypeScript, Java y más."
     }
   }
 }

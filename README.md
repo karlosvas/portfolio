@@ -64,3 +64,22 @@ You can see all my projects in 🌐 [carlos.dev](https://carlosvas.dev)
 - :information_source: **Note:**
   Get in touch! You can find me on LinkedIn to discuss collaborations, projects, or simply chat about programming; my email is [carlosvassan@gmail.com](mailto:carlosvassan@gmail.com)
   Thanks for visiting my portfolio! 🚀
+
+## Editar los textos sin redeploy (Cloudflare R2)
+
+Todos los textos visibles salen de `i18n/{es,en}.json`. En producción la web intenta leer
+`lang/es.json` y `lang/en.json` del bucket de R2 (`PUBLIC_R2_PUBLIC_URL`) en cada petición:
+
+- Vercel cachea la respuesta 5 minutos (`s-maxage=300`) y sirve la anterior mientras revalida,
+  así que un cambio se ve en unos minutos, sin desplegar.
+- Se **fusiona sobre el JSON empaquetado**: las claves que falten, o con un tipo distinto, se ignoran y
+  se usa el texto local. Un JSON roto, ausente o un fallo de R2 nunca rompe la web.
+- Para empezar, copia `content/example/{es,en}.json` (son los mismos que `i18n/`), edítalos y súbelos:
+
+```sh
+wrangler r2 object put <bucket>/lang/es.json --file content/example/es.json --content-type application/json
+wrangler r2 object put <bucket>/lang/en.json --file content/example/en.json --content-type application/json
+```
+
+Los proyectos nuevos se pueden añadir en `projects.list` / `projects.others` con la misma forma que los
+existentes (necesitan su imagen en `public/img/<clave>.webp`).

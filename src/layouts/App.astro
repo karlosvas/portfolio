@@ -7,14 +7,35 @@ import Main from "@/layouts/Main.astro";
 import { getI18N } from "@i18n/index";
 let { currentLocale } = Astro;
 
-const data = getI18N({ currentLocale });
+const data = await getI18N({ currentLocale });
+
+// Lab de pruebas (shader de la foto): solo en desarrollo y con ?debug=lab.
+// `import.meta.env.DEV` es una constante en la build, así que en producción este import desaparece.
+const Lab = import.meta.env.DEV ? (await import("@/components/lab/Lab.astro")).default : null;
+const showLab = Lab !== null && Astro.url.searchParams.get("debug") === "lab";
+
+// Los textos se leen de R2 en cada petición: Vercel los cachea 5 min y sirve el anterior
+// mientras revalida, así un JSON nuevo se ve sin redeploy y sin penalizar la carga.
+if (!showLab) {
+  Astro.response.headers.set("Cache-Control", "public, max-age=0, s-maxage=300, stale-while-revalidate=86400");
+}
 ---
 
-<Layout title="Portfolio Carlos Raul Vásquez Sánchez" , language={currentLocale}>
-  <!-- Header -->
-  <Header data={data} />
-  <!-- Contenido principal -->
-  <Main data={data} />
-  <!-- Footer -->
-  <Footer data={data} />
+<Layout
+  title={data.ui.seo.title}
+  description={data.ui.seo.description}
+  language={currentLocale}
+  skipLabel={data.ui.skipToContent}
+>
+  {
+    showLab && Lab ? (
+      <Lab />
+    ) : (
+      <>
+        <Header data={data} />
+        <Main data={data} />
+        <Footer data={data} />
+      </>
+    )
+  }
 </Layout>
