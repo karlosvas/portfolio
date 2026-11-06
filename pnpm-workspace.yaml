@@ -2,6 +2,7 @@ packages:
   - "."
 allowBuilds:
   esbuild: true
+  koffi: true
   sharp: true
   vercel: true
 blockExoticSubdeps: false
