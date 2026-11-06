@@ -1,0 +1,184 @@
+---
+// SOLO DESARROLLO. Se carga únicamente con `import.meta.env.DEV` y `?debug=lab` (ver App.astro),
+// así que no entra en la build de producción. Es una herramienta fija para probar efectos:
+//
+//   · Cada fichero de src/shaders/lab/*.glsl es una variante (el prefijo numérico es su número).
+//   · El efecto que usa la web es src/shaders/hover-effect.glsl (copia de una variante).
+//   · Las imágenes de prueba están en src/components/lab/images/ (no viajan a producción).
+import { readdirSync } from "node:fs";
+
+const exitHref = Astro.url.pathname;
+const projectImages = readdirSync("public/img")
+  .filter((f) => f.endsWith(".webp") && f !== "profile.webp")
+  .map((f) => f.replace(/\.webp$/, ""));
+---
+
+<section
+  id="lab"
+  data-format="tall"
+  data-projects={JSON.stringify(projectImages)}
+  class="mx-auto w-full max-w-6xl px-6 py-16 md:px-10"
+>
+  <header class="mb-12 max-w-3xl">
+    <p class="eyebrow">Shader lab · solo desarrollo</p>
+    <h1 class="mt-3 text-3xl font-bold tracking-tight text-fg md:text-4xl">Efecto al pasar el ratón</h1>
+    <p class="mt-4 text-fg/80">
+      Pasa el cursor por cada versión y cambia la imagen para ver cómo queda con otras fotos. Para usar una en la web:
+      copia su <code class="font-mono text-sm">.glsl</code> a <code class="font-mono text-sm">hover-effect.glsl</code>.
+    </p>
+
+    <div class="mt-6 flex flex-wrap items-center gap-x-6 gap-y-4">
+      <label class="flex items-center gap-3">
+        <span class="eyebrow !text-muted">Imagen</span>
+        <select id="lab-image" class="rounded-sm border border-line bg-surface px-3 py-2 text-sm text-fg"></select>
+      </label>
+
+      <div class="flex items-center gap-3">
+        <span class="eyebrow !text-muted">Formato</span>
+        <div class="flex" role="group" aria-label="Formato del marco">
+          <button
+            type="button"
+            data-format-btn="tall"
+            aria-pressed="true"
+            class="eyebrow border border-line px-4 py-2 aria-pressed:!bg-accent aria-pressed:!text-accent-fg"
+          >
+            Vertical 4:5
+          </button>
+          <button
+            type="button"
+            data-format-btn="wide"
+            aria-pressed="false"
+            class="eyebrow -ml-px border border-line px-4 py-2 aria-pressed:!bg-accent aria-pressed:!text-accent-fg"
+          >
+            Horizontal 16:10
+          </button>
+        </div>
+      </div>
+
+      <label class="flex items-center gap-2 text-sm text-fg/80">
+        <input id="lab-dim" type="checkbox" class="accent-[rgb(var(--accent))]" />
+        Velo oscuro como las tarjetas
+      </label>
+
+      <a href={exitHref} class="eyebrow ml-auto !text-muted underline-offset-4 hover:underline">← Salir del lab</a>
+    </div>
+  </header>
+
+  <div id="lab-grid" class="grid grid-cols-1 gap-x-8 gap-y-14 sm:grid-cols-2 lg:grid-cols-3"></div>
+</section>
+
+<script>
+  import { createImageShader, type ImageShaderHandle } from "@/services/imageShader";
+
+  // Cada fichero de src/shaders/lab/*.glsl es una variante: añadir uno nuevo basta para verlo aquí
+  const shaders = import.meta.glob<string>("/src/shaders/lab/*.glsl", {
+    query: "?raw",
+    import: "default",
+    eager: true,
+  });
+  // Imágenes de prueba (lorem ipsum): solo existen en desarrollo
+  const loremImages = import.meta.glob<string>("/src/components/lab/images/*", {
+    query: "?url",
+    import: "default",
+    eager: true,
+  });
+
+  const root = document.getElementById("lab")!;
+  const grid = document.getElementById("lab-grid")!;
+  const select = document.getElementById("lab-image") as HTMLSelectElement;
+  const dimCheckbox = document.getElementById("lab-dim") as HTMLInputElement;
+  const projects: string[] = JSON.parse(root.dataset.projects ?? "[]");
+  const prettify = (s: string) => s.replace(/\.[a-z]+$/i, "").replace(/[-_]/g, " ");
+
+  // ---- Selector de imagen
+  const group = (label: string, options: [string, string][]) =>
+    `<optgroup label="${label}">${options.map(([v, t]) => `<option value="${v}">${t}</option>`).join("")}</optgroup>`;
+  select.innerHTML =
+    group("Mi foto", [["/img/profile.webp", "Foto de perfil"]]) +
+    group(
+      "Lorem ipsum",
+      Object.entries(loremImages).map(([path, url]) => [url, prettify(path.split("/").pop()!)] as [string, string]),
+    ) +
+    group(
+      "Proyectos",
+      projects.map((k) => [`/img/${k}.webp`, k] as [string, string]),
+    );
+
+  // ---- Tarjetas
+  let handles: ImageShaderHandle[] = [];
+
+  function render() {
+    handles.forEach((h) => h.destroy());
+    handles = [];
+    grid.innerHTML = "";
+
+    const imageSrc = select.value;
+    const isProfile = imageSrc === "/img/profile.webp";
+    const dim: [number, number] | undefined = dimCheckbox.checked ? [0.6, 0.95] : undefined;
+
+    for (const [path, body] of Object.entries(shaders).sort(([a], [b]) => a.localeCompare(b))) {
+      const file = path.split("/").pop()!;
+      const num = file.match(/^(\d+)/)?.[1] ?? "··";
+      const name = /\/\/\s*name:\s*(.+)/.exec(body)?.[1]?.trim() ?? file;
+      const desc = /\/\/\s*desc:\s*(.+)/.exec(body)?.[1]?.trim() ?? "";
+
+      const card = document.createElement("figure");
+      card.innerHTML = `
+        <div class="lab-frame relative mx-auto w-full overflow-hidden border-2 border-accent bg-surface">
+          <canvas class="absolute inset-0 h-full w-full cursor-crosshair"></canvas>
+          <p class="lab-error absolute inset-0 hidden items-center justify-center p-4 text-center font-mono text-xs text-red-600"></p>
+        </div>
+        <figcaption class="mx-auto mt-4 max-w-[18rem]">
+          <p class="eyebrow"><span class="!text-muted">${num}</span> · ${name}</p>
+          <p class="mt-1 text-sm text-fg/75">${desc}</p>
+          <p class="mt-1 font-mono text-[11px] text-muted">${file}</p>
+        </figcaption>`;
+      grid.append(card);
+
+      const errorEl = card.querySelector<HTMLElement>(".lab-error")!;
+      const handle = createImageShader({
+        canvas: card.querySelector("canvas")!,
+        fragmentBody: body,
+        imageSrc,
+        focus: isProfile ? [0.5, 0.15] : [0.5, 0.5],
+        dim,
+        onError: (message) => {
+          errorEl.textContent = message.slice(0, 220);
+          errorEl.classList.remove("hidden");
+          errorEl.classList.add("flex");
+        },
+      });
+      if (handle) handles.push(handle);
+    }
+  }
+
+  // ---- Controles
+  select.addEventListener("change", render);
+  dimCheckbox.addEventListener("change", render);
+
+  const buttons = document.querySelectorAll<HTMLButtonElement>("[data-format-btn]");
+  buttons.forEach((btn) =>
+    btn.addEventListener("click", () => {
+      root.dataset.format = btn.dataset.formatBtn;
+      buttons.forEach((b) => b.setAttribute("aria-pressed", String(b === btn)));
+      // Los lienzos se adaptan solos al nuevo tamaño (ResizeObserver del motor)
+    }),
+  );
+
+  render();
+  addEventListener("pagehide", () => handles.forEach((h) => h.destroy()));
+</script>
+
+<style is:global>
+  #lab .lab-frame {
+    max-width: 18rem;
+    border-radius: 0.125rem;
+  }
+  #lab[data-format="tall"] .lab-frame {
+    aspect-ratio: 4 / 5;
+  }
+  #lab[data-format="wide"] .lab-frame {
+    aspect-ratio: 16 / 10;
+    max-width: 24rem;
+  }
+</style>
