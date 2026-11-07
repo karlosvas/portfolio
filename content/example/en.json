@@ -28,7 +28,12 @@
       },
       "ferrum": {
         "name": "Ferrum - 3D Engine",
-        "description": "A real-time 3D rendering engine built in Rust, designed for educational and real-world applications. Features hardware sensor integration via Raspberry Pi, physics simulation, and interactive visualizations — demonstrated through a living plant environment driven by live telemetry data.",
+        "description": "A real-time 3D rendering engine built in Rust, designed for educational and real-world applications. Features hardware sensor integration via Raspberry Pi and physics simulation.",
+        "url": "https://github.com/karlosvas/ferrum"
+      },
+      "ferrum-web": {
+        "name": "Ferrum - Web demo",
+        "description": "Interactive in-browser demo of the Ferrum engine: a living plant environment driven by live telemetry data.",
         "url": "https://ferrum-theta.vercel.app/"
       },
       "tsl2591-rs": {
@@ -133,7 +138,8 @@
       "showLess": "Show less",
       "others": "Others",
       "goToProject": "Go to project {name}",
-      "goToRepo": "Go to the GitHub repository of {name}"
+      "goToRepo": "Go to the GitHub repository of {name}",
+      "goToSite": "Visit the {name} site"
     },
     "aria": {
       "openMenu": "Open navigation menu",

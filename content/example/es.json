@@ -22,8 +22,13 @@
         "url": "https://github.com/karlosvas/olimpiadas-informaticas"
       },
       "ferrum": {
-        "name": "Ferrum - 3D Engine",
-        "description": "Un motor de renderizado 3D en tiempo real desarrollado en Rust, diseñado para aplicaciones educativas y del mundo real. Ofrece integración con sensores de hardware a través de Raspberry Pi, simulación física y visualizaciones interactivas, todo ello demostrado mediante un entorno de plantas vivas controlado por datos de telemetría en tiempo real.",
+        "name": "Ferrum - Motor 3D",
+        "description": "Motor de renderizado 3D en tiempo real desarrollado en Rust, diseñado para aplicaciones educativas y del mundo real. Ofrece integración con sensores de hardware a través de Raspberry Pi y simulación física.",
+        "url": "https://github.com/karlosvas/ferrum"
+      },
+      "ferrum-web": {
+        "name": "Ferrum - Demo web",
+        "description": "Demostración interactiva del motor Ferrum en el navegador: un entorno de plantas vivas controlado por datos de telemetría en tiempo real.",
         "url": "https://ferrum-theta.vercel.app/"
       },
       "tsl2591-rs": {
@@ -133,7 +138,8 @@
       "showLess": "Ver menos",
       "others": "Otros",
       "goToProject": "Ir al proyecto {name}",
-      "goToRepo": "Ir al repositorio de GitHub de {name}"
+      "goToRepo": "Ir al repositorio de GitHub de {name}",
+      "goToSite": "Ver el sitio de {name}"
     },
     "aria": {
       "openMenu": "Abrir menú de navegación",

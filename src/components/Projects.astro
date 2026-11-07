@@ -4,18 +4,20 @@ import SectionHeading from "./SectionHeading.astro";
 import ProjectCard from "./ProjectCard.astro";
 
 const data: I18nTranslations = Astro.props.data;
-const { showMore, showLess, others, goToProject, goToRepo } = data.ui.projects;
+const { showMore, showLess, others, goToProject, goToRepo, goToSite } = data.ui.projects;
 
-const toCards = (list: I18nTranslations["projects"]["list"]) =>
-  Object.entries(list).map(([key, project]) => ({ key, ...project }));
+const fullRow = "md:col-span-2 lg:col-span-3";
+const fullRowKeys = new Set(["ferrum"]);
+const sizes = ["lg:col-span-2", "lg:col-span-1", "lg:col-span-1", "lg:col-span-2", "lg:col-span-2", "lg:col-span-1"];
+const toCards = (list: I18nTranslations["projects"]["list"]) => {
+  let cycle = 0;
+  return Object.entries(list).map(([key, project]) => ({
+    key,
+    ...project,
+    size: fullRowKeys.has(key) ? fullRow : sizes[cycle++ % sizes.length],
+  }));
+};
 const grid = "grid w-full grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3";
-const sizes = [
-  "md:col-span-1 lg:col-span-2",
-  "md:col-span-1 lg:col-span-1",
-  "md:col-span-2 lg:col-span-1",
-  "md:col-span-1 lg:col-span-2",
-  "md:col-span-1 lg:col-span-1",
-];
 ---
 
 <div class="mb-32 flex h-auto w-full flex-col items-center">
@@ -23,15 +25,16 @@ const sizes = [
 
   <div class={grid}>
     {
-      toCards(data.projects.list).map((p, i) => (
+      toCards(data.projects.list).map((p) => (
         <ProjectCard
-          class={sizes[i % sizes.length]}
+          class={p.size}
           projectKey={p.key}
           name={p.name}
           description={p.description}
           url={p.url}
           goToProject={goToProject}
           goToRepo={goToRepo}
+          goToSite={goToSite}
         />
       ))
     }
@@ -71,15 +74,16 @@ const sizes = [
       </div>
       <div class={grid}>
         {
-          toCards(data.projects.others).map((p, i) => (
+          toCards(data.projects.others).map((p) => (
             <ProjectCard
-              class={sizes[i % sizes.length]}
+              class={p.size}
               projectKey={p.key}
               name={p.name}
               description={p.description}
               url={p.url}
               goToProject={goToProject}
               goToRepo={goToRepo}
+              goToSite={goToSite}
             />
           ))
         }

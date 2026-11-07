@@ -72,7 +72,14 @@ export interface I18nTranslations {
     skipToContent: string;
     nav: { label: string };
     facts: { github: string; linkedin: string; email: string; location: string; locationValue: string };
-    projects: { showMore: string; showLess: string; others: string; goToProject: string; goToRepo: string };
+    projects: {
+      showMore: string;
+      showLess: string;
+      others: string;
+      goToProject: string;
+      goToRepo: string;
+      goToSite: string;
+    };
     aria: {
       openMenu: string;
       closeMenu: string;
@@ -87,6 +94,8 @@ export interface I18nTranslations {
 
 export type ProjectKey =
   | "amanahacademia"
+  | "ferrum"
+  | "ferrum-web"
   | "thefluentspanishhouse"
   | "olimpiadas-informaticas"
   | "elend-talk"
